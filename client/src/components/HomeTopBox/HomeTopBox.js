@@ -1,6 +1,5 @@
 import React from 'react'
 import './HomeTopBox.css'
-import ScrollDownArrow from '../ScrollDownArrow/ScrollDownArrow'
 
 import QuoteIcon from '../../components/QuoteIcon/QuoteIcon'
 
@@ -16,11 +15,10 @@ const HomeTopBox = (props) => {
                     }}
                 />
             </p>
-            <p className="HomeTopBox__quote_text">
+            <h1 className="HomeTopBox__quote_text">
                 Great things are not done by impulse, but a series of small things brought together. 
-            </p>
+            </h1>
             <p className="HomeTopBox__cite"> - Vincent Van Gogh</p>
-            {/* <ScrollDownArrow /> */}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { axiosInstance as axios } from '../../axios-config'
 import './FullPost.css'
 import ReactHtmlParser from 'react-html-parser'
 import snarkdown from 'snarkdown'
@@ -19,7 +19,7 @@ class FullPost extends Component {
         // window.addEventListener('scroll', this.listenToScroll)
 
         if (!this.state.post) {
-            axios.get('http://localhost:9292/posts/' + this.props.match.params.postId)
+            axios.get('/posts/' + this.props.match.params.postId)
                 .then((response) =>{
                     this.setState({post: response.data.doc},() => {
                         let result = snarkdown(this.state.post.body)
@@ -54,7 +54,7 @@ class FullPost extends Component {
                         <Animated animationIn="slideInDown" isVisible={true} >
                             <h1>{this.state.post.title}</h1>
                         </Animated>
-                        <h3>{this.state.post.author}</h3>
+                        <h3 className="header-h3">{this.state.post.author}</h3>
                     </div>
                 </div>
                 

@@ -1,0 +1,13 @@
+.ImageContainer__container {
+    padding: 50px;
+}
+
+.ImageContainer__wrapper {
+    height: 200px;
+    width: 200px;
+    background-image: url('../assets/man.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 100px;
+    margin: auto;
+}

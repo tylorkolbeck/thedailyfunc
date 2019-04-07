@@ -2,13 +2,3 @@
     height: 100%;
     text-align: center;
 }
-
-.Work__container h2 {
-    display: inline-block;
-    font-family: 'Fredoka One', cursive;
-    font-weight: 100;
-    text-align: center;
-    margin-bottom: 0px;
-    border-bottom: 3px solid #fec303; 
-    padding-top: 20px;
-}

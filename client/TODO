@@ -1,10 +1,15 @@
 TODO: 
+
+    URGENT:
+    - CLICKING ON POST TITLE DOES NOT WORK
+    
     - Throttle window resize event listener in PostCard.js
     - Remove event listeners
     - Store post data in redux
-
+    - Add a fade in to p text in postcard on hover
 
     - Contact Form
+    - Webkit check
 
     - Show error fetching posts on client
     - Show loader when loading posts

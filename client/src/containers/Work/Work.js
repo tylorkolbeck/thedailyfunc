@@ -4,7 +4,7 @@ import './Work.css'
 const Work = props => {
     return (
         <div className="Work__container">
-            <h2>Coming Soon!</h2>
+            <h2 className="headerTxt-h2 ">Coming Soon!</h2>
         </div>
     )
 }

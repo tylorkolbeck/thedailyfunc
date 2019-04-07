@@ -1,10 +1,7 @@
 .FullPost__container {
     height: 100%;
-    color: #414141;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.58;
     max-width: 750px;
-    margin:auto;
+    margin: auto;
     margin-top: 50px;
     margin-bottom: 100px;
 }
@@ -101,13 +98,6 @@
     color: white;
 }
 
-.FullPost_header_inner_container h3 {
-    background: #1d1d1d;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fec303;
-    font-family: 'Fredoka One', cursive;
-}
 
 .FullPost__back_button {
     background: none;
@@ -144,10 +134,6 @@
     .FullPost_header_inner_container h1 {
         margin: 20px;
         font-size: 48px;
-    }
-
-    .FullPost_header_inner_container h3 {
-        font-size: 16px;
     }
 
     .FullPost__top_back_button_tags_container {

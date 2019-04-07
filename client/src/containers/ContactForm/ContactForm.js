@@ -97,7 +97,7 @@ class ContactForm extends Component {
             form = (
                     <div className="ContactForm__container">
                     <div style={{textAlign: 'center'}}>
-                        <h2>Contact</h2>
+                        <h2 className="headerTxt-h2 ">Contact</h2>
 
                         <form className="ContactForm__form">
                             <p className="ContactrForm__text">If you would like to get in touch please send me a message and I will get back to you!</p>

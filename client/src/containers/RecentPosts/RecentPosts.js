@@ -38,16 +38,16 @@ class RecentPosts extends Component {
         
 
         return (
-            <div>
-
+            <div className="RecentPosts__container">
                 <Animated animationIn="slideInLeft" isVisible={true}>
-                    <h2 className="RecentPosts__h2">Recent Posts</h2>
-                    <div className="RecentPosts__container">
-                        {recentPosts}
+                    <div className="flex-center">
+                        <h2 className="headerTxt-h2 center-txt">Recent Posts</h2>
                     </div>
+                        <div className="RecentPosts__wrapper">
+                            {recentPosts}
+                        </div>
                 </Animated>
-
-        </div>
+            </div>
         )
     }
 }

@@ -1,0 +1,46 @@
+.HomeTopBox__container {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 50px;
+    padding-top: 0px;
+    box-sizing: border-box;
+    color: #414141;
+    /* background: #e2e2e2; */
+    font-family: 'Fredoka One', cursive;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.HomeTopBox__container p {
+    margin: 0px;
+}
+
+.HomeTopBox__quote {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    color: #fec303;
+    margin: 0px; 
+    padding: 0px;
+}
+
+.HomeTopBox__quote_text {
+    text-align: left;
+    text-align: center;
+    font-size: 42px;
+}
+
+.HomeTopBox__cite {
+    font-size: 18px;
+    color: #fec303;
+    text-align: center;
+    padding-top: 12px;
+}
+
+
+@media(max-width: 550px) {
+    .HomeTopBox__quote_text {
+        font-size: 32px;
+    }
+}

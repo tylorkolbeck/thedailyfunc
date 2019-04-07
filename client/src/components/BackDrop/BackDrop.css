@@ -1,0 +1,15 @@
+.BackDrop {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    background: rgb(45,45,45,.8);
+    z-index: 10;
+}
+
+.show {
+    display: block;
+}

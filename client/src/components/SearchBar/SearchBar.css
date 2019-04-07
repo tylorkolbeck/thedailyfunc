@@ -1,0 +1,38 @@
+.SearchBar_input:focus {
+    border: none;
+    outline: none;
+    border: none;
+    width: 200px;
+}
+
+.SearchBar_input:hover {
+    width: 200px;
+}
+
+.SearchBar_input {
+    font-family: 'CircularProBook', 'jaf-domus','Gill Sans','Gill Sans MT', 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    background: #424242;
+    border-radius: 6px;
+    padding: 8px;
+    width: 60px;
+    font-size: 16px;
+    padding-left: 10px;
+    margin-right: 20px;
+    border: none;
+    outline: none;
+    -webkit-transition-property: width;
+    -webkit-transition-duration: 1s;
+    transition-property: width;
+    transition-duration: 1s; 
+}
+
+.SearchBar_input:focus {
+    color: white;
+}
+
+
+@media(max-width: 900px) {
+    .SearchBar_input {
+        width: 60px;
+    }
+}

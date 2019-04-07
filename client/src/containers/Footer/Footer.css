@@ -1,0 +1,114 @@
+.Footer__container {
+    /* height: 100px; */
+    position: relative;
+    background: #1d1d1d;
+    color: #fec303;   
+    position: relative; 
+    clear: both;
+}
+
+.Footer__links_list {
+    list-style: none;
+    display: flex; 
+    margin: auto;
+    padding-left: 0px;
+    justify-content: center;
+    margin: 0px;
+    width: 100%;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+
+.Footer__links_list a {
+    text-decoration: none;
+    color: #fec303;
+    margin: 20px;
+
+    font-family: 'Fredoka One', cursive;
+}
+
+.Footer__links_list a:first-of-type {
+    margin-left: 0px;
+    /* background: blue; */
+}
+
+.Footer__links_list a:hover {
+    color: white;
+}
+
+.Footer__about {
+    position: relative;
+    bottom: 0;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    padding-bottom: 12px;
+}
+
+.Footer__contact_info {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    padding: 10px 0px;
+    flex-direction: column;
+}
+
+.Footer__contact_info li{
+    display: flex;
+    margin: auto;
+    margin: 10px auto;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.Footer__logo {
+    border: 2px solid #fec303;
+    border-radius: 50px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    line-height: 50px;
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+    margin: auto;
+    padding: 5px;
+}
+
+@media(max-width: 650px) {
+    .Footer__container {
+        /* height: 200px; */
+        padding-top: 50px;
+    }
+
+    .Footer__links_list {
+        flex-direction: column;
+        padding-left: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .Footer__links_list {
+        /* width: 50%; */
+        margin-bottom: 20px;
+    }
+
+    .Footer__links_list a {
+        margin-right: 0px;
+    }
+
+    .Footer__links_list li {
+        margin:10px 0px;
+        /* border-bottom: 1px solid #fec303; */
+        width: 100%;
+        text-align: center;
+        padding-bottom: 6px;
+    }
+
+    .Footer__links_list li:first-of-type {
+        margin-top: 0px;
+    }
+}

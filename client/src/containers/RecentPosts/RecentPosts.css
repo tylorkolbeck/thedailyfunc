@@ -1,0 +1,17 @@
+.RecentPosts__container {
+    display: inline-block;
+    /* width: 50%; */
+    /* width: 100%; */
+    box-sizing: border-box;
+    /* background: red; */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.RecentPosts__h2 {
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+    text-align: center;
+}

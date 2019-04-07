@@ -1,0 +1,200 @@
+.PostCard__container {
+    position: relative;
+    width: 300px;
+    height: 370px;
+    overflow: hidden;
+    margin: 20px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: 1px solid #dcdee4;
+    -webkit-transition : all 300ms ease;
+    -moz-transition : all 300ms ease;
+    -o-transition : all 300ms ease;
+    transition : all 300ms ease;
+    box-shadow: 1px 1px 30px 1px rgba(1,1,1,.1);
+
+}
+
+.PostCard__container:hover {
+    border-color: #c5c7cc;
+    cursor: pointer;
+}
+
+.PostCard__container:hover .PostCard__image_container {
+    height: 100px;
+    /* height: auto; */
+}
+
+.PostCard__container:hover .PostCard__title {
+    white-space: normal;
+    overflow: visible;
+}
+
+.PostCard__container:hover .PostCard__info {
+    height: 220px;
+}
+
+.PostCard__container:hover .PostCard__color_circle {
+    /* bottom: 100%; */
+    bottom: 235px;
+}
+
+/* .PostCard__container:hover .PostCard__tag {
+    display: none;
+} */
+
+.PostCard__container p {
+    margin: 0px;
+}
+
+.PostCard__image_container {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    background-position: center;
+    background-size: cover;
+    -webkit-transition : all 300ms ease;
+    -moz-transition : all 300ms ease;
+    -o-transition : all 300ms ease;
+    transition : all 300ms ease;
+    /* background: #fec303; */
+}
+
+.PostCard__date {
+    font-size: 12px;
+}
+
+.PostCard__title {
+    font-size: 18px;
+    padding-top: 3px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Fredoka One', cursive;
+}
+
+.PostCard__title:hover { 
+    color: #fec303;
+}
+
+.PostCard__author {
+    color: white;
+    padding: 10px;
+    /* text-shadow: 1px 1px black; */
+}
+
+.PostCard__description {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.PostCard__info {
+    position: relative;
+    height: 130px;
+    width: 100%;
+    padding: 24px 17px 7px 17px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    color: #414141;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-transition : all 300ms ease;
+    -moz-transition : all 300ms ease;
+    -o-transition : all 300ms ease;
+    transition : all 300ms ease;
+}
+
+.PostCard__footer {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    border-radius: 0px 0px 7px 7px;
+    padding: 0px 17px 7px 17px;
+    color: #414141;
+}
+
+.PostCard__color_circle {
+    background: #1d1d1d;
+    position: absolute;
+    right: 15px;
+    bottom: 145px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    text-align: center;
+    border: 4px solid white;
+    -webkit-transition : all 300ms ease;
+    -moz-transition : all 300ms ease;
+    -o-transition : all 300ms ease;
+    transition : all 300ms ease;
+}
+
+.PostCard__color_circle span {
+    color: #fec303;
+    line-height: 50px;
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+}
+
+.PostCard__tag {
+    padding: 5px;
+    border: 1px solid #dcdee4;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 7px;
+    margin-bottom: 12px;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-transition : all 300ms ease;
+    -moz-transition : all 300ms ease;
+    -o-transition : all 300ms ease;
+    transition : all 300ms ease;
+}
+
+.PostCard__tag:hover {
+    background:#414141;
+    color: white;
+    cursor: pointer;
+    border-color: #414141;
+}
+
+.PostCard__tag:first-of-type {
+    margin-left: 0px;
+}
+
+@media(max-width: 651px) {
+    .PostCard__container {
+        display: block;
+        width: 95vw;
+        /* min-width: 100%; */
+        height: 280px;
+        box-sizing: border-box;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .PostCard__container:hover .PostCard__info {
+        height: 130px;
+    }
+
+    .PostCard__image_container{
+        height: 100px;
+    }
+
+    .PostCard__container .PostCard__color_circle {
+        top: 75px;
+    }
+
+    .PostCard__tags {
+        /* margin-bottom: 10px; */
+    }
+
+    .PostCard__footer {
+        /* background: red; */
+    }
+
+}
+
+
+
+

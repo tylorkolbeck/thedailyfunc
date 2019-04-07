@@ -1,0 +1,51 @@
+.CatBubble {
+    border-radius: 50px;
+    height: 50px;
+    width: 50px;
+    background: #1d1d1d;
+    color: #fec303;
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.CatBubble:hover {
+    cursor: pointer;
+    color: #1d1d1d;
+    background: #fec303;
+    transform: translateY(-3px);
+    box-shadow: 2px 2px 5px 1px rgba(1,1,1,.3);
+    -webkit-transition : all 400ms ease;
+    -moz-transition : all 400ms ease;
+    -o-transition : all 400ms ease;
+    transition : all 400ms ease;
+}
+
+.CatBubble::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    display: block;
+    color: #fec303;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    background: rgba(29, 29, 29, 1);
+    padding: 8px;
+    border-radius: 8px;
+    bottom: 120%;
+    opacity: 0;
+    transition: all ease 300ms;
+    transform: scale(0);
+    box-shadow: 2px 2px 5px 1px rgba(1,1,1,.3);
+
+}
+
+.CatBubble:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}

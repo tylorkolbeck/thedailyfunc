@@ -1,0 +1,14 @@
+TODO: 
+    - Throttle window resize event listener in PostCard.js
+    - Remove event listeners
+    - Store post data in redux
+
+
+    - Contact Form
+
+    - Show error fetching posts on client
+    - Show loader when loading posts
+    
+
+
+    - Setup SSL

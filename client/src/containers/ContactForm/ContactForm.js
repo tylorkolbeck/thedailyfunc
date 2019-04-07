@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import './ContactForm.css'
 import { Animated } from "react-animated-css";
-import axios from 'axios'
+import { axiosInstance as axios } from '../../axios-config'
+
+import BackArrow from '../../components/BackArrow/BackArrow'
 
 
 class ContactForm extends Component {
 
     state= {
         contactForm: {
-            name: 'Tylor',
-            email: 'tylor@gmail.com',
-            message: 'Test Message',
+            name: '',
+            email: '',
+            message: '',
         },
         formIsValid: false,
         validEmail: '',
         validName: '',
-        validMessage: ''
+        validMessage: '',
+        formSubmitted: false,
+        submittedError: false
     }
 
     updateFormHandler = (e, el) => {
@@ -66,18 +70,32 @@ class ContactForm extends Component {
     }
 
     submitFormHandler = () => {
-        console.log('FINAL FORM', this.state.contactForm)
-        let formData = new FormData()
-        for (let data in this.state.contactForm) {
-            formData.append('test', this.state.contactForm[data])
-        }
+        this.setState({formSubmitted: true, submittedError: false})
+        let formData = {...this.state.contactForm}
         axios.post('/contact/message', formData)
+            .then((res) => {
+                if (res.status === 201) {
+                    // console.log('message sent as: ', formData)
+                    console.log(this.state)
+                } else {
+                    this.setState({submittedError: true})
+                    window.scrollTo(0, 0)
+                }
+            })
+            .catch((err) => {
+                this.setState({submittedError: true}
+                )}
+            )
+            window.scrollTo(0, 0)
+            
     }
 
     render() {
-        return (
-            <Animated animationIn="slideInLeft" isVisible={true}>
-                <div className="ContactForm__container">
+        let form
+
+        if (!this.state.formSubmitted && !this.state.submittedError) {
+            form = (
+                    <div className="ContactForm__container">
                     <div style={{textAlign: 'center'}}>
                         <h2>Contact</h2>
 
@@ -120,6 +138,23 @@ class ContactForm extends Component {
 
                     </div>
                 </div>
+            )
+        } else if (this.state.formSubmitted && !this.state.submittedError) {
+            form = (
+                <h2 className="ContactForm-msg-success">Your Message has been sent!</h2>
+            )
+        } else if (this.state.formSubmitted && this.state.submittedError) {
+            form = (
+                <h2 className="ContactForm-msg-success">Unfortunately there was an error sending your message.  Please refresh and try again or email me directly</h2>
+            )
+        }
+
+        return (
+            <Animated animationIn="slideInLeft" isVisible={true}>
+                <button onClick={this.props.history.goBack} className="FullPost__back_button" style={{marginTop: '20px'}}> 
+                    <BackArrow className="desktop" style={{marginLeft: '18px'}}/>
+                </button>
+                {form}
             </Animated>
         )
     }

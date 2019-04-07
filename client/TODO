@@ -8,7 +8,10 @@ TODO:
 
     - Show error fetching posts on client
     - Show loader when loading posts
-    
+    - Convert to rems for font sizes
+    - Secure contact form
+        https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms
+        https://www.sitepoint.com/forms-file-uploads-security-node-express/    
 
 
     - Setup SSL

@@ -5,15 +5,27 @@ const mongoose = require("mongoose")
 const Message = require("../models/Message")
 
 exports.postMessage = (req, res) => {
-    console.log(req.doc)
-    // Message.post()
-    //     .then((doc) => {
-    //         console.log(doc)
-    //     })
-    //     .catch(err => {
-    //         res.status(500).json({
-    //             message: 'Error',
-    //             err: err
-    //         })
-    //     }) 
+    const newMessage = new Message ({
+        name: req.body.name,
+        email: req.body.email,
+        message: req.body.message,
+        read: false
+    })
+
+    newMessage.save()
+        .then(result => {
+            res.status(201).json({
+                success: true,
+                message: 'Message Sent'
+            })
+        })
+        .catch((err,res) => {
+            const errorObj = fieldCheck(err)
+            res.status(500).json({
+                success: false,
+                error: 'Error Sending Request',
+                message: err,
+                response: res
+            })
+        })
 }

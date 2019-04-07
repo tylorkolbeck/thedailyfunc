@@ -49,6 +49,16 @@
 
 }
 
+.ContactForm-msg-success {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    margin: 100px;
+    padding: 0px;
+    font-weight: 300;
+    border-bottom: 3px solid #fec303;
+    border-radius: 2px;
+}
+
 .ContactForm__form .form-error {
     border: 1px solid red;
 }

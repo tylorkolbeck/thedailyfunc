@@ -14,4 +14,10 @@ To start the backend server on PORT 8000.
 
 ```npm start```
 
+## Built With
 
+    ### Client
+        BoilerPlate `create-react-app`
+    
+    ### Backend
+        Express

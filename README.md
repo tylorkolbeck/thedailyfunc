@@ -17,7 +17,7 @@ To start the backend server on PORT 8000.
 ## Built With
 
 ### Client
-    BoilerPlate `create-react-app`
+BoilerPlate `create-react-app`
 
 ### Backend
-    Express
+Express

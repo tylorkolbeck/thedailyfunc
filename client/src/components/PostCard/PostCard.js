@@ -88,12 +88,14 @@ class PostCard extends Component {
 
             <div className="PostCard__info">
                 <p className="PostCard__date">{dateConversion(this.props.data.date, 'd,m,y')}</p>
-                <p className="PostCard__title" onClick={this.props.clicked}>{this.props.data.title}</p>
+                <p className="PostCard__title">{this.props.data.title}</p>
                 <p className="PostCard__description">{this.props.data.description ? this.props.data.description.slice(0, this.state.mouseInContainer ? 300 : 150) : null}</p>
             </div>
 
             <div className="PostCard__footer">
-                {this.categoryTags()}
+                
+                    {this.categoryTags()}
+                
                 {/* {this.props.data.tags.map((tag) => {
                     return (
                         <span className="PostCard__tag" key={tag}>{tag}</span>

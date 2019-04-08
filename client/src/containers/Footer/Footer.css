@@ -5,6 +5,7 @@
     color: #fec303;   
     position: relative; 
     clear: both;
+    margin-top: 100px;
 }
 
 .Footer__links_list {
@@ -24,8 +25,8 @@
     text-decoration: none;
     color: #fec303;
     margin: 20px;
-
     font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
 }
 
 .Footer__links_list a:first-of-type {

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './RecentPosts.css'
 import {axiosInstance as axios } from '../../axios-config'
 import PostCard from '../../components/PostCard/PostCard'
-import { Animated } from "react-animated-css";
+import ScrollAnimation from 'react-animate-on-scroll'
+
 
 
 class RecentPosts extends Component {
@@ -39,14 +40,14 @@ class RecentPosts extends Component {
 
         return (
             <div className="RecentPosts__container">
-                <Animated animationIn="slideInLeft" isVisible={true}>
+            <ScrollAnimation animateIn="fadeIn">
                     <div className="flex-center">
                         <h2 className="headerTxt-h2 center-txt">Recent Posts</h2>
                     </div>
                         <div className="RecentPosts__wrapper">
                             {recentPosts}
                         </div>
-                </Animated>
+            </ScrollAnimation>
             </div>
         )
     }

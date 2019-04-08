@@ -32,7 +32,7 @@ const Footer = props => {
                 <li>@tylor_kolbeck</li>
             </ul>
 
-            <p className="Footer__about"> &#9400; 2019 - Created By TK Web Design</p>
+            <p className="Footer__about"> 2019 - Created By TK Web Design</p>
 
         </div>
     )

@@ -31,13 +31,13 @@ const HomeAbout = props => {
         
             <div className="HomeAbout__container">
 
-                <ScrollAnimation animateIn="slideInLeft">
+                <ScrollAnimation animateIn="slideInLeft" animateOnce={true}>
                     <h2 className="headerTxt-h2">About</h2>
                     <ImageContainer />
                     <p style={{marginBottom: '150px', padding: '0px 20px', maxWidth: '600px', margin: '50px auto'}}>I am a Front-End Web Developer and Web Development educator working in San Digeo, California. I do contract work specializing in Node, Javascript, React and Express</p>
                 </ScrollAnimation>
 
-                <ScrollAnimation animateIn="slideInRight">
+                <ScrollAnimation animateIn="slideInRight" animateOnce={true}>
                     <h2 className="headerTxt-h2" style={{marginTop: '100px'}}>Tech Proficiency</h2>
 
                     <div className="HomeAbout__container-tech" style={{marginBottom: '100px'}}>

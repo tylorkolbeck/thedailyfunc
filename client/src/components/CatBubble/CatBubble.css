@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    box-shadow: 3px 2px 5px rgba(1,1,1,.4);
 }
 
 

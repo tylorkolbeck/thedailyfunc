@@ -157,7 +157,7 @@ class AllPosts extends Component {
                     <BackArrow className="desktop" style={{marginLeft: '18px'}}/>
                 </button>
 
-                <Animated animationIn="slideInRight" animationOut="slideOutLeft" isVisible={this.state.visible.mainPage} style={{display: 'flex', width: '100%'}}>
+                <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.visible.mainPage} style={{display: 'flex', width: '100%'}}>
                     <div style={{maxWidth: '1200px', margin: 'auto', width: '100%'}}>
 
                         {/* <div style={{textAlign: 'center', marginTop: '20px', fontFamily: "'Fredoka One', cursive"}}>

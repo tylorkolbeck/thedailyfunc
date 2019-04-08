@@ -83,12 +83,14 @@ class AllPosts extends Component {
         let postsToShow = null
 
         // If no filter show all posts
-        if (this.state.posts && !this.state.filter)  {
+        if (this.state.posts && !this.state.filter && this.state.posts.length > 0)  {
             cards = this.state.posts.map((data) => {
                 return (
                     <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
                 )
             })
+        } else if (this.state.posts.length < 0) {
+            cards = <h1>There are no posts yet. Please check back.</h1>
         }
 
         // If filter only show filtered posts

@@ -5,6 +5,8 @@ TODO:
     - Throttle window resize event listener in PostCard.js
     - Remove event listeners
     - Store post data in redux
+    
+    - Show no available posts if none are available 
 
     - Contact Form
     - Webkit check

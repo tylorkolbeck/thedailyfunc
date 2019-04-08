@@ -94,7 +94,7 @@ class PostCard extends Component {
 
             <div className="PostCard__footer">
                 
-                    {this.categoryTags()}
+                    {/* {this.categoryTags()} */}
                 
                 {/* {this.props.data.tags.map((tag) => {
                     return (

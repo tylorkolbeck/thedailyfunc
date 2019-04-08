@@ -142,8 +142,9 @@
 .PostCard__tag {
     padding: 5px;
     border: 0px solid #dcdee4;
-    background: #1d1d1d;
-    color: #fec303;
+    background: darkgrey;
+    /* color: #fec303; */
+    color: white;
     padding: 6px;
     border-radius: 8px;
     font-size: 12px;
@@ -198,12 +199,12 @@
         top: 75px;
     }
 
-    .PostCard__tags {
-        /* margin-bottom: 10px; */
+    .PostCard__color_circle {
+        right: 35px;
     }
 
     .PostCard__footer {
-        /* background: red; */
+        display: none;
     }
 
 }

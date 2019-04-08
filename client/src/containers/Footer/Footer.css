@@ -62,6 +62,7 @@
     margin: 10px auto;
     color: white;
     font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem;
 }
 
 .Footer__logo {
@@ -86,7 +87,7 @@
     }
 
     .Footer__links_list {
-        flex-direction: column;
+        flex-direction: row;
         padding-left: 0px;
         padding-top: 0px;
         padding-bottom: 0px;
@@ -103,13 +104,13 @@
 
     .Footer__links_list li {
         margin:10px 0px;
-        /* border-bottom: 1px solid #fec303; */
-        width: 100%;
+        /* width: 20%; */
         text-align: center;
         padding-bottom: 6px;
+        margin: 0px 8px;
     }
 
-    .Footer__links_list li:first-of-type {
+    /* .Footer__links_list li:first-of-type {
         margin-top: 0px;
-    }
+    } */
 }

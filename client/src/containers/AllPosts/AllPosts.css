@@ -42,6 +42,11 @@
     align-items: center;
 }
 
+.AllPosts__CatBubble-all:hover::before {
+    opacity: 0;
+    display: none;
+}
+
 @media(max-width: 650px) {
     .AllPosts__container {
     margin-bottom: 10px;

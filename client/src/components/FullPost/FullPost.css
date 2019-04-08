@@ -4,6 +4,10 @@
     margin: auto;
     margin-top: 50px;
     margin-bottom: 100px;
+    color: #414141;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 2.1rem;
+    font-size: 1.6rem;
 }
 
 .FullPost__container .sourceCode {
@@ -131,10 +135,10 @@
         margin-top: 0px;
     }
 
-    .FullPost_header_inner_container h1 {
+    /* .FullPost_header_inner_container h1 {
         margin: 20px;
         font-size: 48px;
-    }
+    } */
 
     .FullPost__top_back_button_tags_container {
         margin-top: 20px;

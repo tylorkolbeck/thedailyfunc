@@ -8,6 +8,8 @@ import { axiosInstance as axios } from '../../axios-config'
 import { Animated } from "react-animated-css";
 import BackArrow from '../../components/BackArrow/BackArrow'
 
+import Spinner from '../../components/UI/Spinner/Spinner'
+
 
 class AllPosts extends Component {
     state = {
@@ -18,14 +20,20 @@ class AllPosts extends Component {
         visible: {
             mainPage: true,
             catBubbles: true
-        }
+        },
+        loading: false,
+        error: false
     }
 
     componentDidMount() { 
         if (!this.state.posts) {
+            this.setState({loading: true, error: false})
             axios.get('/posts')
                 .then((response)=> {
-                    this.setState({posts: response.data.docs})
+                    this.setState({posts: response.data.docs, loading:false})
+                })
+                .catch((err) => {
+                    this.setState({error: true, loading: false})
                 })
         }
     }
@@ -136,14 +144,20 @@ class AllPosts extends Component {
     }
 
     render() {
+        let spinner
+
+        spinner = this.state.loading ? <Spinner /> : null
+
+        let hideOnError = this.state.error ? 'hide' : ''
+
         return (
+
             <div style={{minHeight: '100%'}}>
                 <button onClick={this.props.history.goBack} className="FullPost__back_button" style={{marginTop: '20px'}}> 
                     <BackArrow className="desktop" style={{marginLeft: '18px'}}/>
                 </button>
 
                 <Animated animationIn="slideInRight" animationOut="slideOutLeft" isVisible={this.state.visible.mainPage} style={{display: 'flex', width: '100%'}}>
-                    
                     <div style={{maxWidth: '1200px', margin: 'auto', width: '100%'}}>
 
                         {/* <div style={{textAlign: 'center', marginTop: '20px', fontFamily: "'Fredoka One', cursive"}}>
@@ -151,8 +165,19 @@ class AllPosts extends Component {
                         </div> */}
 
                         <div className="AllPosts__cat_bubble_container">
-                            <h2 className="CatBubble" data-tooltip="All Posts"style={{border: '2px solid #fec303'}}onClick={() => this.cssTransitionDelay(this.removeFiltersHandler, 'mainPage')}>A<span style={{fontSize: '12px'}}>ll</span></h2>
+
+                            {!this.state.loading ? 
+                                <h2 className={`CatBubble ${hideOnError} AllPosts__CatBubble-all`}
+                                data-tooltip="All"
+                                style={{border: '2px solid #fec303'}}
+                                onClick={() => this.cssTransitionDelay(this.removeFiltersHandler, 'mainPage')}>
+                                    A
+                                <span style={{fontSize: '12px'}}>
+                                    ll
+                                </span></h2> : null}
                             {this.createCategoryBubbles()}
+                            {this.state.error ? <div><h1>There was an error fetching the posts.</h1></div> : null}
+
                         </div>
 
                         {this.checkWhatToShow()}
@@ -160,6 +185,8 @@ class AllPosts extends Component {
                     </div>
 
                 </Animated>
+                {spinner}
+
             </div>
 
         )

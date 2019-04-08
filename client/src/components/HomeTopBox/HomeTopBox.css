@@ -9,7 +9,7 @@
     color: #414141;
     font-family: 'Fredoka One', cursive;
     margin: auto;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     min-height: 100vh;
     margin-top: -50px;
     display: flex;
@@ -21,6 +21,11 @@
     background-position: top;
     z-index: -2;
     padding-bottom: 200px;
+}
+
+.HomeTopBox-inner {
+    max-width: 800px;
+    /* background: red; */
 }
 
 .HomeTopBox__container h1{

@@ -40,9 +40,9 @@ class RecentPosts extends Component {
 
         return (
             <div className="RecentPosts__container">
-            <ScrollAnimation animateIn="fadeIn">
+            <ScrollAnimation animateIn="slideInLeft">
                     <div className="flex-center">
-                        <h2 className="headerTxt-h2 center-txt">Recent Posts</h2>
+                        <h2 className="headerTxt-h2 center-txt" style={{marginBottom: '50px'}}>Recent Posts</h2>
                     </div>
                         <div className="RecentPosts__wrapper">
                             {recentPosts}

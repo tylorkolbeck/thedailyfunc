@@ -28,16 +28,24 @@ const HomeAbout = props => {
     })
 
     return (
-        <ScrollAnimation animateIn="slideInLeft">
+        
             <div className="HomeAbout__container">
-                <h2 className="headerTxt-h2">About</h2>
-                <ImageContainer />
-                <p>I am a Front-End Web Developer and Web Development educator working in San Digeo, California. I do contract work specializing in React, Node, HTML and CSS</p>
-                <div className="HomeAbout__container-tech">
-                    {catBubbles}
-                </div>
+
+                <ScrollAnimation animateIn="slideInLeft">
+                    <h2 className="headerTxt-h2">About</h2>
+                    <ImageContainer />
+                    <p style={{marginBottom: '150px', padding: '0px 20px', maxWidth: '600px', margin: '50px auto'}}>I am a Front-End Web Developer and Web Development educator working in San Digeo, California. I do contract work specializing in Node, Javascript, React and Express</p>
+                </ScrollAnimation>
+
+                <ScrollAnimation animateIn="slideInRight">
+                    <h2 className="headerTxt-h2" style={{marginTop: '100px'}}>Tech Proficiency</h2>
+
+                    <div className="HomeAbout__container-tech" style={{marginBottom: '100px'}}>
+                        {catBubbles}
+                    </div>
+                </ScrollAnimation>
+
             </div>
-        </ScrollAnimation>
     )
 }
 

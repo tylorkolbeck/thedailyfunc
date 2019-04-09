@@ -5,6 +5,7 @@ import RecentPosts from '../RecentPosts/RecentPosts'
 import HomeTopBox from '../../components/HomeTopBox/HomeTopBox'
 import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import { Animated } from "react-animated-css";
+import WorkPreview from '../../components/WorkCards/WorkPreview/WorkPreview'
 
 
 const Home = (props) => {
@@ -19,6 +20,11 @@ const Home = (props) => {
             <div>
                 <RecentPosts history={props.history}/>
             </div>
+
+                <div>
+                    <WorkPreview />
+                </div>
+
         </div>
     )
 }

@@ -4,7 +4,7 @@ import {axiosInstance as axios } from '../../axios-config'
 import PostCard from '../../components/PostCard/PostCard'
 import ScrollAnimation from 'react-animate-on-scroll'
 import Spinner from '../../components/UI/Spinner/Spinner'
-
+import Button from '../../components/UI/Button/Button'
 
 
 class RecentPosts extends Component {
@@ -59,6 +59,7 @@ class RecentPosts extends Component {
                                 <div className="RecentPosts__wrapper">
                                     {recentPosts}
                                 </div>
+                                <Button route="/posts" text="All Posts" style={{marginTop: '50px'}}/>
                     </ScrollAnimation>
                 </div>
             </div>

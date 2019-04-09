@@ -10,7 +10,6 @@ import { axiosInstance as axios} from './axios-config'
 import Footer from './containers/Footer/Footer'
 
 axios.defaults.baseUrl = process.env.REACT_APP_SERVER_URL
-console.log('BASE URL', process.env.REACT_APP_SERVER_URL)
 
 class App extends Component {
 

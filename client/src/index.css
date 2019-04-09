@@ -31,6 +31,12 @@ code {
   height: 100%;   
 }
 
+.center {
+  text-align: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 p {
     color: #414141;
     font-family: 'Open Sans', sans-serif;
@@ -70,7 +76,7 @@ h2 {
   position: relative;
   font-family: 'Fredoka One', cursive;
   font-weight: 100;
-  font-size: 3rem;
+  font-size: 3.5rem;
   border-bottom: 2px solid #fec303;
   border-radius: 2px;
   text-align: center;

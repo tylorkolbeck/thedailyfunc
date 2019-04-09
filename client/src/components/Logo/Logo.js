@@ -3,7 +3,6 @@ import './Logo.css'
 
 
 const Logo = (props) => {
-    console.log('SCROLL', props.scale)
     let scaleStyle = props.scale > 20 ? 'scaleLogo' : ''
 
     return (

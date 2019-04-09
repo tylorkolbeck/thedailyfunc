@@ -6,6 +6,7 @@ const cors = require('cors')
 // Routes
 const postRoutes = require('./api/routes/posts')
 const messageRoutes = require('./api/routes/messages')
+const workRoutes = require('./api/routes/work')
 
 const app = express()
 const port = 9292
@@ -26,6 +27,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 app.use('/posts', postRoutes)
 app.use('/contact', messageRoutes)
+app.use('/work', workRoutes)
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*') // Allow cross server requests

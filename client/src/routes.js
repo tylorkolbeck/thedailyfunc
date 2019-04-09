@@ -1,6 +1,3 @@
-import React from 'react'
-
-// import RecentPosts from './containers/RecentPosts/RecentPosts'
 import Home from './containers/Home/Home'
 import AllPosts from './containers/AllPosts/AllPosts'
 import Work from './containers/Work/Work'

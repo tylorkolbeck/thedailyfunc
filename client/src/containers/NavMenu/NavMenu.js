@@ -39,8 +39,7 @@ class NavBar extends Component {
       }
 
     render() {
-        let logoScrollClass = this.state.theposition > 20 ? ' scaleLogo' : ''
-        console.log(this.state.theposition)
+        // let logoScrollClass = this.state.theposition > 20 ? ' scaleLogo' : ''
 
         return (
             <>

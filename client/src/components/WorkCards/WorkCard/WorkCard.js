@@ -3,8 +3,11 @@ import './WorkCard.css'
 
 export default function WorkCard(props) {
   return (
-    <div className="WorkCard__container" style={{backgroundImage: `url(${props.imgThumb})`}} data-title={props.title}>
-        <div className="WorkCard__link-learnMore">Learn More</div>
+    <div className="WorkCard__container" style={{backgroundImage: `url(${props.imgThumb})`}} data-title={props.title} >
+        <div className="WorkCard__link-learnMore" onClick={() => props.toggleOpen(props)}>Learn More</div>
+        
+        
+
       {/* <p>Title: {props.title}</p>
       <p>About: {props.about}</p>
       <p>Description: {props.description}</p>

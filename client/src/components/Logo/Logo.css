@@ -6,7 +6,7 @@
     z-index: 100;
     border-radius: 50%;
     margin-left: 20px;
-    z-index: 100;
+    z-index: inherit;
     fill: #fec303;
     transition: all ease 1s;
 }

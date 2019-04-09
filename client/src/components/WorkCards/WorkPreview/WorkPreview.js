@@ -7,8 +7,23 @@ import { axiosInstance as axios } from '../../../axios-config'
 import WorkCard from '../WorkCard/WorkCard'
 import Button from '../../UI/Button/Button'
 
+import BackDrop from '../../BackDrop/BackDrop'
+import WorkModal from '../WorkModal/WorkModal'
+import {Animated} from 'react-animated-css'
+
+let fakeData = {
+    title: 'Jennifer Ingle Pet Care',
+    img: 'https://images.unsplash.com/photo-1544626053-8985dc34ae63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
+    tech: ['Node', 'React', 'MongoDB'],
+    description: 'Website created using React on the front end with a Node backend running with express.',
+    url: 'http://jenniferinglepetcare.com',
+    about: 'A Pet Sitting Startup'
+}
+
 const WorkPreview = props => {
     const [workDocs, setDocs] = useState(false)
+    const [backDrop, setBackDrop] = useState(false)
+    const [modalData, setModalData] = useState(false)
 
     useEffect(() => {
         axios.get('/work')
@@ -20,6 +35,18 @@ const WorkPreview = props => {
             
             .catch(err => console.log(err))
     })
+
+
+    let toggleBackDropHandler = (data) => {
+        setModalData(false)
+        setBackDrop(!backDrop)
+        
+        if(!modalData && data !== modalData) {
+            setModalData(data)
+        }
+    }
+
+    let workModal = modalData ? <WorkModal shown={backDrop} data={modalData} click={toggleBackDropHandler} style={{zIndex:'105'}}/> : null
 
     let docs
 
@@ -35,13 +62,14 @@ const WorkPreview = props => {
                 tech={doc.tech}
                 description={doc.description}
                 url={doc.url}
+                toggleOpen={toggleBackDropHandler}
                 />
             )
         })
     }
 
     return (
-        <>
+        <div style={{position: 'relative', zIndex: '101'}} >
             <ScrollAnimation animateIn="fadeIn">
                 <h2 className="headerTxt-h2 center" style={{marginTop: '100px'}}>Recent Work</h2>
                 <div className="WorkPreview__container">
@@ -49,7 +77,10 @@ const WorkPreview = props => {
                 </div>
                 <Button route="/work" text="All Work" style={{marginTop: '50px'}}/>
             </ScrollAnimation>
-        </>
+                    {workModal}
+            <BackDrop backDropShown={backDrop} style={{zIndex: 100}}backdropToggleHandler={toggleBackDropHandler}/>
+        </div>
+       
     )
 }
 

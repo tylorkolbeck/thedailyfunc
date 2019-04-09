@@ -141,3 +141,26 @@ span::before {
     margin-bottom: 3px;
 }
 
+@media(max-width: 600px) {
+    .WorkCard__container span::before {
+        transform: translateX(0);
+        opacity: .5;
+    }
+
+    .WorkCard__container:hover span::before {
+        opacity: .5;
+    }
+
+    .WorkCard__container::before {
+        content: attr(data-title);
+        top: 75px;
+        opacity: 1;
+    }
+
+    .WorkCard__link-learnMore {
+        bottom: 50px;
+        z-index: 2;
+    }
+}
+
+

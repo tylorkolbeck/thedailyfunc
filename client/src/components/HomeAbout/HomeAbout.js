@@ -9,10 +9,31 @@ import Button from '../UI/Button/Button'
 
 const HomeAbout = props => {
     let technologies =  [
-        {N: 'Node' },
-        {JS: 'JavaScript'},
-        {R: 'React'},
-        {E: 'Express'}
+        {
+            abbr: 'N',
+            name: 'Node',
+            prof: 150 
+        },
+        {   
+            abbr: 'JS',
+            name: 'JavaScript', 
+            prof: 200
+        },
+        {   
+            abbr: 'R',
+            name: 'React', 
+            prof: 135
+        },
+        {   
+            abbr: 'E',
+            name: 'Express', 
+            prof: 100
+        },
+        {   
+            abbr: 'M',
+            name: 'MongoDB', 
+            prof: 100
+        }
     ]
 
     let catBubbles
@@ -20,10 +41,11 @@ const HomeAbout = props => {
     catBubbles = technologies.map(cat => {
         let catAbbr = Object.keys(cat)
         let catTooltip = cat[Object.keys(cat)]
+        
         return (
-            <div className="HomeAbout__cat-div" key={catAbbr}>
-                <CatBubble cat={catAbbr} />
-                <h2 className="headerTxt-h2">{catTooltip}</h2>
+            <div className="HomeAbout__cat-div"  key={cat.name}>
+                <CatBubble cat={cat.abbr} style={{height: `${cat.prof}px`}}/>
+                <h2 className="headerTxt-h2">{cat.name}</h2>
             </div>
         )
     })

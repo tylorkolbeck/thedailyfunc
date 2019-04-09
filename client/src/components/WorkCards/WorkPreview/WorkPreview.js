@@ -69,7 +69,7 @@ const WorkPreview = props => {
     }
 
     return (
-        <div style={{position: 'relative', zIndex: '101'}} >
+        <div style={{position: 'relative'}} >
             <ScrollAnimation animateIn="fadeIn">
                 <h2 className="headerTxt-h2 center" style={{marginTop: '100px'}}>Recent Work</h2>
                 <div className="WorkPreview__container">

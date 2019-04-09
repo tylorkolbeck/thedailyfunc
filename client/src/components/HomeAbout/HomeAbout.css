@@ -50,19 +50,19 @@
 }
 
 .HomeAbout__cat-div:nth-child(1) .CatBubble{
-    height: 150px;
+    /* height: 150px; */
 }
 
 .HomeAbout__cat-div:nth-child(2) .CatBubble{
-    height: 200px;
+    /* height: 200px; */
 }
 
 .HomeAbout__cat-div:nth-child(3) .CatBubble{
-    height: 135px;
+    /* height: 135px; */
 }
 
 .HomeAbout__cat-div:nth-child(4) .CatBubble{
-    height: 100px;
+    /* height: 100px; */
 }
 
 .HomeAbout__container .CatBubble:hover::before {

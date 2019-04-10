@@ -11,9 +11,11 @@ import WorkPreview from '../../components/WorkCards/WorkPreview/WorkPreview'
 const Home = (props) => {
     return (
         <div>
-            <Animated animationIn="slideInDown" animationOut="slideOutRight" isVisible={true}>
-                <HomeTopBox />
-            </Animated>
+            <div style={{background: 'black'}}>
+                <Animated animationIn="slideInDown" animationOut="slideOutRight" isVisible={true}>
+                    <HomeTopBox />
+                </Animated>
+            </div>
             <div>
                 <HomeAbout />
             </div>

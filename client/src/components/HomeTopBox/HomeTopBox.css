@@ -9,7 +9,6 @@
     color: #414141;
     font-family: 'Fredoka One', cursive;
     margin: auto;
-    /* max-width: 1200px; */
     min-height: 100vh;
     margin-top: -50px;
     display: flex;
@@ -25,13 +24,14 @@
 
 .HomeTopBox-inner {
     max-width: 800px;
-    /* background: red; */
 }
 
 .HomeTopBox__container h1{
     color: white;
-    animation-duration: 1.5s;
-    animation-name: slideInLeft;
+    animation: slideInLeft 8s infinite;
+    transform: translate3d(-100%);
+    transition-delay: 500ms;
+    animation: slideInLeft 1.5s ease;
 }
 
 .HomeTopBox__container::after {
@@ -53,13 +53,27 @@
 }
 
 .HomeTopBox__quote {
+    position: relative;
     font-family: 'Pacifico', cursive;
     text-align: center;
     color: #fec303;
     margin: 0px; 
     padding: 0px;
-    animation-duration: 1.5s;
-    animation-name: slideInRight;
+    animation: slideInLeft 1.5s ease;
+    transform: translate3d(-100%);
+    transition-delay: 100ms;
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translate3d(-100%, 0px, 0px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate3d(0px, 0px, 0px);
+        opacity: 1;
+    }
 }
 
 .HomeTopBox__quote_text {
@@ -72,9 +86,9 @@
     font-size: 18px;
     color: #fec303;
     text-align: center;
-    padding-top: 12px;
-    animation-duration: 1.5s;
-    animation-name: slideInLeft;
+    transition-property: all;
+    animation: slideInLeft 1.5s ease 10ms;
+
 }
 
 

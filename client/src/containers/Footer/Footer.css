@@ -21,6 +21,11 @@
 }
 
 
+.Footer__links_list li:last-child a {
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
 .Footer__links_list a {
     text-decoration: none;
     color: #fec303;
@@ -31,7 +36,6 @@
 
 .Footer__links_list a:first-of-type {
     margin-left: 0px;
-    /* background: blue; */
 }
 
 .Footer__links_list a:hover {

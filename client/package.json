@@ -1,4 +1,5 @@
 {
+  "proxy" : "http://localhost:8000/",
   "name": "thedailyfunc",
   "version": "0.1.0",
   "private": true,
@@ -25,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/client/build dev@157.230.138.238:/var/www/thedailyfunc.com/html"
   },
   "eslintConfig": {
     "extends": "react-app"

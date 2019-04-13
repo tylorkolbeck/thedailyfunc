@@ -10,13 +10,14 @@
     align-items: center;
     z-index: 100;
     display: relative;
-    box-shadow: 2px 3px 5px rgba(1,1,1, .3);
+    box-shadow: 5px 3px 10px rgba(1,1,1, .6);
 }
 
 .NavMenu__top_bar {
     height: 50px;
     /* background: purple; */
     width: 100%;
+    /* border-bottom: 2px solid salmon; */
 }
 
 

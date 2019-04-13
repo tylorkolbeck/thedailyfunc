@@ -62,10 +62,13 @@ const HomeAbout = props => {
                 </ScrollAnimation>
 
                 <ScrollAnimation animateIn="slideInRight" animateOnce={true}>
+                    <div style={{position: 'relative'}}>
+
                     <h2 className="headerTxt-h2" style={{marginTop: '100px'}}>Tech Proficiency</h2>
 
                     <div className="HomeAbout__container-tech" style={{marginBottom: '100px'}}>
                         {catBubbles}
+                    </div>
                     </div>
                 </ScrollAnimation>
 

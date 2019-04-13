@@ -2,7 +2,7 @@
 const mongoose = require("mongoose")
 
 // Schema
-const Post = require("../models/post")
+const Post = require("../models/Post.js")
 
 
 exports.getAllPosts = (req, res) => {
@@ -15,7 +15,7 @@ exports.getAllPosts = (req, res) => {
                 })
             } else {
                 res.status(404).json({
-                    message: "Post not found"
+                    message: "Post not found in all posts."
                 })
             }
         })
@@ -29,6 +29,7 @@ exports.getAllPosts = (req, res) => {
 
 exports.getPostById = (req, res) => {
     const postId = req.params.postId
+    console.log('GETTING BY ID', req.params)
     Post.findById(postId)
         .select()
         .exec()
@@ -40,13 +41,13 @@ exports.getPostById = (req, res) => {
                 })
             } else {
                 res.status(404).json({
-                    message: "Post not found"
+                    message: "Post not found. Try Again"
                 })
             }
         })
         .catch((err)=> {
             res.status(500).json({
-                message: "Post not found",
+                message: "Post not found. Try Again.",
                 error: err
             })
         })
@@ -63,13 +64,13 @@ exports.getRecentPosts = (req, res) => {
                 })
             } else {
                 res.status(404).json({
-                    message: "Post not found"
+                    message: "Post not found in recents."
                 })
             }
         })
         .catch((err)=> {
             res.status(500).json({
-                message: "Post not found",
+                message: "Post not found in recents",
                 error: err
             })
         })

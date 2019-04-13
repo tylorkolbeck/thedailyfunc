@@ -17,17 +17,17 @@
 
 }
 
-.Hamburger__container:hover div {
+/* .Hamburger__container:hover div {
     background: white;
-}
+} */
 
 .Hamburger__container:hover {
     cursor: pointer;
 }
 
-.Hamburger__container:hover div:nth-child(2) {
+/* .Hamburger__container:hover div:nth-child(2) {
     margin-left: 10px;
-}
+} */
 
 
 .Hamburger__container.open div:nth-child(1) {

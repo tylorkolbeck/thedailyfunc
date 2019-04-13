@@ -40,8 +40,8 @@ class ContactForm extends Component {
 
         contactDataKeys.forEach((key) => {
             let formEl = this.state.contactForm[key]
-            isValid = formEl.trim() !== '' && isValid
-            isValid = formEl.length >= 3 && isValid
+            // isValid = formEl.trim() !== '' && isValid
+            // isValid = formEl.length >= 3 && isValid
 
             if (key === 'name') {
                 isValid = formEl.trim() !== '' && isValid
@@ -50,9 +50,10 @@ class ContactForm extends Component {
             }
 
             if (key === 'message') {
-                isValid = formEl.trim() !== '' && isValid
+                console.log('BEFORE IS VALID', isValid)
+                // isValid = formEl.trim() !== '' && isValid
                 isValid = formEl.length >= 3 && isValid
-                this.setState({validMessage: isValid})
+                this.setState({validMessage: isValid}, console.log('Valid Message:', this.state.validMessage))
             }
 
             if (key === 'email') {

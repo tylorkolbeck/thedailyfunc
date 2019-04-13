@@ -2,7 +2,7 @@
 const mongoose = require("mongoose")
 
 // Schema
-const Message = require("../models/Message")
+const Message = require("../models/Message.js")
 
 exports.postMessage = (req, res) => {
     const newMessage = new Message ({

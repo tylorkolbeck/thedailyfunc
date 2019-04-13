@@ -4,9 +4,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 // Routes
-const postRoutes = require('./api/routes/posts')
-const messageRoutes = require('./api/routes/messages')
-const workRoutes = require('./api/routes/work')
+const postRoutes = require('./api/routes/posts.js')
+const messageRoutes = require('./api/routes/messages.js')
+const workRoutes = require('./api/routes/work.js')
 
 const app = express()
 const port = 9292
@@ -25,18 +25,20 @@ db.on('error', console.error.bind(console, 'connection error:'));
 //   console.log('connected to mongo database')
 // });
 
-app.use('/posts', postRoutes)
-app.use('/contact', messageRoutes)
-app.use('/work', workRoutes)
+app.use('/api/posts', postRoutes)
+app.use('/api/contact', messageRoutes)
+app.use('/api/work', workRoutes)
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*') // Allow cross server requests
+    console.log('Running Request')
+    res.header('Access-Control-Allow-Origin', 'https://thedailyfunc.com') // Allow cross server requests
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization', 'poo')
     res.header('Access-Control-Allow-Headers: Content-Type')
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS');
     
     if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Origin', '*')
+        console.log('Running Options')
+        res.header('Access-Control-Allow-Origin', 'https://thedailyfunc.com')
         res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS')
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         return res.status(200).json({})
@@ -59,6 +61,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(process.env.PORT, () => console.log(`Back end listening on port ${process.env.PORT}!`))
+app.listen(process.env.PORT, () => console.log('Listening on', process.env.PORT ))
 
 module.exports = app

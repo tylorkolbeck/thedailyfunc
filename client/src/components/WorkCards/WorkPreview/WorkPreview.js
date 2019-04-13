@@ -71,11 +71,11 @@ const WorkPreview = props => {
     return (
         <div style={{position: 'relative'}} >
             <ScrollAnimation animateIn="fadeIn">
-                <h2 className="headerTxt-h2 center" style={{marginTop: '100px'}}>Recent Work</h2>
+                {workDocs ? <h2 className="headerTxt-h2 center" style={{marginTop: '100px'}}>Recent Work</h2> : null}
                 <div className="WorkPreview__container">
                     {docs}
                 </div>
-                <Button route="/work" text="All Work" style={{marginTop: '50px'}}/>
+                {workDocs ? <Button route="/work" text="All Work" style={{marginTop: '50px'}}/> : null }
             </ScrollAnimation>
                     {workModal}
             <BackDrop backDropShown={backDrop} style={{zIndex: 100}}backdropToggleHandler={toggleBackDropHandler}/>

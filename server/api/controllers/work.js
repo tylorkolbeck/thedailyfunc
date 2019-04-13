@@ -2,7 +2,7 @@
 const mongoose = require("mongoose")
 
 // Schema
-const Work = require("../models/work")
+const Work = require("../models/Work.js")
 
 
 exports.getWork = (req, res) => {

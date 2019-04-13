@@ -7,19 +7,21 @@
     background: #1d1d1d;
     z-index: 11;
     overflow: hidden;
-    -webkit-transition: .77s ease-in-out;
-    -moz-transition: .77s ease-in-out;
-    -o-transition: .77s ease-in-out;
-    transition: .77s ease-in-out;
+    -webkit-transition: 300ms ease-in-out;
+    -moz-transition: 300ms ease-in-out;
+    -o-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
     box-sizing: border-box;
+    /* box-shadow: 5px -5px 10px rgba(1,1,1, .6); */
+    box-shadow: -2px 0px 20px rgba(1,1,1, 0.5);
 }
 
 .SideBar.open {
     width: 300px;
-    -webkit-transition: .77s ease-in-out;
-    -moz-transition: .77s ease-in-out;
-    -o-transition: .77s ease-in-out;
-    transition: .77s ease-in-out;
+    -webkit-transition: 300ms ease-in-out;
+    -moz-transition: 300ms ease-in-out;
+    -o-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
 }
 
 .SideBar ul {
@@ -38,11 +40,12 @@
 
 .SideBar li:hover {
     color: white;
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
+    -webkit-transition: 300ms ease-in-out;
+    -moz-transition: 300ms ease-in-out;
+    -o-transition: 300ms ease-in-out;
+    transition: .300ms ease-in-out;
 }
+
 
 .SideBar li:hover::before {
     content: "--";

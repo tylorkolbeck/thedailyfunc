@@ -3,7 +3,9 @@ TODO:
     URGENT:
 
     - Throttle window resize event listener in PostCard.js
-    - Remove event listeners
+    - animate menu links similiar to:
+        http://tobiasahlin.com/blog/how-to-animate-box-shadow/
+
     - Store post data in redux
     
     - Show no available posts if none are available 
@@ -11,11 +13,18 @@ TODO:
     - Contact Form
     - Webkit check
 
-    - Show error fetching posts on client
-
     - Secure contact form
         https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms
         https://www.sitepoint.com/forms-file-uploads-security-node-express/    
 
-
     - Setup SSL
+
+
+    Setting Up The VM:
+    https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
+
+    DEPLOY NOTES:
+    Copy to server with:
+         scp -r build dev@157.230.138.238:/var/www/thedailyfunc.com/html
+
+    scp -r /Users/tylor/desktop/development/projects/thedailyfunc/client/build dev@157.230.138.238:/var/www/thedailyfunc.com/html

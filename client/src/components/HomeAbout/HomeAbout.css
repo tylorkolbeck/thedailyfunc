@@ -1,76 +1,10 @@
 .HomeAbout__container {
     text-align: center;
-    /* height: 100vh; */
     padding-top: 50px;
-    /* padding-bottom: 100px; */
     box-sizing: border-box;
-    /* background: rgba(1,1,1, .1); */
     position: relative;
 }
 
-.HomeAbout__container-tech {
-
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0px 20px;
-    width: 100%;
-    /* max-width: 600px; */
-    margin: 100px auto;
-    margin-top: 75px;
-    box-sizing: border-box;
-    /* overflow: hidden; */
-}
-
-.HomeAbout__container-tech p {
-    padding: 0px;
-    margin: 0px;
-    display: inline-block;
-}
-
-.HomeAbout__cat-div {
-    display: flex;
-    flex-direction: column;
-    margin: 2px;
-    /* flex-basis: calc(50% - 30px); */
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    /* background: green; */
-    margin-top: auto;
-}
-
-.HomeAbout__cat-div .headerTxt-h2 {
-    border-bottom: 0px;
-    font-size: 2rem;
-}
-
-
-.HomeAbout__container .CatBubble {
-    height: 75px;
-    width: 50px;
-    margin: 0px 20px;
-}
-
-.HomeAbout__cat-div:nth-child(1) .CatBubble{
-    /* height: 150px; */
-}
-
-.HomeAbout__cat-div:nth-child(2) .CatBubble{
-    /* height: 200px; */
-}
-
-.HomeAbout__cat-div:nth-child(3) .CatBubble{
-    /* height: 135px; */
-}
-
-.HomeAbout__cat-div:nth-child(4) .CatBubble{
-    /* height: 100px; */
-}
-
-.HomeAbout__container .CatBubble:hover::before {
-    display: none;
-}
 
 .HomeAbout__container > p {
     padding: 16px;

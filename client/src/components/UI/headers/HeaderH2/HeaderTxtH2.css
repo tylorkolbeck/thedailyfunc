@@ -1,0 +1,15 @@
+.HeaderTxt__wrapper {
+  text-align: center;
+}
+
+
+.HeaderTxt-h2 {
+  font-family: 'Fredoka One', cursive;
+  display: inline-block;
+  position: relative;
+  margin: 0px;
+  font-weight: 100;
+  font-size: 3.5rem;
+  border-bottom: 2px solid #fec303;
+  margin-bottom: 50px;
+}

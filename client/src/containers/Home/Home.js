@@ -7,6 +7,8 @@ import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import { Animated } from "react-animated-css";
 import WorkPreview from '../../components/WorkCards/WorkPreview/WorkPreview'
 
+import ProfBars from '../../components/ProfBars/ProfBars'
+
 
 const Home = (props) => {
     return (
@@ -16,16 +18,20 @@ const Home = (props) => {
                     <HomeTopBox />
                 </Animated>
             </div>
-            <div>
-                <HomeAbout />
-            </div>
+
+            
+            <HomeAbout />
+            <ProfBars />
+
+
+
             <div>
                 <RecentPosts history={props.history}/>
             </div>
 
-                <div>
-                    <WorkPreview />
-                </div>
+            <div>
+                <WorkPreview />
+            </div>
 
         </div>
     )

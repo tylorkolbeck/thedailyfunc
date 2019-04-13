@@ -71,16 +71,7 @@ h2 {
 }
 
 
-.headerTxt-h2 {
-  display: inline-block;
-  position: relative;
-  font-family: 'Fredoka One', cursive;
-  font-weight: 100;
-  font-size: 3.5rem;
-  border-bottom: 2px solid #fec303;
-  border-radius: 2px;
-  text-align: center;
-}
+
 
 .center-txt {
   text-align: center;

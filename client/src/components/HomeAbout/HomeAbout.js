@@ -8,48 +8,6 @@ import Button from '../UI/Button/Button'
 
 
 const HomeAbout = props => {
-    let technologies =  [
-        {
-            abbr: 'N',
-            name: 'Node',
-            prof: 150 
-        },
-        {   
-            abbr: 'JS',
-            name: 'JavaScript', 
-            prof: 200
-        },
-        {   
-            abbr: 'R',
-            name: 'React', 
-            prof: 135
-        },
-        {   
-            abbr: 'E',
-            name: 'Express', 
-            prof: 100
-        },
-        {   
-            abbr: 'M',
-            name: 'MongoDB', 
-            prof: 100
-        }
-    ]
-
-    let catBubbles
-
-    catBubbles = technologies.map(cat => {
-        let catAbbr = Object.keys(cat)
-        let catTooltip = cat[Object.keys(cat)]
-        
-        return (
-            <div className="HomeAbout__cat-div"  key={cat.name}>
-                <CatBubble cat={cat.abbr} style={{height: `${cat.prof}px`}}/>
-                <h2 className="headerTxt-h2">{cat.name}</h2>
-            </div>
-        )
-    })
-
     return (
         
             <div className="HomeAbout__container">
@@ -63,11 +21,7 @@ const HomeAbout = props => {
 
                 <ScrollAnimation animateIn="slideInRight" animateOnce={true}>
                     <div style={{position: 'relative'}}>
-
-                    <h2 className="headerTxt-h2" style={{marginTop: '100px'}}>Tech Proficiency</h2>
-
                     <div className="HomeAbout__container-tech" style={{marginBottom: '100px'}}>
-                        {catBubbles}
                     </div>
                     </div>
                 </ScrollAnimation>

@@ -6,6 +6,8 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Button from '../../components/UI/Button/Button'
 
+import HeaderTxtH2 from '../../components/UI/headers/HeaderH2/HeaderTxtH2'
+
 
 class RecentPosts extends Component {
     state = {
@@ -21,8 +23,7 @@ class RecentPosts extends Component {
                 .then((response) => {
                     this.setState({recents: response.data.docs, loading: false})
                 })
-                .catch(err => {
-                    console.log('------', err)
+                .catch(err => {  
                    this.setState({error: err, loading: false}) 
                 })
         }
@@ -53,13 +54,13 @@ class RecentPosts extends Component {
                 {loadingSpinner}
                 <div className="RecentPosts__container">
                     <ScrollAnimation animateIn="fadeIn">
-                            <div className="flex-center">
-                                <h2 className="headerTxt-h2 center-txt" style={{marginBottom: '50px'}}>Recent Posts</h2>
-                            </div>
-                                <div className="RecentPosts__wrapper">
-                                    {recentPosts}
-                                </div>
-                                <Button route="/posts" text="All Posts" style={{marginTop: '50px'}}/>
+                        <HeaderTxtH2 text="Recent Posts" />
+
+                        <div className="RecentPosts__wrapper">
+                            {recentPosts}
+                        </div>
+                        
+                        <Button route="/posts" text="All Posts" style={{marginTop: '50px'}}/>
                     </ScrollAnimation>
                 </div>
             </div>

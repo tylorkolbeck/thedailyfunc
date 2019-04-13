@@ -1,14 +1,12 @@
 .HomeAbout__container {
     text-align: center;
-    padding-top: 50px;
     box-sizing: border-box;
     position: relative;
 }
 
 
-.HomeAbout__container > p {
+.HomeAbout__container  p {
     padding: 16px;
-    margin-bottom: 100px;
     max-width: 600px;
     text-align: center;
     margin: auto;

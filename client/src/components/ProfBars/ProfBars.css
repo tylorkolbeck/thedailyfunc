@@ -1,8 +1,11 @@
 
 .ProfBars__wrapper {
-    max-width: 600px;
+    display:block;
     margin: auto;
+    max-width: 620px;
+    width: 90%;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .ProfBars-bar {
@@ -10,9 +13,9 @@
     border-radius: 20px;
     height: 40px;
     box-sizing: border-box;
-    margin: 10px 10px;
     display: flex;
     align-items: center;
+    margin-top: 10px;
 }
 
 .ProfBars-bar::after {

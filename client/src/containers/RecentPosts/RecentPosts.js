@@ -53,7 +53,7 @@ class RecentPosts extends Component {
             <div>
                 {loadingSpinner}
                 <div className="RecentPosts__container">
-                    <ScrollAnimation animateIn="fadeIn">
+                    <ScrollAnimation animateIn="fadeIn" animateOnce={true}>
                         <HeaderTxtH2 text="Recent Posts" />
 
                         <div className="RecentPosts__wrapper">

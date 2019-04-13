@@ -9,16 +9,17 @@ import Button from '../../UI/Button/Button'
 
 import BackDrop from '../../BackDrop/BackDrop'
 import WorkModal from '../WorkModal/WorkModal'
-import {Animated} from 'react-animated-css'
+import headerTxtH2 from '../../UI/headers/HeaderH2/HeaderTxtH2'
+import HeaderTxtH2 from '../../UI/headers/HeaderH2/HeaderTxtH2';
 
-let fakeData = {
-    title: 'Jennifer Ingle Pet Care',
-    img: 'https://images.unsplash.com/photo-1544626053-8985dc34ae63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
-    tech: ['Node', 'React', 'MongoDB'],
-    description: 'Website created using React on the front end with a Node backend running with express.',
-    url: 'http://jenniferinglepetcare.com',
-    about: 'A Pet Sitting Startup'
-}
+// let fakeData = {
+//     title: 'Jennifer Ingle Pet Care',
+//     img: 'https://images.unsplash.com/photo-1544626053-8985dc34ae63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
+//     tech: ['Node', 'React', 'MongoDB'],
+//     description: 'Website created using React on the front end with a Node backend running with express.',
+//     url: 'http://jenniferinglepetcare.com',
+//     about: 'A Pet Sitting Startup'
+// }
 
 const WorkPreview = props => {
     const [workDocs, setDocs] = useState(false)
@@ -71,14 +72,16 @@ const WorkPreview = props => {
     return (
         <div style={{position: 'relative'}} >
             <ScrollAnimation animateIn="fadeIn">
-                {workDocs ? <h2 className="headerTxt-h2 center" style={{marginTop: '100px'}}>Recent Work</h2> : null}
+                {workDocs ? <HeaderTxtH2 text="Recent Work" />: null}
                 <div className="WorkPreview__container">
                     {docs}
                 </div>
-                {workDocs ? <Button route="/work" text="All Work" style={{marginTop: '50px'}}/> : null }
+
+                {workDocs ? <Button route="/work" text="All Work" /> : null }
+
             </ScrollAnimation>
                     {workModal}
-            <BackDrop backDropShown={backDrop} style={{zIndex: 100}}backdropToggleHandler={toggleBackDropHandler}/>
+            <BackDrop backDropShown={backDrop} backdropToggleHandler={toggleBackDropHandler}/>
         </div>
        
     )

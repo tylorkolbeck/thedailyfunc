@@ -10,6 +10,7 @@
     transform: translate(-50%, -50%); 
     border-radius: 7px;
     transition: all ease-in 1s;
+    overflow: scroll;
 }
 
 .WorkModal__container a {
@@ -55,9 +56,9 @@
 
 .WorkModal-close {
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
-    padding: 30px;
+    padding: 20px;
 }
 
 .WorkModal-close img {

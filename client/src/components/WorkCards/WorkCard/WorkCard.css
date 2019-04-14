@@ -9,11 +9,10 @@
     box-shadow: 4px 2px 10px rgba(1,1,1,.1);
     position: relative;
     overflow: hidden;
-    /* color: white; */
 }
 
 span::before {
-    transition: all ease 500ms;
+    transition: transform .5s ease-in-out;
 }
 
 .WorkCard__container span::before {
@@ -26,14 +25,14 @@ span::before {
     left: 0; 
     z-index: 1;
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translate3d(-400px, 0px, 0px);
 }
 
 .WorkCard__container:hover span::before {
     opacity: .8;
     left: 0;
     top: 0;
-    transform: translateX(0);
+    transform: translate3d(0px, 0px, 0px);
 }
 
 .WorkCard__container::before {
@@ -81,48 +80,6 @@ span::before {
     box-shadow: 4px 2px 10px rgba(1,1,1,.5);
 }
 
-/* .WorkCard__link-learnMore::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 50%;
-    background: #1d1d1d;
-    border-radius: 7px 0px 0px 7px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    transition: all ease 250ms;
-    z-index: -1;
-} */
-
-/* .WorkCard__link-learnMore::after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    right: 0;
-    top: 0;
-    width: 50%;
-    background: #1d1d1d;
-    border-radius: 0px 7px 7px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: all ease 250ms;
-    z-index: -1;
-
-}
-
-.WorkCard__link-learnMore:hover::after {
-    content: '';
-    transform: translateX(100%);
-} */
-
-.WorkCard__link-learnMore:hover::before {
-    content: '';
-    transform: translateX(-100%);
-}
 
 .WorkCard__link-learnMore {
     font-family: 'Fredoka One', cursive;

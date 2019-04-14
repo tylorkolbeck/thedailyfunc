@@ -39,8 +39,8 @@ export default function ProfBars() {
     let profTable = profData.map(cat => {
         inc += 50
         return (
-            <ScrollAnimation animateIn="slideInLeft" delay={inc} animateOnce={true}>
-            <div className="ProfBars-bar" style={{ width: `${cat.prof}%` }} key={cat.name}>
+            <ScrollAnimation animateIn="slideInLeft" delay={inc} animateOnce={true} key={cat.name}>
+            <div className="ProfBars-bar" style={{ width: `${cat.prof}%` }} >
                 <p >{cat.name}</p>
             </div>
             </ScrollAnimation>

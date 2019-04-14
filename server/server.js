@@ -9,7 +9,7 @@ const messageRoutes = require('./api/routes/messages.js')
 const workRoutes = require('./api/routes/work.js')
 
 const app = express()
-const port = 9292
+const PORT = 9292
 
 app.use(bodyParser.urlencoded({extended: false})) // parses url encoded bodies
 app.use(bodyParser.json()) // parses json encoded bodies
@@ -61,6 +61,8 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(process.env.PORT, () => console.log('Listening on', process.env.PORT ))
+
+
+app.listen(PORT || process.env.PORT, () => console.log('Listening on', process.env.PORT ))
 
 module.exports = app

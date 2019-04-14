@@ -24,7 +24,21 @@
     -->
 
     <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans|Pacifico" rel="stylesheet">
+    <script>
+
+      let fetchFont = () => {
+        let googleFonts = document.createElement("link")
+        googleFonts.setAttribute("href", "https://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans|Pacifico")
+        googleFonts.setAttribute("rel", "stylesheet")
+        document.head.appendChild(googleFonts)
+      }
+
+      setTimeout(fetchFont, 5000)
+
+      
+
+    </script>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans|Pacifico" rel="stylesheet"> -->
     <!-- HIGHLIGHT JS -->
 
     <!-- ANIMATION CSS FILE FOR react-animated-css -->

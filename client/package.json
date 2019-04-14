@@ -1,5 +1,5 @@
 {
-  "proxy" : "http://localhost:8000/",
+  "proxy": "http://localhost:8000/",
   "name": "thedailyfunc",
   "version": "0.1.0",
   "private": true,
@@ -20,9 +20,11 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
-    "snarkdown": "^1.2.2"
+    "snarkdown": "^1.2.2",
+    "source-map-explorer": "^1.8.0"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

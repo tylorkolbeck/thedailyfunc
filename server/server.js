@@ -3,14 +3,15 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-const { API_PORT, CORS_ALLOW, NODE_ENV } = require('./config')
+// const { API_PORT, CORS_ALLOW, NODE_ENV } = require('./config')
 
-
+let PORT = process.env.API_PORT
 
 // SHOW CURRENT ENV VARIABLES
-console.log(`Running on port: ${API_PORT || process.env.PORT}`)
-console.log(`CORS Allow From ${CORS_ALLOW || process.env.CORS_ALLOW}`)
-console.log(`Current Environment: ${NODE_ENV || process.env.NODE_ENV}`)
+console.log(process.env.API_PORT)
+console.log(`Running on port: ${PORT}`)
+console.log(`CORS Allow From ${process.env.CORS_ALLOW}`)
+console.log(`Current Environment: ${process.env.NODE_ENV}`)
 
 // Routes
 const postRoutes = require('./api/routes/posts.js')
@@ -69,6 +70,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(API_PORT || 8000)
+app.listen(PORT || 8000)
 
 module.exports = app

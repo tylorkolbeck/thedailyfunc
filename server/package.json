@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "API_PORT=8000 NODE_ENV=production CORS_ALLOW=https://thedailyfunc.com nodemon server.js",
     "dev": "nodemon server.js",
-    "deploy": ""
+    "deploy": "scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/server.js dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/api dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/package.json dev@157.230.138.238:/home/dev/api.thedailyfunc.com"
   },
   "keywords": [],
   "author": "",

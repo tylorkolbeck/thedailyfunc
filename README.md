@@ -21,3 +21,7 @@ BoilerPlate `create-react-app`
 
 ### Backend
 Express
+
+
+## SERVER SIDE ENV VARIABLES ARE SET IN
+/etc/environment

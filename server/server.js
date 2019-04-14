@@ -3,13 +3,21 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const { API_PORT, CORS_ALLOW, NODE_ENV } = require('./config')
+
+
+
+// SHOW CURRENT ENV VARIABLES
+console.log(`Running on port: ${API_PORT || process.env.PORT}`)
+console.log(`CORS Allow From ${CORS_ALLOW || process.env.CORS_ALLOW}`)
+console.log(`Current Environment: ${NODE_ENV || process.env.NODE_ENV}`)
+
 // Routes
 const postRoutes = require('./api/routes/posts.js')
 const messageRoutes = require('./api/routes/messages.js')
 const workRoutes = require('./api/routes/work.js')
 
 const app = express()
-const PORT = 9292
 
 app.use(bodyParser.urlencoded({extended: false})) // parses url encoded bodies
 app.use(bodyParser.json()) // parses json encoded bodies
@@ -20,7 +28,7 @@ mongoose.connect('mongodb://localhost/thedailyfunc', {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'Mongoose Connection Error:'));
 // db.once('open', function() {
 //   console.log('connected to mongo database')
 // });
@@ -31,14 +39,14 @@ app.use('/api/work', workRoutes)
 
 app.use((req, res, next) => {
     console.log('Running Request')
-    res.header('Access-Control-Allow-Origin', 'https://thedailyfunc.com') // Allow cross server requests
+    res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`) // Allow cross server requests
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization', 'poo')
     res.header('Access-Control-Allow-Headers: Content-Type')
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS');
     
     if (req.method === 'OPTIONS') {
         console.log('Running Options')
-        res.header('Access-Control-Allow-Origin', 'https://thedailyfunc.com')
+        res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`)
         res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS')
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         return res.status(200).json({})
@@ -61,8 +69,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-
-
-app.listen(PORT || process.env.PORT, () => console.log('Listening on', process.env.PORT ))
+app.listen(API_PORT || 8000)
 
 module.exports = app

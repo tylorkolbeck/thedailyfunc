@@ -5,6 +5,7 @@ import RecentPosts from '../RecentPosts/RecentPosts'
 import HomeTopBox from '../../components/HomeTopBox/HomeTopBox'
 import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import { Animated } from "react-animated-css";
+import ScrollAnimation from 'react-animate-on-scroll'
 import WorkPreview from '../../components/WorkCards/WorkPreview/WorkPreview'
 
 import ProfBars from '../../components/ProfBars/ProfBars'
@@ -12,28 +13,28 @@ import ProfBars from '../../components/ProfBars/ProfBars'
 
 const Home = (props) => {
     return (
-        <div>
-            <div style={{background: 'black'}}>
-                <Animated animationIn="slideInDown" animationOut="slideOutRight" isVisible={true}>
-                    <HomeTopBox />
-                </Animated>
-            </div>
-
-            
-            <HomeAbout />
-            <ProfBars />
-
-
-
+        <ScrollAnimation animateIn="fadeIn"> 
             <div>
-                <RecentPosts history={props.history}/>
-            </div>
+                <div style={{background: 'black'}}>
+                    <Animated animationIn="slideInDown" animationOut="slideOutRight" isVisible={true}>
+                        <HomeTopBox />
+                    </Animated>
+                </div>
 
-            <div>
-                <WorkPreview />
-            </div>
+                
+                <HomeAbout />
+                <ProfBars />
 
-        </div>
+                <div>
+                    <RecentPosts history={props.history}/>
+                </div>
+
+                <div>
+                    <WorkPreview number={2} text="Recent Work" showButton={true}/>
+                </div>
+
+            </div>
+        </ScrollAnimation>
     )
 }
 

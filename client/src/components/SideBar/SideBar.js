@@ -12,13 +12,14 @@ const SideBar = ({backdropToggleHandler, backDropShown}) => {
             <ul>
                 {navigationLinks.map(link => {
                     return (
-                        <li key={link.text}>
-                            <Link
-                                to={link.to} 
-                                onClick={backdropToggleHandler}>
+                        <Link
+                            to={link.to} 
+                            onClick={backdropToggleHandler}
+                            key={link.text}>
+                                <li>
                                     {link.text}
-                            </Link>
-                        </li>
+                                </li>
+                        </Link>
                     )
                 })}
             </ul>

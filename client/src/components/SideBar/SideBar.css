@@ -30,12 +30,16 @@
 }
 
 
-.SideBar li a {
+.SideBar li {
     font-family: 'Fredoka One', cursive;
     font-size: 28px;
     line-height: 3em;
     text-decoration: none;
     color: #fec303;
+}
+
+.SideBar a {
+    text-decoration: none;
 }
 
 .SideBar li:hover {
@@ -46,11 +50,10 @@
     transition: .300ms ease-in-out;
 }
 
-
-.SideBar li:hover::before {
+/* .SideBar li:hover::before {
     content: "--";
     color: #1d1d1d;
-}
+} */
 
 
 

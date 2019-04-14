@@ -9,7 +9,6 @@ import Button from '../../UI/Button/Button'
 
 import BackDrop from '../../BackDrop/BackDrop'
 import WorkModal from '../WorkModal/WorkModal'
-import headerTxtH2 from '../../UI/headers/HeaderH2/HeaderTxtH2'
 import HeaderTxtH2 from '../../UI/headers/HeaderH2/HeaderTxtH2';
 
 // let fakeData = {
@@ -25,6 +24,8 @@ const WorkPreview = props => {
     const [workDocs, setDocs] = useState(false)
     const [backDrop, setBackDrop] = useState(false)
     const [modalData, setModalData] = useState(false)
+
+    
 
     useEffect(() => {
         axios.get('/work')
@@ -52,7 +53,7 @@ const WorkPreview = props => {
     let docs
 
     if (workDocs.length > 0) {
-        docs = workDocs.map((doc) => {
+        docs = workDocs.slice(0, props.number).map((doc) => {
             return (
             <WorkCard 
                 key={doc.title}
@@ -69,17 +70,19 @@ const WorkPreview = props => {
         })
     }
 
+    
+    console.log(props.showButton)
     return (
         <div style={{position: 'relative'}} >
-            <ScrollAnimation animateIn="fadeIn">
-                {workDocs ? <HeaderTxtH2 text="Recent Work" />: null}
+            {/* <ScrollAnimation animateIn="fadeIn"> */}
+                {workDocs ? <HeaderTxtH2 text={props.text} />: null}
                 <div className="WorkPreview__container">
                     {docs}
                 </div>
 
-                {workDocs ? <Button route="/work" text="All Work" /> : null }
+                {workDocs ? <Button route="/work" text="All Work" showButton={props.showButton}/> : null }
 
-            </ScrollAnimation>
+            {/* </ScrollAnimation> */}
                     {workModal}
             <BackDrop backDropShown={backDrop} backdropToggleHandler={toggleBackDropHandler}/>
         </div>

@@ -14,7 +14,7 @@ const HomeAbout = props => {
 
             <ScrollAnimation animateIn="slideInLeft" animateOnce={true}>
                 <ImageContainer />
-                <p>I am a Front-End Web Developer and Web Development educator working in San Digeo, California. I do contract work specializing in Node, Javascript, React and Express</p>
+                <p>I am a Front-End Web Developer and educator working in San Digeo, California. I do contract work specializing in Node, Javascript, React and Express</p>
                 <Button text="Contact" route="/hire"/>
             </ScrollAnimation>
         </div>

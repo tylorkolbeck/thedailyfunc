@@ -14,7 +14,7 @@ export default function WorkCard(props) {
           </div>
           {/* <div className="WorkCard__info-link" onClick={() => props.toggleOpen(props)}>Learn More</div> */}
         </div>
-    <span></span>
+      <span></span>
 
     </div>
   )

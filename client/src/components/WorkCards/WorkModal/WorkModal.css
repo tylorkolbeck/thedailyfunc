@@ -11,14 +11,18 @@
     border-radius: 7px;
     transition: all ease-in 1s;
     overflow: scroll;
+    text-align: left;
 }
 
 .WorkModal__container a {
-    font-family: 'Montserrat', cursive;
+    font-family: 'Fredoka One', cursive;
     font-weight: bold;
     display: block;
     margin-top: 20px;
     font-size: 1.8rem;
+    text-decoration: none;
+    color: #e5bb30;
+    font-weight: 100;
 }
 
 .BorderModal_container img {

@@ -4,8 +4,6 @@ import { Animated } from "react-animated-css";
 import { axiosInstance as axios } from '../../axios-config'
 
 import BackArrow from '../../components/BackArrow/BackArrow'
-import Button from '../../components/UI/Button/Button'
-
 
 class ContactForm extends Component {
 

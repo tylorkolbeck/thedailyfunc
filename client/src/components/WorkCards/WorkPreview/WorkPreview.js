@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import './WorkPreview.css'
-import ScrollAnimation from 'react-animate-on-scroll'
+// import ScrollAnimation from 'react-animate-on-scroll'
 
 import { axiosInstance as axios } from '../../../axios-config'
 
@@ -10,15 +10,6 @@ import Button from '../../UI/Button/Button'
 import BackDrop from '../../BackDrop/BackDrop'
 import WorkModal from '../WorkModal/WorkModal'
 import HeaderTxtH2 from '../../UI/headers/HeaderH2/HeaderTxtH2';
-
-// let fakeData = {
-//     title: 'Jennifer Ingle Pet Care',
-//     img: 'https://images.unsplash.com/photo-1544626053-8985dc34ae63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
-//     tech: ['Node', 'React', 'MongoDB'],
-//     description: 'Website created using React on the front end with a Node backend running with express.',
-//     url: 'http://jenniferinglepetcare.com',
-//     about: 'A Pet Sitting Startup'
-// }
 
 const WorkPreview = props => {
     const [workDocs, setDocs] = useState(false)

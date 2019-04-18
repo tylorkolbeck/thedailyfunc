@@ -43,15 +43,13 @@ class RecentPosts extends Component {
                 )
             })
         } else {
-            return null
+            let loadingSpinner = this.state.loading ? <Spinner /> : null
+            return loadingSpinner
         }
-
-    let loadingSpinner = this.state.loading ? <Spinner /> : null
-        
 
         return (
             <div>
-                {loadingSpinner}
+                {/* {loadingSpinner} */}
                 <div className="RecentPosts__container">
                     <ScrollAnimation animateIn="fadeIn" animateOnce={true}>
                         <HeaderTxtH2 text="Recent Posts" />

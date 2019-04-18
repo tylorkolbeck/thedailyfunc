@@ -2,7 +2,6 @@ import React, { Component }from 'react'
 import './AllPosts.css'
 import PostCard from '../../components/PostCard/PostCard'
 import CatBubble from '../../components/CatBubble/CatBubble'
-// import history from '../../history'
 import { withRouter } from 'react-router-dom'
 import { axiosInstance as axios } from '../../axios-config'
 import { Animated } from "react-animated-css";
@@ -155,6 +154,8 @@ class AllPosts extends Component {
         return (
 
             <div style={{minHeight: '100%'}}>
+
+                
                 <button onClick={this.props.history.goBack} className="FullPost__back_button" style={{marginTop: '20px'}}> 
                     <BackArrow className="desktop" style={{marginLeft: '18px'}}/>
                 </button>

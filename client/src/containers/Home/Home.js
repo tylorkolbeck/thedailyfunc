@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 
 import RecentPosts from '../RecentPosts/RecentPosts'
@@ -12,6 +12,9 @@ import ProfBars from '../../components/ProfBars/ProfBars'
 
 
 const Home = (props) => {
+    useEffect(() => {
+        console.log('[HOMEPAGE MOUNTED]')
+    })
     return (
         <ScrollAnimation animateIn="fadeIn"> 
             <div>

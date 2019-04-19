@@ -3,6 +3,9 @@ ssh dev@157.230.138.238
 TODO: 
 
     URGENT:
+    - Add form validation on login and register forms
+    - FIX CORS ON FRONT AND BACKEND
+    
     - fix the animation of the tech specialty bars
     - Modify the recent posts fetch request to return the 3 recent posts by date
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import './ProfBars.css'
 import HeaderTxtH2 from '../UI/headers/HeaderH2/HeaderTxtH2';
-import ScrollAnimation from 'react-animate-on-scroll'
+// import ScrollAnimation from 'react-animate-on-scroll'
 
 
 export default function ProfBars() {
@@ -34,13 +34,13 @@ export default function ProfBars() {
         }
     ]
 
-    let inc = 50
+    // let inc = 50
 
     let profTable = profData.map(cat => {
-        inc += 50
+        // inc += 50
         return (
             // <ScrollAnimation animateIn="slideInLeft" delay={inc} animateOnce={true} key={cat.name}>
-            <div className="ProfBars-bar" style={{ width: `${cat.prof}%` }} >
+            <div className="ProfBars-bar" style={{ width: `${cat.prof}%` }} key={cat.name}>
                 <p >{cat.name}</p>
             </div>
             // </ScrollAnimation>

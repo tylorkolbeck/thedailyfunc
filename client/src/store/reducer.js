@@ -1,6 +1,14 @@
 import * as actionTypes from './actions/actions'
 
 const initialState = {
+  userManagement: {
+    userName: false,
+    // userName: 'tylorkolbeck@gmail.com',
+    errors: {
+      registrationErrors: false,
+      loginErrors: false
+    }
+  },
   recentPosts: false,
   allPosts: false,
   loadingRecentPosts: false,

@@ -2,14 +2,16 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const expressLayouts = require('express-ejs-layouts')
-const flash = require('connect-flash')
-const session = require('express-session')
-const passport = require('passport')
+// const expressLayouts = require('express-ejs-layouts')
+// const flash = require('connect-flash')
+// const session = require('express-session')
+
+
+// const passport = require('passport')
 
 
 // Passport config
-require('./config/passport')(passport)
+// require('./config/passport')(passport)
 
 // const { API_PORT, CORS_ALLOW, NODE_ENV } = require('./config')
 
@@ -29,8 +31,8 @@ let dbURI = require('./config/keys').MongoURI
 
 
 // EJS
-app.use(expressLayouts)
-app.set('view engine', 'ejs')
+// app.use(expressLayouts)
+// app.set('view engine', 'ejs')
 
 // BodyParser
 app.use(express.urlencoded({extended: false}))
@@ -40,26 +42,26 @@ app.use(bodyParser.json()) // parses json encoded bodies
 app.use(cors())
 
 // Express Session
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}))
+// app.use(session({
+//     secret: 'secret',
+//     resave: true,
+//     saveUninitialized: true
+// }))
 
 // Passport middleware
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 // Connect Flash
-app.use(flash())
+// app.use(flash())
 
 // Global Vars
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg')
-    res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error')
-    next()
-})
+// app.use((req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg')
+//     res.locals.error_msg = req.flash('error_msg')
+//     res.locals.error = req.flash('error')
+//     next()
+// })
 
 //Set up mongoose connection
 mongoose.connect('mongodb://localhost/thedailyfunc', {useNewUrlParser: true})
@@ -77,14 +79,14 @@ app.use('/api/user', userRoutes)
 
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`) // Allow cross server requests
+    res.header('Access-Control-Allow-Origin', '*') // Allow cross server requests
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization', 'poo')
     res.header('Access-Control-Allow-Headers: Content-Type')
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS');
     
     if (req.method === 'OPTIONS') {
         console.log('Running Options')
-        res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`)
+        res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS')
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         return res.status(200).json({})
@@ -107,6 +109,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(PORT || 8000, console.log(`Server Started on port ${PORT}`))
+app.listen(PORT || 8000, console.log(`Server Started on port ${PORT}. CORS ALLOW: ${CORS_ALLOW}`))
 
 module.exports = app

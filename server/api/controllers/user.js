@@ -2,42 +2,19 @@
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
 
-
 // Schema
 const User = require("../models/User")
 
-// Dashboard view
-exports.userDashboard = (req, res) => {
-  res.render('dashboard', {
-    name: req.user.name
-  })
-}
-
-// Main user view with login or register option
-exports.mainUserView = (req, res) => {
-  res.render('userMain')
-}
-
-// Login user view
-exports.loginUser = (req, res) => {
-    res.render('login')
-}
-
-
-// Register user view
-exports.registerUser = (req, res) => { 
-  res.render('register')
-}
-
 // Register user handler
-exports.registerUserHandler = (req, res) => { 
+exports.registerUserHandler = (req, res) => {
   const { name, email, password, password2 } = req.body
   let errors = []
 
+
   // Check requied fields
   if (!name || !email || !password || !password2) {
-    errors.push({ 
-      msg: 'Please Fill In All Fields.'
+    errors.push({
+      msg: 'Please fill in all fields.'
     })
   }
 
@@ -45,7 +22,7 @@ exports.registerUserHandler = (req, res) => {
   if (password !== password2) {
     errors.push({
       msg: 'Passwords Do Not Match.'
-    }) 
+    })
   }
 
   // Check if password length is atleast 6 chars
@@ -55,30 +32,20 @@ exports.registerUserHandler = (req, res) => {
     })
   }
 
-  // If there are errors then pass them to ejs
   if (errors.length > 0) {
-    res.render('register', {
-      errors,
-      name,
-      email,
-      password,
-      password2
-    })
-  } else {
-    // validation passed
-    User.findOne({email: email})
-      .then(user => {
-        // User exists
+    res.send({ errors: errors })
+  }
+
+  if (errors.length === 0) {
+    User.findOne({ email: email })
+      .then((user) => {
+        // If the user exists
         if (user) {
-          errors.push({msg: 'User already exists with that email.'})
-          res.render('register', {
-            errors,
-            name,
-            email,
-            password,
-            password2
-          })
-        } else {
+          errors.push({ msg: 'User already exists with that email.' })
+          res.send({ errors: errors })
+        }
+        // If the user does not already exist
+        else {
           //  create a new user
           const newUser = new User({
             name,
@@ -96,17 +63,15 @@ exports.registerUserHandler = (req, res) => {
               // save the user
               newUser.save()
                 .then((user) => {
-                  req.flash('success_msg', 'You are now registered.')
-                  res.redirect('/api/user/login')
+                  res.status(200).send({errors: errors, userCreated: true})
                 })
                 .catch(err => console.log(err))
             })
           })
-          console.log(newUser)
-          // res.send('hello')
         }
       })
+      .catch(err => console.log(err))
   }
 
-  
+  // If any errors send back the errors
 }

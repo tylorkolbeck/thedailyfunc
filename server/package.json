@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "API_PORT=8000 NODE_ENV=production CORS_ALLOW=https://thedailyfunc.com nodemon server.js",
+    "start": "API_PORT=8000 NODE_ENV=production CORS_ALLOW=* nodemon server.js",
     "dev": "nodemon server.js",
     "deploy": "scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/server.js dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/api dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/package.json dev@157.230.138.238:/home/dev/api.thedailyfunc.com"
   },
@@ -15,16 +15,10 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
-    "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "express-ejs-layouts": "^2.5.0",
-    "express-session": "^1.16.1",
     "mongoose": "^5.4.18",
-    "nodemon": "^1.18.10",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "nodemon": "^1.18.10"
   }
 }

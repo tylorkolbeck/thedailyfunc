@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Home.css'
 
-import RecentPosts from '../RecentPosts/RecentPosts'
+import RecentPosts from '../../components/RecentPosts/RecentPosts'
 import HomeTopBox from '../../components/HomeTopBox/HomeTopBox'
 import HomeAbout from '../../components/HomeAbout/HomeAbout'
 import { Animated } from "react-animated-css";
@@ -28,9 +28,8 @@ const Home = (props) => {
                 <HomeAbout />
                 <ProfBars />
 
-                <div>
-                    <RecentPosts history={props.history}/>
-                </div>
+                <RecentPosts history={props.history}/>
+                
 
                 <div>
                     <WorkPreview number={2} text="Recent Work" showButton={true}/>

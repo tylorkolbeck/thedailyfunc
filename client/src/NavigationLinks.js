@@ -15,8 +15,8 @@ export const navigationLinks = [
         to: '/hire',
         text: 'Hire'
     },
-    // {
-    //     to: '/login',
-    //     text: 'Login'
-    // }
+    {
+        to: '/user',
+        text: 'Login'
+    }
 ]

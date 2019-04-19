@@ -3,17 +3,18 @@ import './AllPosts.css'
 import PostCard from '../../components/PostCard/PostCard'
 import CatBubble from '../../components/CatBubble/CatBubble'
 import { withRouter } from 'react-router-dom'
-import { axiosInstance as axios } from '../../axios-config'
 import { Animated } from "react-animated-css";
 import BackArrow from '../../components/BackArrow/BackArrow'
-
+import { connect } from 'react-redux'
+import * as actionCreators from '../../store/actions/actions'
 import Spinner from '../../components/UI/Spinner/Spinner'
+
 
 
 class AllPosts extends Component {
     state = {
         // mainCat: ['JS', 'XS', 'PP'],
-        posts: false,
+        // posts: false,
         filter: false,
         changeVis: true,
         visible: {
@@ -25,15 +26,8 @@ class AllPosts extends Component {
     }
 
     componentDidMount() { 
-        if (!this.state.posts) {
-            this.setState({loading: true, error: false})
-            axios.get('/posts')
-                .then((response)=> {
-                    this.setState({posts: response.data.docs, loading:false})
-                })
-                .catch((err) => {
-                    this.setState({error: true, loading: false})
-                })
+        if (!this.props.allPosts) {
+            this.props.fetchAllPosts()
         }
     }
 
@@ -42,12 +36,7 @@ class AllPosts extends Component {
     }
 
     filterPostsHandler = (cat) => {
-        console.log(cat)
         this.setState({filter: cat[0]})
-    }
-
-    filterPostsByTagsHandler(text) {
-        console.log(text)
     }
 
     removeFiltersHandler = () => {
@@ -58,8 +47,8 @@ class AllPosts extends Component {
         let catBubbles = null
         let mainArray = []
         let catData = []
-        if (this.state.posts) {
-            this.state.posts.forEach((post) => {
+        if (this.props.allPosts) {
+            this.props.allPosts.forEach((post) => {
                 if (!mainArray.includes(post.mainCat)) {
                     mainArray.push(post.mainCat)
                     catData.push({[post.mainCat]: post.category})
@@ -77,24 +66,22 @@ class AllPosts extends Component {
         return catBubbles
     }
 
-    checkWhatToShow = () => {
-        let cards = null
+    makePostCards = () => {
+        let cards = this.props.allPosts ? null : <Spinner />
         let postsToShow = null
 
         // If no filter show all posts
-        if (this.state.posts && !this.state.filter && this.state.posts.length > 0)  {
-            cards = this.state.posts.map((data) => {
+        if (this.props.allPosts && !this.state.filter)  {
+            cards = this.props.allPosts.map((data) => {
                 return (
                     <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
                 )
             })
-        } else if (this.state.posts.length < 0) {
-            cards = <h1>There are no posts yet. Please check back.</h1>
-        }
-
-        // If filter only show filtered posts
-        if (this.state.posts && this.state.filter) {
-            postsToShow = this.state.posts.filter(post => post.mainCat === this.state.filter)
+        } 
+        
+        
+        if (this.props.allPosts && this.state.filter) {
+            postsToShow = this.props.allPosts.filter(post => post.mainCat === this.state.filter)
 
             cards = postsToShow.map((data) => {
                 return (
@@ -145,10 +132,6 @@ class AllPosts extends Component {
     }
 
     render() {
-        let spinner
-
-        spinner = this.state.loading ? <Spinner /> : null
-
         let hideOnError = this.state.error ? 'hide' : ''
 
         return (
@@ -162,10 +145,6 @@ class AllPosts extends Component {
 
                 <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.visible.mainPage} style={{display: 'flex', width: '100%'}}>
                     <div style={{maxWidth: '1200px', margin: 'auto', width: '100%'}}>
-
-                        {/* <div style={{textAlign: 'center', marginTop: '20px', fontFamily: "'Fredoka One', cursive"}}>
-                            Filter
-                        </div> */}
 
                         <div className="AllPosts__cat_bubble_container">
 
@@ -183,19 +162,29 @@ class AllPosts extends Component {
 
                         </div>
 
-                        {this.checkWhatToShow()}
+                        {this.makePostCards()}
                         
                     </div>
 
                 </Animated>
-                {spinner}
-
             </div>
 
         )
     }
 }
 
-export default withRouter(AllPosts)
+const mapStateToProps = (state) => {
+    return {
+        allPosts: state.allPosts
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchAllPosts: () => dispatch(actionCreators.fetchAllPosts()), // when called execute the action creator function
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AllPosts))
 
 

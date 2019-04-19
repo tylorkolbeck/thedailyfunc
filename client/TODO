@@ -3,23 +3,16 @@ ssh dev@157.230.138.238
 TODO: 
 
     URGENT:
+    - fix the animation of the tech specialty bars
+    - Modify the recent posts fetch request to return the 3 recent posts by date
 
     - Throttle window resize event listener in PostCard.js
     - animate menu links similiar to:
         http://tobiasahlin.com/blog/how-to-animate-box-shadow/
 
-    - Store post data in redux
-    
-    - Show no available posts if none are available 
-
-    - Contact Form
-    - Webkit check
-
     - Secure contact form
         https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms
         https://www.sitepoint.com/forms-file-uploads-security-node-express/    
-
-    - Setup SSL
 
 
     Setting Up The VM:

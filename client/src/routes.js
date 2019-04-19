@@ -35,6 +35,14 @@ const FullPost = (props) => (
     </DynamicImport>
 )
 
+const User = (props) => (
+    <DynamicImport load={(props) => import('./containers/User/index')}>
+        {(Component) => Component === null
+        ? <h1>loading...</h1> :
+        <Component {...props} />}
+    </DynamicImport>
+)
+
 
 
 export const routes = [
@@ -58,6 +66,10 @@ export const routes = [
     {
         path: '/hire',
         component: ContactForm,
+    },
+    {
+        path: '/user',
+        component: User
     }
 
 ]

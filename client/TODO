@@ -3,6 +3,7 @@ ssh dev@157.230.138.238
 TODO: 
 
     URGENT:
+    - show login error
     - async load images
     - Add form validation on login and register forms
     - FIX CORS ON FRONT AND BACKEND

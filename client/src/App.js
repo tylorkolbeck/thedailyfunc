@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import './index.css'
-
-
 import './App.css';
 import NavMenu from './containers/NavMenu/NavMenu'
 import { routes } from './routes'
 import { axiosInstance as axios} from './axios-config'
+import jwtDecode from 'jwt-decode'
+import { connect } from 'react-redux'
+import * as actionTypes from './store/actions/actions'
+
 
 import Footer from './containers/Footer/Footer'
 
@@ -16,6 +18,14 @@ class App extends Component {
 
   state = {
     backDropShown: false
+  }
+
+  componentDidMount() {
+    if (!this.props.userId && localStorage.Authorization) {
+      let {email, userId, name} = jwtDecode(localStorage.Authorization)
+      this.props.logUserIn({email, userId, name})
+      console.log(email, userId, name)
+    }
   }
 
   backdropToggleHandler() {
@@ -45,6 +55,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    userId:  state.userManagement.userId
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logUserIn: (email, userId, name) => dispatch(actionTypes.saveUserData(email, userId, name))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 

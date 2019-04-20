@@ -1,29 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function Login({ inputHandler, loginFormData, userCreated, formSubmit }) {
-  const [errors, setErrors] = useState([])
-
+export default function Login({ inputHandler, loginFormData, userCreated, formSubmit, error }) {
   const userCreatedMessage = userCreated ? <p>User has been created. Please login.</p> : null
-
-  const clearErrors = () => {
-    setErrors([])
-  }
-
-  const showErrors = () => {
-    let formattedErrorArray = []
-    errors.forEach((err) => {
-      formattedErrorArray.push(<p>{err}</p>)
-    })
-
-    return formattedErrorArray
-  }
-
+  
   return (
     <div>
         <h1>Login</h1>
-        {/* PUT ERROR MESSAGES HERE THAT ARE RETURNED FROM THE SERVER */}
-        {/* PUSH ERRORS TO THE ERROR ARRAY AND SEND BACK TO INDEX */}
-        {showErrors()}
+        {error ? <p>{error}</p> : null}
         {userCreatedMessage}
         <form>
           <div>

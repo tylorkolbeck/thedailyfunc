@@ -16,11 +16,11 @@ class NavBar extends Component {
     }
     // let searchInput = React.createRef()
     componentDidMount() {
-        window.addEventListener('scroll', this.listenToScroll)
+        // window.addEventListener('scroll', this.listenToScroll)
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.listenToScroll)
+        // window.removeEventListener('scroll', this.listenToScroll)
     }
 
     listenToScroll = () => {

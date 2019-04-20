@@ -19,7 +19,7 @@ class index extends Component {
     loginFormData: {
       email: '',
       password: '',
-      errors: []
+      error: false
     }
   }
   // TODO: ## SETUP FORM VALIDATION ##
@@ -68,11 +68,14 @@ class index extends Component {
     })
       .then((res) => {
         this.props.setUserData(res.data.userData)
-        console.log(res.data.token)
+        localStorage.setItem('Authorization', `bearer ${res.data.token}`)
 
       })
-      .catch(err => console.log('loginSuccess', err.response.data.loginSuccess))
-
+      .catch(err => {
+        let oldState = {...this.state}
+        oldState.loginFormData.error = "The email and password do not match."
+        this.setState({oldState})
+      })
   }
 
   setShowRegistrationForm = () => {
@@ -91,7 +94,9 @@ class index extends Component {
       inputHandler={this.loginFormInputHandler}
       loginFormData={this.state.loginFormData}
       userCreated={this.state.registrationFormData.userCreated}
-      formSubmit={this.submitLoginFormHandler}/>
+      formSubmit={this.submitLoginFormHandler}
+      error={this.state.loginFormData.error}
+      />
   // Show the register button on the login screen if no user logged in
   let registerLink = this.props.user ? null : <p>No Account? <button href="/register" onClick={this.setShowRegistrationForm}>Register</button></p>
   

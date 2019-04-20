@@ -16,7 +16,6 @@ class RecentPosts extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.recents)
         if (!this.props.recents) {
             this.props.fetchRecentPosts()
         }

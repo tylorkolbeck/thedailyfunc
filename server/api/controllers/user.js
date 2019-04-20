@@ -124,14 +124,9 @@ exports.loginuserHandler = (req, res) => {
               console.log('ERROR LOGGIN IN ', err)
             }
           })
-        } else {
-          res.status(401).send({
-            message: 'Login Failed',
-            loginSuccess: false
-          })
-          console.log('NO USER FOUND FOR THAT EMAIL')
         }
       })
+      .catch(err => res.status(404))
   } 
 
   if (!email || !password) {

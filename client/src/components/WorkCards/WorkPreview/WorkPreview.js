@@ -61,8 +61,6 @@ const WorkPreview = props => {
         })
     }
 
-    
-    console.log(props.showButton)
     return (
         <div style={{position: 'relative'}} >
             {/* <ScrollAnimation animateIn="fadeIn"> */}

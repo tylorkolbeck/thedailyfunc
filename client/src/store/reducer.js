@@ -7,6 +7,7 @@ const initialState = {
     name: false,
     email: false,
     role: 'user',
+    dateUserCreated: false,
     errors: {
       registrationErrors: false,
       loginErrors: false
@@ -45,15 +46,15 @@ const reducer = (state = initialState, action) => {
 
       }
     case actionTypes.SET_USER_LOGIN:
-
-      const {userId, name, email, role} = action.userData
+      const {userId, name, email, role, dateUserCreated} = action.userData
       return {
         ...state,
         userManagement: {
           userId: userId,
           name: name,
           email: email,
-          role: role
+          role: role,
+          dateUserCreated: dateUserCreated
         }
       }
     
@@ -64,7 +65,8 @@ const reducer = (state = initialState, action) => {
           userId: false,
           name: false,
           email: false,
-          role: false
+          role: false,
+          dateUserCreated: false
         }
       }
 

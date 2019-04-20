@@ -106,7 +106,8 @@ exports.loginuserHandler = (req, res) => {
                   email: user.email,
                   userId: user._id,
                   name: user.name,
-                  role: user.role
+                  role: user.role,
+                  dateUserCreated: user.dateUserCreated,
                 }, process.env.TOKEN_SECRET,
                 {
                   expiresIn: "3d"
@@ -120,7 +121,8 @@ exports.loginuserHandler = (req, res) => {
                   email: user.email,
                   userId: user._id,
                   name: user.name,
-                  role: user.role
+                  role: user.role,
+                  dateUserCreated: user.dateUserCreated
                 }
               })
 

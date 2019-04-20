@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './index.css'
 import { connect } from 'react-redux'
 import Login from './Login/Login'
 import Register from './Register/Register'
@@ -86,9 +87,10 @@ class index extends Component {
   logUserOutHandler = () => {
     localStorage.clear()
     this.props.logUserOut()
-    console.log('log user out')
-
-
+    // reset old errors from prior to logging in
+    let oldState = {...this.state}
+    oldState.registrationFormData.errors = []
+    oldState.loginFormData.error = false
   }
 
   // Function to toggle showing the registration form
@@ -111,7 +113,7 @@ class index extends Component {
         error={this.state.loginFormData.error}
         />
     // Show the register button on the login screen if no user logged in
-    let registerLink = this.props.user ? null : <p>No Account? <button href="/register" onClick={this.setShowRegistrationForm}>Register</button></p>
+    let registerLink = this.props.user ? null : <div className="UserManagement__register-button"><p>Dont have an account?</p> <button href="/register" onClick={this.setShowRegistrationForm}>Create a new account</button></div>
     
     // If the register button is clicked hide the login form and show the registration form
     // state of the form is handled in this index class
@@ -125,14 +127,14 @@ class index extends Component {
         submitForm={this.submitRegFormHandler}/> : null
 
     return (
-      <div>
+      <div className="UserManagment__container">
         {/* Hide the login form if the registration button is selected */}
-        <div className={this.state.showRegistrationForm ? ' hide' : ''} >
+        <div className={`UserManagement__container-login  ${this.state.showRegistrationForm ? ' hideForm' : ''}`} >
           {loginOrLogout}
           {registerLink}
         </div>
   
-        <div>
+        <div className="UserManagement__container-registration">
           {registrationForm}
         </div>
   

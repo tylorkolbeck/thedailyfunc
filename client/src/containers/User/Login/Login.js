@@ -5,28 +5,26 @@ export default function Login({ inputHandler, loginFormData, userCreated, formSu
   
   return (
     <div>
-        <h1>Login</h1>
-        {error ? <p>{error}</p> : null}
+        <h2>Login</h2>
+        {error ? <p className="form-error-msg">{error}</p> : null}
         {userCreatedMessage}
         <form>
           <div>
-            <label>Email</label>
+            <p>Email</p>
             <input
               type="email"
               value={loginFormData.email}
               onChange={(e) => inputHandler(e.target.value, 'email')}
-              placeholder="Enter Email"
             />
           </div>
           <div>
-            <label>Password</label>
+            <p>Password</p>
             <input
               type="password"
               value={loginFormData.password}
               onChange={(e) => inputHandler(e.target.value, 'password')}
-              placeholder="Enter Password"
             />
-          </div>
+         </div>
           <button onClick={(e) => formSubmit(e)}>Login</button>
         </form>
     </div>

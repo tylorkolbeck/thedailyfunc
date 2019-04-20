@@ -3,9 +3,13 @@ ssh dev@157.230.138.238
 TODO: 
 
     URGENT:
-    - show login error
+    - add a date the user was created for dashboard purposes
+    - make a user dashboard
+    - handle lowercase or upper case email inputs for login and register
+    - add a keep me signed in box, just dont store the jsonwebtoken in local storage. save in redux
     - async load images
     - Add form validation on login and register forms
+    - style login, register and logout forms
     - FIX CORS ON FRONT AND BACKEND
     - Fix cursor on button hover
 

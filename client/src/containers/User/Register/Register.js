@@ -3,48 +3,44 @@ import React from 'react'
 export default function Register({ goToLogin, inputHandler, regFormData, submitForm }) {
   
   let regFormErrors = regFormData.errors.map(error => {
-    return <p key={error.msg}>{error.msg}</p>
+    return <p className="form-error-msg" key={error.msg}>{error.msg}</p>
   })
 
   return (
-    <div>
-        <h1>
+    <div className="Register__container">
+        <h2>
           Register
-        </h1>
+        </h2>
         {regFormErrors}
         <form>
           <div>
-            <label>Name</label>
+            <p>Name</p>
             <input
               type="text"
-              placeholder="Enter Name"
               value={regFormData.name}
               onChange={(e) => inputHandler(e.target.value, 'name')}
             />
           </div>
           <div>
-            <label>Email</label>
+            <p>Email</p>
             <input
               type="text"
-              placeholder="Enter Email"
               value={regFormData.email}
               onChange={(e) => inputHandler(e.target.value, 'email')}
             />
           </div>
           <div>
-            <label>Password</label>
+            <p>Password</p>
             <input
               type="password"
-              placeholder="Create Password"
               value={regFormData.password}
               onChange={(e) => inputHandler(e.target.value, 'password')}
             />
           </div>
           <div>
-            <label>Confirm Password</label>
+            <p>Confirm Password</p>
             <input
               type="password"
-              placeholder="Confirm Password"
               value={regFormData.password2}
               onChange={(e) => inputHandler(e.target.value, 'password2')}
             />
@@ -53,7 +49,9 @@ export default function Register({ goToLogin, inputHandler, regFormData, submitF
             Register
           </button>
         </form>
-        <p>Have An Account? <button onClick={goToLogin}>Login</button></p>
+
+        <p className="Register-have-account-text">Have An Account?</p> 
+        <button onClick={goToLogin} className="Register-login-button">Login</button>
     </div>
   )
 }

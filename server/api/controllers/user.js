@@ -8,14 +8,26 @@ const User = require("../models/User")
 
 // Register user handler
 exports.registerUserHandler = (req, res) => {
-  const { name, email, password, password2 } = req.body
+  let { name, email, password, password2 } = req.body
   let errors = []
+  name = name.trim()
+  email = email.trim()
+  password = password.trim()
+  password2 = password2.trim()
+  let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-
+  
   // Check requied fields
   if (!name || !email || !password || !password2) {
     errors.push({
-      msg: 'Please fill in all fields.'
+      msg: 'Please fill in all the fields.'
+    })
+  }
+
+  // Check for valid email
+  if (!emailRegex.test(String(email).toLowerCase())) {
+    errors.push({
+      msg: 'Please enter a valid email.'
     })
   }
 

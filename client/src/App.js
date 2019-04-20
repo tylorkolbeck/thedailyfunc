@@ -24,7 +24,6 @@ class App extends Component {
     if (!this.props.userId && localStorage.Authorization) {
       let {email, userId, name} = jwtDecode(localStorage.Authorization)
       this.props.logUserIn({email, userId, name})
-      console.log(email, userId, name)
     }
   }
 

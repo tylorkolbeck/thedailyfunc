@@ -23,12 +23,14 @@ class index extends Component {
     }
   }
   // TODO: ## SETUP FORM VALIDATION ##
+  // two way bind registration form to state
   regFormInputHandler = (inputValue, input) => {
     let regFormData = {...this.state.registrationFormData}
     regFormData[input] = inputValue
     this.setState({registrationFormData: regFormData})
   }
 
+  // Submit registration form handler
   submitRegFormHandler = (event) => {
     event.preventDefault()
     let formData = {...this.state.registrationFormData}
@@ -52,12 +54,14 @@ class index extends Component {
       .catch(err => console.log(err))
   }
 
+  // bind login form to state
   loginFormInputHandler = (inputValue, input) => {
     let loginFormData = {...this.state.loginFormData}
     loginFormData[input] = inputValue
     this.setState({loginFormData: loginFormData})
   }
 
+  // Submit login form
   submitLoginFormHandler = (event, {email, password} = this.state.loginFormData) => {
     event.preventDefault()
     axios.post('/user/login', {
@@ -78,38 +82,47 @@ class index extends Component {
       })
   }
 
+  // Log user out handler
+  logUserOutHandler = () => {
+    localStorage.clear()
+    this.props.logUserOut()
+    console.log('log user out')
+
+
+  }
+
+  // Function to toggle showing the registration form
   setShowRegistrationForm = () => {
     this.setState({showRegistrationForm: !this.state.showRegistrationForm})
   }
 
-
   render() {
 
-  // If user is logged in show the logout button else show a login form
-  // State of the login fomr is handled in this index class
-  // Form submit handling is handled in this index class
-  // LOGIN FORM
-  let loginOrLogout = this.props.user ?  <button>Logout</button> : 
-    <Login 
-      inputHandler={this.loginFormInputHandler}
-      loginFormData={this.state.loginFormData}
-      userCreated={this.state.registrationFormData.userCreated}
-      formSubmit={this.submitLoginFormHandler}
-      error={this.state.loginFormData.error}
-      />
-  // Show the register button on the login screen if no user logged in
-  let registerLink = this.props.user ? null : <p>No Account? <button href="/register" onClick={this.setShowRegistrationForm}>Register</button></p>
-  
-  // If the register button is clicked hide the login form and show the registration form
-  // state of the form is handled in this index class
-  // Form submit handling is handled in this index class
-  // REGISTER FORM
-  let registrationForm = this.state.showRegistrationForm ? 
-    <Register 
-      goToLogin={this.setShowRegistrationForm} 
-      inputHandler={this.regFormInputHandler}
-      regFormData={this.state.registrationFormData}
-      submitForm={this.submitRegFormHandler}/> : null
+    // If user is logged in show the logout button else show a login form
+    // State of the login fomr is handled in this index class
+    // Form submit handling is handled in this index class
+    // LOGIN FORM
+    let loginOrLogout = this.props.user ?  <button onClick={this.logUserOutHandler}>Logout</button> : 
+      <Login 
+        inputHandler={this.loginFormInputHandler}
+        loginFormData={this.state.loginFormData}
+        userCreated={this.state.registrationFormData.userCreated}
+        formSubmit={this.submitLoginFormHandler}
+        error={this.state.loginFormData.error}
+        />
+    // Show the register button on the login screen if no user logged in
+    let registerLink = this.props.user ? null : <p>No Account? <button href="/register" onClick={this.setShowRegistrationForm}>Register</button></p>
+    
+    // If the register button is clicked hide the login form and show the registration form
+    // state of the form is handled in this index class
+    // Form submit handling is handled in this index class
+    // REGISTER FORM
+    let registrationForm = this.state.showRegistrationForm ? 
+      <Register 
+        goToLogin={this.setShowRegistrationForm} 
+        inputHandler={this.regFormInputHandler}
+        regFormData={this.state.registrationFormData}
+        submitForm={this.submitRegFormHandler}/> : null
 
     return (
       <div>
@@ -136,7 +149,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserData: (userData) => dispatch(actionCreators.saveUserData(userData))
+    setUserData: (userData) => dispatch(actionCreators.saveUserData(userData)),
+    logUserOut: () => dispatch({type: actionCreators.LOG_USER_OUT})
   }
 }
 

@@ -56,6 +56,17 @@ const reducer = (state = initialState, action) => {
           role: 'user'
         }
       }
+    
+    case actionTypes.LOG_USER_OUT:
+      return {
+        ...state,
+        userManagement: {
+          userId: false,
+          name: false,
+          email: false,
+          role: false
+        }
+      }
 
     default:
       return state

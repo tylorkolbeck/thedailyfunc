@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-// A scroll to top component 
+
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import reducer from './store/reducer'
 
@@ -18,7 +18,7 @@ const logger = store => {
     return next => {
         return action => {
             const result = next(action)
-            // console.log('[Middleware next state', store.getState())
+            console.log('[Middleware next state', store.getState())
             return result
         }
     }

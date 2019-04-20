@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom'
 
 import './Footer.css'
 
-import { navigationLinks } from '../../NavigationLinks'
+const Footer = ({navigationLinks}) => {
+    let links = null
+    links = navigationLinks.map(link => {
+        return (
+            <Link
+                to={link.to} 
+                key={link.text}>
+                    <li>
+                        {link.text}
+                    </li>
+            </Link>
+        )
+    })
 
-const Footer = props => {
     return (
         <div className="Footer__container">
             <ul className="Footer__links_list">
-                {navigationLinks.map(link => {
-                    return (
-                        <li key={link.text}>
-                            <Link 
-                                to={link.to}>
-                                {link.text}
-                            </Link>
-                        </li>
-                    )
-                })}
+                {links}
             </ul>
 
             <div className="Footer__logo">

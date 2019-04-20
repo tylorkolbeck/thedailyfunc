@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import './index.css'
 import './App.css';
 import NavMenu from './containers/NavMenu/NavMenu'
 import { routes } from './routes'
 import { axiosInstance as axios} from './axios-config'
-import jwtDecode from 'jwt-decode'
 import { connect } from 'react-redux'
 import * as actionTypes from './store/actions/actions'
-
+import { navigationLinks } from './NavigationLinks'
 
 import Footer from './containers/Footer/Footer'
 
@@ -23,8 +22,7 @@ class App extends Component {
   componentDidMount() {
     //  Check to see if user is already logged in by checking localstorage for a JWT
     if (!this.props.userId && localStorage.Authorization) {
-      let {email, userId, name, role} = jwtDecode(localStorage.Authorization)
-      this.props.logUserIn({email, userId, name, role})
+      this.props.logUserIn(localStorage.Authorization)
     }
   }
 
@@ -33,23 +31,30 @@ class App extends Component {
   }
 
   render() {
+    
+    let mapRoutes = routes.map((route) => (
+      <Route 
+        key={route.path}
+        path={route.path}
+        component={route.component}
+        exact={route.exact}
+        location={this.props.location}
+      />  
+      
+    ))
+
     return (
+      
       <div className="App">
-        
+    
+        {console.log('[APP COMPONENT]', navigationLinks, '[ROLE]', this.props.userRole)}
         {/* CONTAINER HOLDING TOP NAVIGATION ITEMS */}
-        <NavMenu backDropShown={this.state.backDropShown} backdropToggleHandler={this.backdropToggleHandler.bind(this)}/>
+        <NavMenu navLinks={this.props.navLinks} backDropShown={this.state.backDropShown} backdropToggleHandler={this.backdropToggleHandler.bind(this)}/>
 
         {/* MAP THROUGH ALL THE ROUTES */}
-        {routes.map((route) => (
-          <Route 
-            key={route.path}
-            path={route.path}
-            component={route.component}
-            exact={route.exact}
-          />    
-        ))}
-
-          <Footer />
+        {mapRoutes}
+      
+        <Footer navigationLinks={this.props.navLinks}/>
       </div>
     );
   }
@@ -57,16 +62,17 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    userId:  state.userManagement.userId
+    userId:  state.userManagement.userId,
+    navLinks: state.navigationLinks
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logUserIn: (email, userId, name, role) => dispatch(actionTypes.saveUserData(email, userId, name, role))
+    logUserIn: (token) => dispatch({type: actionTypes.SET_USER_LOGIN, data: token})
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 

@@ -1,19 +1,17 @@
 import * as actionTypes from './actions/actions'
+import { navigationLinks } from '../NavigationLinks'
+import { checkLoginAccess } from '../helpers/CheckLogin'
 
 const initialState = {
-
+  navigationLinks: [...navigationLinks],
   userManagement: {
     userId: false,
     name: false,
     email: false,
-    role: 'user',
+    role: false,
     dateUserCreated: false,
-    errors: {
-      registrationErrors: false,
-      loginErrors: false
-    }
+    token: false,
   },
-
   recentPosts: false,
   allPosts: false,
   loadingRecentPosts: false,
@@ -35,39 +33,62 @@ const reducer = (state = initialState, action) => {
       }
 
     case actionTypes.MARK_POST_AS_READ:
-      console.log('MARKED POST AS READ', action.postId)
-      // get the postid
-      // filter the posts or find the post that matches that ID
-      // add an attribute of read to true
-      // reset state
       return {
         // switch the read property of a post to read after reading
         ...state,
-
       }
+
+
+    // Log user in
     case actionTypes.SET_USER_LOGIN:
-      const {userId, name, email, role, dateUserCreated} = action.userData
+      const token = action.data
+
+      /**
+       * checkLoginAccess(navigationLinks, token)
+       * @param {array} navigationLinks current navigation links
+       * @param {strgin} token token returned from server
+       * @returns {array} array[0] container the new navigation links, array[1] returns 
+       * an object holding all of the users information that was decoded from the token
+       */
+      let userSettings = checkLoginAccess(navigationLinks, token)
+      
+      if (!localStorage.Authorization) {
+        localStorage.setItem('Authorization', `bearer ${token}`)
+      }
+
       return {
         ...state,
         userManagement: {
-          userId: userId,
-          name: name,
-          email: email,
-          role: role,
-          dateUserCreated: dateUserCreated
-        }
+          userId: userSettings[1].userId,
+          name: userSettings[1].name,
+          email: userSettings[1].email,
+          role: userSettings[1].role,
+          dateUserCreated: userSettings[1].dateUserCreated,
+          token: token
+        },
+        navigationLinks: userSettings[0]
       }
     
+    // Logthe user out by clearing the state and localstorage
     case actionTypes.LOG_USER_OUT:
+      let oldUserState = {...state.userManagement}
+
+      let clearUserState = (oldUserState) => {
+        let emptyUserState = {}
+        for (let key in oldUserState) {
+          emptyUserState[key] = false
+        }
+        return emptyUserState
+      }
+
+      localStorage.clear()
+
       return {
         ...state,
         userManagement: {
-          userId: false,
-          name: false,
-          email: false,
-          role: false,
-          dateUserCreated: false
-        }
+          ...clearUserState(oldUserState)
+        },
+        navigationLinks: navigationLinks
       }
 
     default:

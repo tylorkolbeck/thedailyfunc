@@ -112,18 +112,19 @@ exports.loginuserHandler = (req, res) => {
                 {
                   expiresIn: "3d"
                 })
+                console.log('login success')
               
               // send back JWT
               res.status(200).json({
-                loginSuccess: true,
-                token,
-                userData: {
-                  email: user.email,
-                  userId: user._id,
-                  name: user.name,
-                  role: user.role,
-                  dateUserCreated: user.dateUserCreated
-                }
+                // loginSuccess: true,
+                token: token
+                // userData: {
+                //   email: user.email,
+                //   userId: user._id,
+                //   name: user.name,
+                //   role: user.role,
+                //   dateUserCreated: user.dateUserCreated
+                // }
               })
 
             // If passwords do not match
@@ -137,7 +138,7 @@ exports.loginuserHandler = (req, res) => {
 
             // Error with the request
             if (err) {
-              console.log('ERROR LOGGIN IN ', err)
+              console.log('ERROR LOGGING IN ', err)
             }
           })
         }

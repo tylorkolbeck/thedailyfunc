@@ -6,6 +6,7 @@ import Register from './Register/Register'
 import { axiosInstance as axios } from '../../axios-config.js'
 import * as actionCreators from '../../store/actions/actions'
 
+
 class index extends Component {
   state = {
     showRegistrationForm: false, // SET BACK TO FALSE AFTER DEVELOPMENT
@@ -72,9 +73,7 @@ class index extends Component {
       }
     })
       .then((res) => {
-        this.props.setUserData(res.data.userData)
-        localStorage.setItem('Authorization', `bearer ${res.data.token}`)
-
+        this.props.setUserData(res.data.token)
       })
       .catch(err => {
         let oldState = {...this.state}
@@ -85,7 +84,6 @@ class index extends Component {
 
   // Log user out handler
   logUserOutHandler = () => {
-    localStorage.clear()
     this.props.logUserOut()
     // reset old errors from prior to logging in
     let oldState = {...this.state}
@@ -151,7 +149,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserData: (userData) => dispatch(actionCreators.saveUserData(userData)),
+    setUserData: (token) => dispatch({type: actionCreators.SET_USER_LOGIN, data: token}),
     logUserOut: () => dispatch({type: actionCreators.LOG_USER_OUT})
   }
 }

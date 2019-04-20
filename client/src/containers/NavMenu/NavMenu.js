@@ -10,11 +10,16 @@ import BackDrop from '../../components/BackDrop/BackDrop'
 import SideBar from '../../components/SideBar/SideBar'
 
 class NavBar extends Component {
+    // MAKE SURE THIS IS OPTIMIZED
     state = {
-        scrollPosition: window.pageYOffset,
+        // scrollPosition: window.pageYOffset,
         theposition: 0
     }
-    // let searchInput = React.createRef()
+    
+    componentDidUpdate() {
+        console.log('NAVMENU UPDATE', this.props.navLinks)
+    }
+
     componentDidMount() {
         // window.addEventListener('scroll', this.listenToScroll)
     }
@@ -24,31 +29,26 @@ class NavBar extends Component {
     }
 
     listenToScroll = () => {
-        const winScroll =
-          document.body.scrollTop || document.documentElement.scrollTop
+        // const winScroll =
+        //   document.body.scrollTop || document.documentElement.scrollTop
+        // const scrolled = winScroll
       
-        // const height =
-        //   document.documentElement.scrollHeight -
-        //   document.documentElement.clientHeight
-      
-        const scrolled = winScroll
-      
-        this.setState({
-          theposition: scrolled,
-        })
+        // this.setState({
+        //   theposition: scrolled,
+        // })
       }
 
     render() {
         // let logoScrollClass = this.state.theposition > 20 ? ' scaleLogo' : ''
-
         return (
             <>
+            {console.log('navmenu')}
                 <div className="NavMenu__top_bar" style={{height: '68px'}}></div>
                 <div className="NavMenu__container">
                     <div style={{maxWidth: '1200px', width: '100%', display: 'flex',margin: 'auto', alignItems: 'center'}}>
                         <BackDrop backDropShown={this.props.backDropShown} backdropToggleHandler={this.props.backdropToggleHandler}/>
 
-                        <SideBar backDropShown={this.props.backDropShown} backdropToggleHandler={this.props.backdropToggleHandler}/>
+                        <SideBar navigationLinks={this.props.navLinks} backDropShown={this.props.backDropShown} backdropToggleHandler={this.props.backdropToggleHandler}/>
                         <Link to='/'>
                             <Logo scale={this.state.theposition}/>
                         </Link>

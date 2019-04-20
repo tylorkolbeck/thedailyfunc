@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Login from './Login/Login'
 import Register from './Register/Register'
 import { axiosInstance as axios } from '../../axios-config.js'
+import * as actionCreators from '../../store/actions/actions'
 
 class index extends Component {
   state = {
@@ -38,11 +39,10 @@ class index extends Component {
       password2: formData.password2
     })
       .then((response) => {
-        console.log('[REGISTER RESPONSE]', response.data)
         if (response.data.errors) {
           formData.errors = response.data.errors
           formData.userCreated = response.data.userCreated
-          this.setState({registrationFormData: formData}, () => console.log(this.state))
+          this.setState({registrationFormData: formData})
         }
 
         if (this.state.registrationFormData.userCreated) {
@@ -58,8 +58,21 @@ class index extends Component {
     this.setState({loginFormData: loginFormData})
   }
 
-  submitLoginFormHandler = () => {
-    console.log('SUBMITTING LOGIN FORM...')
+  submitLoginFormHandler = (event, {email, password} = this.state.loginFormData) => {
+    event.preventDefault()
+    axios.post('/user/login', {
+      loginInfo: {
+        email,
+        password
+      }
+    })
+      .then((res) => {
+        this.props.setUserData(res.data.userData)
+        console.log(res.data.token)
+
+      })
+      .catch(err => console.log('loginSuccess', err.response.data.loginSuccess))
+
   }
 
   setShowRegistrationForm = () => {
@@ -77,7 +90,8 @@ class index extends Component {
     <Login 
       inputHandler={this.loginFormInputHandler}
       loginFormData={this.state.loginFormData}
-      userCreated={this.state.registrationFormData.userCreated}/>
+      userCreated={this.state.registrationFormData.userCreated}
+      formSubmit={this.submitLoginFormHandler}/>
   // Show the register button on the login screen if no user logged in
   let registerLink = this.props.user ? null : <p>No Account? <button href="/register" onClick={this.setShowRegistrationForm}>Register</button></p>
   
@@ -109,10 +123,16 @@ class index extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    user: state.userManagement.userName
+    user: state.userManagement.userId
   }
 }
 
-export default connect(mapStateToProps)(index)
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserData: (userData) => dispatch(actionCreators.saveUserData(userData))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(index)

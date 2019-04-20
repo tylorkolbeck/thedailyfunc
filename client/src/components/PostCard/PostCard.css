@@ -19,7 +19,7 @@
     cursor: pointer;
     /* border: 1px solid #dcdee4; */
     transform: translateY(-5px); 
-    box-shadow: 5px 1px 20px 1px rgba(1,1,1,.4);
+    /* box-shadow: 3px 1px 10px rgba(1,1,1,.4); */
 
 }
 
@@ -52,6 +52,7 @@
 
 .PostCard__container p {
     margin: 0px;
+    line-height: 2.3rem;
 }
 
 .PostCard__image_container {
@@ -96,7 +97,6 @@
 .PostCard__description {
     font-size: 14px;
     padding-top: 5px;
-    padding-left: 5px;
 }
 
 .PostCard__info {

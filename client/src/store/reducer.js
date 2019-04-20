@@ -1,14 +1,18 @@
 import * as actionTypes from './actions/actions'
 
 const initialState = {
+
   userManagement: {
-    userName: false,
-    // userName: 'tylorkolbeck@gmail.com',
+    userId: false,
+    name: false,
+    email: false,
+    role: 'user',
     errors: {
       registrationErrors: false,
       loginErrors: false
     }
   },
+
   recentPosts: false,
   allPosts: false,
   loadingRecentPosts: false,
@@ -39,6 +43,18 @@ const reducer = (state = initialState, action) => {
         // switch the read property of a post to read after reading
         ...state,
 
+      }
+    case actionTypes.SET_USER_LOGIN:
+
+      const {userId, name, email} = action.userData
+      return {
+        ...state,
+        userManagement: {
+          userId: userId,
+          name: name,
+          email: email,
+          role: 'user'
+        }
       }
 
     default:

@@ -2,18 +2,12 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-// const expressLayouts = require('express-ejs-layouts')
-// const flash = require('connect-flash')
-// const session = require('express-session')
+const dotenv = require('dotenv')
 
-
-// const passport = require('passport')
-
-
-// Passport config
-// require('./config/passport')(passport)
-
+dotenv.config()
 // const { API_PORT, CORS_ALLOW, NODE_ENV } = require('./config')
+
+
 
 let PORT = process.env.API_PORT || 8000
 let CORS_ALLOW = process.env.CORS_ALLOW

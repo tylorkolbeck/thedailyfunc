@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 
-export default function Login({ inputHandler, loginFormData, userCreated }) {
+export default function Login({ inputHandler, loginFormData, userCreated, formSubmit }) {
   const [errors, setErrors] = useState([])
 
   const userCreatedMessage = userCreated ? <p>User has been created. Please login.</p> : null
 
   const clearErrors = () => {
     setErrors([])
-  }
-
-  const submitFormHandler = (event) => {
-    event.preventDefault()
   }
 
   const showErrors = () => {
@@ -48,7 +44,7 @@ export default function Login({ inputHandler, loginFormData, userCreated }) {
               placeholder="Enter Password"
             />
           </div>
-          <button onClick={(event) => submitFormHandler(event)}>Login</button>
+          <button onClick={(e) => formSubmit(e)}>Login</button>
         </form>
     </div>
   )

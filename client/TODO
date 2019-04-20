@@ -3,9 +3,11 @@ ssh dev@157.230.138.238
 TODO: 
 
     URGENT:
+    - async load images
     - Add form validation on login and register forms
     - FIX CORS ON FRONT AND BACKEND
-    
+    - Fix cursor on button hover
+
     - fix the animation of the tech specialty bars
     - Modify the recent posts fetch request to return the 3 recent posts by date
 

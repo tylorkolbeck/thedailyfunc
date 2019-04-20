@@ -1,6 +1,7 @@
 
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 // Schema
 const User = require("../models/User")
@@ -72,6 +73,73 @@ exports.registerUserHandler = (req, res) => {
       })
       .catch(err => console.log(err))
   }
+}
 
-  // If any errors send back the errors
+// User login handler
+exports.loginuserHandler = (req, res) => {
+  const {email, password } = req.body.loginInfo 
+
+  if (email) {
+    User.findOne({email: email})
+      .then(user => {
+        // If user is found
+        if (user) {
+          // compare the password with bcrypt
+          bcrypt.compare(password, user.password, (err, result) => {
+            // If passwords match
+            if (result) {
+              // generate JWT
+              const token = jwt.sign(
+                {
+                  email: user.email,
+                  userId: user._id,
+                  name: user.name
+                }, process.env.TOKEN_SECRET,
+                {
+                  expiresIn: "10d"
+                })
+              
+              // send back JWT
+              res.status(200).json({
+                loginSuccess: true,
+                token,
+                userData: {
+                  email: user.email,
+                  userId: user._id,
+                  name: user.name
+                }
+              })
+
+            // If passwords do not match
+            } else {
+              res.status(401).json({
+                message: "Login Failed",
+                loginSuccess: false
+              })
+              console.log('WRONG PASSWORD')
+            }
+
+            // Error with the request
+            if (err) {
+              console.log('ERROR LOGGIN IN ', err)
+            }
+          })
+        } else {
+          res.status(401).send({
+            message: 'Login Failed',
+            loginSuccess: false
+          })
+          console.log('NO USER FOUND FOR THAT EMAIL')
+        }
+      })
+  } 
+
+  if (!email || !password) {
+    res.status(401).send({
+      message: 'Login Failed',
+      loginSuccess: false
+    })
+  }
+
+
 }

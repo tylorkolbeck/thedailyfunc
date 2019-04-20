@@ -3,17 +3,17 @@ import { axiosInstance as axios } from '../../axios-config'
 export const MARK_POST_AS_READ = 'MARK_POST_AS_READ'
 
 
+// Store user information after loggin in
+export const SET_USER_LOGIN = 'SET_USER_LOGIN'
+export const saveUserData = ( data ) => {
+  return {
+    type: SET_USER_LOGIN,
+    userData: data
+  }
+}
 
-// Recent post actions
-export const STORE_RECENT_POSTS ='RECENT_POSTS'
-
-// All posts actions
-export const STORE_ALL_POSTS ='STORE_ALL_POSTS'
-
-
-
-// Call the async fetch function with a syn function
 // Get recent posts action creator
+export const STORE_RECENT_POSTS ='RECENT_POSTS'
 export const saveRecentPosts = ( res ) => {
   return {
     type: STORE_RECENT_POSTS,
@@ -21,9 +21,8 @@ export const saveRecentPosts = ( res ) => {
   }
 }
 
-// Action creators for async code
-
 // Fetch recent posts
+export const STORE_ALL_POSTS ='STORE_ALL_POSTS'
 export const fetchRecentPosts = () => {
   return dispatch => {
     axios.get('/posts/recent')

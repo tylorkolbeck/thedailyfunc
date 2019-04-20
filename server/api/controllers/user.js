@@ -62,8 +62,8 @@ exports.registerUserHandler = (req, res) => {
           //  create a new user
           const newUser = new User({
             name,
-            email,
-            password
+            password,
+            email: email.toLowerCase(),
           })
           // Hash Password
           bcrypt.genSalt(10, (err, salt) => {
@@ -92,7 +92,7 @@ exports.loginuserHandler = (req, res) => {
   const {email, password } = req.body.loginInfo 
 
   if (email) {
-    User.findOne({email: email})
+    User.findOne({email: email.toLowerCase()})
       .then(user => {
         // If user is found
         if (user) {

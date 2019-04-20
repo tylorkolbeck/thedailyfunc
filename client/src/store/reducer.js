@@ -46,14 +46,14 @@ const reducer = (state = initialState, action) => {
       }
     case actionTypes.SET_USER_LOGIN:
 
-      const {userId, name, email} = action.userData
+      const {userId, name, email, role} = action.userData
       return {
         ...state,
         userManagement: {
           userId: userId,
           name: name,
           email: email,
-          role: 'user'
+          role: role
         }
       }
     

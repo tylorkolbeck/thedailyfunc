@@ -93,10 +93,11 @@ exports.loginuserHandler = (req, res) => {
                 {
                   email: user.email,
                   userId: user._id,
-                  name: user.name
+                  name: user.name,
+                  role: user.role
                 }, process.env.TOKEN_SECRET,
                 {
-                  expiresIn: "10d"
+                  expiresIn: "3d"
                 })
               
               // send back JWT
@@ -106,7 +107,8 @@ exports.loginuserHandler = (req, res) => {
                 userData: {
                   email: user.email,
                   userId: user._id,
-                  name: user.name
+                  name: user.name,
+                  role: user.role
                 }
               })
 

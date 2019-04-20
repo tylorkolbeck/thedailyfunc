@@ -21,9 +21,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //  Check to see if user is already logged in by checking localstorage for a JWT
     if (!this.props.userId && localStorage.Authorization) {
-      let {email, userId, name} = jwtDecode(localStorage.Authorization)
-      this.props.logUserIn({email, userId, name})
+      let {email, userId, name, role} = jwtDecode(localStorage.Authorization)
+      this.props.logUserIn({email, userId, name, role})
     }
   }
 
@@ -62,7 +63,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logUserIn: (email, userId, name) => dispatch(actionTypes.saveUserData(email, userId, name))
+    logUserIn: (email, userId, name, role) => dispatch(actionTypes.saveUserData(email, userId, name, role))
   }
 }
 

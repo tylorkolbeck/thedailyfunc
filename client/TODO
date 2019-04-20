@@ -6,10 +6,10 @@ TODO:
     - make a user dashboard
     - add a keep me signed in box, just dont store the jsonwebtoken in local storage. save in redux
     - async load images
-    - Add form validation on login and register forms
-    - style login, register and logout forms
-    - FIX CORS ON FRONT AND BACKEND
-    - Fix cursor on button hover
+    - Add form validation on client side
+    - FIX CORS ON FRONT AND BACKEND BEFORE DEPLOYMENT
+    - setup mongodb for development - password and username
+    - add a user dash in the menu
 
     - fix the animation of the tech specialty bars
     - Modify the recent posts fetch request to return the 3 recent posts by date

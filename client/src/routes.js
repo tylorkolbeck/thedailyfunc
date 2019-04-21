@@ -68,7 +68,7 @@ const User = (props) => (
 )
 
 const Dashboard = (props) => (
-    <DynamicImport load={(props) => import('./containers/DashBoard/index')}>
+    <DynamicImport load={(props) => import('./containers/User/DashBoard/index')}>
         {(Component) => Component === null
         ? <h1>loading...</h1> :
         <Component {...props} />}
@@ -102,10 +102,10 @@ export const routes = [
     {
         path: '/user',
         component: User
+    },
+    {
+        path: '/dashboard',
+        component: Dashboard
     }
-    // {
-    //     path: '/dashboard',
-    //     component: Dashboard
-    // }
 
 ]

@@ -7,8 +7,6 @@ import { routes } from './routes'
 import { axiosInstance as axios} from './axios-config'
 import { connect } from 'react-redux'
 import * as actionTypes from './store/actions/actions'
-import { navigationLinks } from './NavigationLinks'
-
 import Footer from './containers/Footer/Footer'
 
 axios.defaults.baseUrl = process.env.REACT_APP_SERVER_URL
@@ -40,14 +38,10 @@ class App extends Component {
         exact={route.exact}
         location={this.props.location}
       />  
-      
     ))
 
     return (
-      
       <div className="App">
-    
-        {console.log('[APP COMPONENT]', navigationLinks, '[ROLE]', this.props.userRole)}
         {/* CONTAINER HOLDING TOP NAVIGATION ITEMS */}
         <NavMenu navLinks={this.props.navLinks} backDropShown={this.state.backDropShown} backdropToggleHandler={this.backdropToggleHandler.bind(this)}/>
 
@@ -62,7 +56,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    userId:  state.userManagement.userId,
+    userRole:  state.userManagement.role,
     navLinks: state.navigationLinks
   }
 }

@@ -1,8 +1,6 @@
 import React from 'react'
 import Home from './containers/Home/Home'
-
 import DynamicImport from './helpers/DynamicImport'
-import jwtDecode from 'jwt-decode'
 
 // BACKUP IF DYNAMICIMPORT STARTS ACTING UP
 // import AllPosts from './containers/AllPosts/AllPosts'
@@ -10,22 +8,6 @@ import jwtDecode from 'jwt-decode'
 // import ContactForm from './containers/ContactForm/ContactForm'
 // import FullPost from './components/FullPost/FullPost'
 // import User from './containers/User/index'
-
-
-let checkForAdmin = () => {
-    let dashboard_route = null
-    if (localStorage.Authorization) {
-        let token = localStorage.Authorization.split(' ')
-         const { role }= jwtDecode(token[1])
-    
-         if (role === 'admin') {
-            const dashboard_route = '/dashboard'
-        }     
-    }
-
-    return dashboard_route
-}
-
 
 const AllPosts = (props) => (
     <DynamicImport load={(props) => import('./containers/AllPosts/AllPosts')}>

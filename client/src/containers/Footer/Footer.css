@@ -27,7 +27,7 @@
     color: #fec303;
     font-family: 'Fredoka One', cursive;
     font-size: 1.8rem;
-    padding-bottom: 20px;
+    padding: 20px 20px;
 }
 
 .Footer__links_list a:hover {

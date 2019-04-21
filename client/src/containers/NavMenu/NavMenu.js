@@ -42,7 +42,6 @@ class NavBar extends Component {
         // let logoScrollClass = this.state.theposition > 20 ? ' scaleLogo' : ''
         return (
             <>
-            {console.log('navmenu')}
                 <div className="NavMenu__top_bar" style={{height: '68px'}}></div>
                 <div className="NavMenu__container">
                     <div style={{maxWidth: '1200px', width: '100%', display: 'flex',margin: 'auto', alignItems: 'center'}}>

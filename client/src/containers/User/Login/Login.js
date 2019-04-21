@@ -1,6 +1,7 @@
 import React from 'react'
+import './Login.css'
 
-export default function Login({ inputHandler, loginFormData, userCreated, formSubmit, error }) {
+export default function Login({ inputHandler, loginFormData, userCreated, formSubmit, stayLoggedIn, error }) {
   const userCreatedMessage = userCreated ? <p>User has been created. Please login.</p> : null
   
   return (
@@ -24,6 +25,11 @@ export default function Login({ inputHandler, loginFormData, userCreated, formSu
               value={loginFormData.password}
               onChange={(e) => inputHandler(e.target.value, 'password')}
             />
+         </div>
+         <div className="Login__staySignedIn-container">
+           <p>Keep me signed in?</p>
+           <input type="checkbox" checked={stayLoggedIn} onChange={(e) => inputHandler(e.target.value, 'stayLoggedIn')}></input><span>Uncheck if using a public device.</span>
+          
          </div>
           <button onClick={(e) => formSubmit(e)}>Login</button>
         </form>

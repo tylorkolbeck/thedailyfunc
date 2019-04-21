@@ -63,7 +63,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logUserIn: (token) => dispatch({type: actionTypes.SET_USER_LOGIN, data: token})
+    logUserIn: (token) => dispatch({type: actionTypes.SET_USER_LOGIN, data: {token: token}})
   }
 }
 

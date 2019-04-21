@@ -11,7 +11,6 @@ import ProfBars from '../../components/ProfBars/ProfBars'
 
 
 const Home = (props) => {
-    console.log('HOME MOUNTED-', props.location)
     return (
         <ScrollAnimation animateIn="fadeIn"> 
             <div>

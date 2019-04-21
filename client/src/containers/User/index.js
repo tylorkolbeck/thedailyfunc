@@ -21,6 +21,7 @@ class index extends Component {
     loginFormData: {
       email: '',
       password: '',
+      stayLoggedIn: true,
       error: false
     }
   }
@@ -59,7 +60,11 @@ class index extends Component {
   // bind login form to state
   loginFormInputHandler = (inputValue, input) => {
     let loginFormData = {...this.state.loginFormData}
-    loginFormData[input] = inputValue
+    if (input === 'stayLoggedIn') {
+      loginFormData.stayLoggedIn = !this.state.loginFormData.stayLoggedIn
+    } else {
+      loginFormData[input] = inputValue
+    }
     this.setState({loginFormData: loginFormData})
   }
 
@@ -73,28 +78,14 @@ class index extends Component {
       }
     })
       .then((res) => {
-        this.props.setUserData(res.data.token)
-        console.log(res.headers)
+        this.props.setUserData(res.data.token, this.state.loginFormData.stayLoggedIn)
       })
       .catch((error) => {
         if (error.response) {
           let oldState = {...this.state}
-
           oldState.loginFormData.error = error.response.data.message
-
           this.setState({oldState})
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log('Error', error.message);
         }
-        // let oldState = {...this.state}
-        // console.log('TEST', error)
-        // oldState.loginFormData.error = res.message
-        // this.setState({oldState})
       })
   }
 
@@ -125,6 +116,7 @@ class index extends Component {
         userCreated={this.state.registrationFormData.userCreated}
         formSubmit={this.submitLoginFormHandler}
         error={this.state.loginFormData.error}
+        stayLoggedIn={this.state.loginFormData.stayLoggedIn}
         />
     // Show the register button on the login screen if no user logged in
     let registerLink = this.props.user ? null : <div className="UserManagement__register-button"><p>Dont have an account?</p> <button href="/register" onClick={this.setShowRegistrationForm}>Create a new account</button></div>
@@ -165,7 +157,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUserData: (token) => dispatch({type: actionCreators.SET_USER_LOGIN, data: token}),
+    setUserData: (token, stayLoggedIn) => dispatch({type: actionCreators.SET_USER_LOGIN, data: {token: token, stayLoggedIn: stayLoggedIn}}),
     logUserOut: () => dispatch({type: actionCreators.LOG_USER_OUT})
   }
 }

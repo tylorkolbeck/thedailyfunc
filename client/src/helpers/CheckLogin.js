@@ -8,12 +8,26 @@ export function checkLoginAccess(navigationLinks,token) {
    * @param {object} userData object holding all of the users data
    */
   let returnData = []
+  let error = false
+  let userData
 
-  const userData = jwtDecode(token)
-
-  returnData.push(logInOrLogout(userData.userId, userData.role, navigationLinks))
-  returnData.push(userData)
-  return returnData
+  try {
+    userData = jwtDecode(token)
+  } 
+  catch(err) {
+    error = err
+    throw new Error("Error handling user token") 
+  }
+  finally {
+    if (!error) {
+      returnData.push(logInOrLogout(userData.userId, userData.role, navigationLinks))
+      returnData.push(userData)
+      return returnData
+    } else {
+      returnData.push(error)
+      return returnData
+    }
+  }
 }
 
 /**

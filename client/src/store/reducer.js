@@ -37,12 +37,12 @@ const reducer = (state = initialState, action) => {
         // switch the read property of a post to read after reading
         ...state,
       }
-
+ 
 
     // Log user in
     case actionTypes.SET_USER_LOGIN:
-      const token = action.data
-
+      const token = action.data.token
+      const stayLoggedIn = action.data.stayLoggedIn
       /**
        * checkLoginAccess(navigationLinks, token)
        * @param {array} navigationLinks current navigation links
@@ -52,22 +52,30 @@ const reducer = (state = initialState, action) => {
        */
       let userSettings = checkLoginAccess(navigationLinks, token)
       
-      if (!localStorage.Authorization) {
+      if (stayLoggedIn) {
         localStorage.setItem('Authorization', `bearer ${token}`)
       }
 
-      return {
-        ...state,
-        userManagement: {
-          userId: userSettings[1].userId,
-          name: userSettings[1].name,
-          email: userSettings[1].email,
-          role: userSettings[1].role,
-          dateUserCreated: userSettings[1].dateUserCreated,
-          token: token
-        },
-        navigationLinks: userSettings[0]
+
+      if (userSettings.length > 1) {
+        return {
+          ...state,
+          userManagement: {
+            userId: userSettings[1].userId,
+            name: userSettings[1].name,
+            email: userSettings[1].email,
+            role: userSettings[1].role,
+            dateUserCreated: userSettings[1].dateUserCreated,
+            token: token
+          },
+          navigationLinks: userSettings[0]
+        }
+      } else {
+        localStorage.clear()
+        break
       }
+
+      
     
     // Logthe user out by clearing the state and localstorage
     case actionTypes.LOG_USER_OUT:

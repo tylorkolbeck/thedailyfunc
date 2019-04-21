@@ -1,0 +1,24 @@
+
+.Login__staySignedIn-container {
+  /* background: green; */
+  position: relative;
+
+  
+}
+
+.Login__staySignedIn-container input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+  box-shadow: none;
+  /* margin: 0; */
+}
+
+
+.Login__staySignedIn-container span {
+  font-size: 1.2rem;
+  padding-bottom: 3px;
+  line-height: 20px;
+  color: #414141;
+  font-family: sans-serif;
+  font-weight: 200;
+}

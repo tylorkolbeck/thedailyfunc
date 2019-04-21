@@ -7,7 +7,7 @@
     padding-top: 0px;
     box-sizing: border-box;
     color: #414141;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', Arial, Helvetica, sans-serif;    
     margin: auto;
     min-height: 100vh;
     margin-top: -50px;
@@ -49,13 +49,11 @@
 
 .HomeTopBox__container p {
     margin: 0px;
-    font-family: 'Fredoka One', cursive;
-
 }
 
 .HomeTopBox__quote {
     position: relative;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico', Arial, Helvetica, sans-serif;
     text-align: center;
     color: #fec303;
     margin: 0px; 

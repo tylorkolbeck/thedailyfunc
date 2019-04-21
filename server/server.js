@@ -2,15 +2,21 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 
-dotenv.config()
+if (process.env.NODE_ENV !== 'production') {
+    const dotenv = require('dotenv')
+    dotenv.config()
+}
+
+// dotenv.config()
 // const { API_PORT, CORS_ALLOW, NODE_ENV } = require('./config')
 
 
-
+// REMOVE THESE BEFORE DEPLOYMENT>  FOR PRODUCTION TESTING ONLY
 let PORT = process.env.API_PORT || 8000
 let CORS_ALLOW = process.env.CORS_ALLOW
+let TOKEN_SECRET = process.env.TOKEN_SECRET
 
 // Routes
 const postRoutes = require('./api/routes/posts.js')
@@ -21,12 +27,7 @@ const userRoutes = require('./api/routes/user.js')
 const app = express()
 
 // DB Config
-let dbURI = require('./config/keys').MongoURI
-
-
-// EJS
-// app.use(expressLayouts)
-// app.set('view engine', 'ejs')
+// let dbURI = require('./config/keys').MongoURI
 
 // BodyParser
 app.use(express.urlencoded({extended: false}))
@@ -34,28 +35,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(bodyParser.urlencoded({extended: false})) // parses url encoded bodies
 app.use(bodyParser.json()) // parses json encoded bodies
 app.use(cors())
-
-// Express Session
-// app.use(session({
-//     secret: 'secret',
-//     resave: true,
-//     saveUninitialized: true
-// }))
-
-// Passport middleware
-// app.use(passport.initialize())
-// app.use(passport.session())
-
-// Connect Flash
-// app.use(flash())
-
-// Global Vars
-// app.use((req, res, next) => {
-//     res.locals.success_msg = req.flash('success_msg')
-//     res.locals.error_msg = req.flash('error_msg')
-//     res.locals.error = req.flash('error')
-//     next()
-// })
 
 //Set up mongoose connection
 mongoose.connect('mongodb://localhost/thedailyfunc', {useNewUrlParser: true})
@@ -73,14 +52,14 @@ app.use('/api/user', userRoutes)
 
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*') // Allow cross server requests
+    res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`) // Allow cross server requests
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization', 'poo')
     res.header('Access-Control-Allow-Headers: Content-Type')
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS');
     
     if (req.method === 'OPTIONS') {
         console.log('Running Options')
-        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`)
         res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH, OPTIONS')
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         return res.status(200).json({})
@@ -103,6 +82,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(PORT || 8000, console.log(`Server Started on port ${PORT}. CORS ALLOW: ${CORS_ALLOW}`))
+app.listen(PORT || 8000, console.log(`Server Started on port ${PORT}. CORS ALLOW: ${CORS_ALLOW}. TOKEN_SECRET ${TOKEN_SECRET}`))
 
 module.exports = app

@@ -69,7 +69,7 @@
 }
 
 .PostCard__date {
-    font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka One', Arial, Helvetica, sans-serif;
     font-weight: 100;
     font-size: 1.3rem;
     color: #e5bb30
@@ -81,7 +81,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', Arial, Helvetica, sans-serif;
+    
 }
 
 .PostCard__title:hover { 

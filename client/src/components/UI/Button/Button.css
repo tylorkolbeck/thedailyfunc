@@ -3,7 +3,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: 'Fredoka One', cursive;
+        font-family: 'Fredoka One', Arial, Helvetica, sans-serif;
         font-size: 2rem;
         background: white;
         height: 50px;

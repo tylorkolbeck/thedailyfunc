@@ -74,11 +74,27 @@ class index extends Component {
     })
       .then((res) => {
         this.props.setUserData(res.data.token)
+        console.log(res.headers)
       })
-      .catch(err => {
-        let oldState = {...this.state}
-        oldState.loginFormData.error = "The email and password do not match."
-        this.setState({oldState})
+      .catch((error) => {
+        if (error.response) {
+          let oldState = {...this.state}
+
+          oldState.loginFormData.error = error.response.data.message
+
+          this.setState({oldState})
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
+        // let oldState = {...this.state}
+        // console.log('TEST', error)
+        // oldState.loginFormData.error = res.message
+        // this.setState({oldState})
       })
   }
 

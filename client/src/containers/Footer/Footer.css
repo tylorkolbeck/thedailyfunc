@@ -25,7 +25,7 @@
 .Footer__links_list a {
     text-decoration: none;
     color: #fec303;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', Arial, Helvetica, sans-serif;
     font-size: 1.8rem;
     padding: 20px 20px;
 }

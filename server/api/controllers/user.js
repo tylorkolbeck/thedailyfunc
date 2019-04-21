@@ -91,12 +91,21 @@ exports.registerUserHandler = (req, res) => {
 exports.loginuserHandler = (req, res) => {
   const {email, password } = req.body.loginInfo 
 
-  if (email) {
+  // If the email or password field is blank.
+  if (!email || !password) {
+    res.status(401).json({
+      message: 'Please fill in all the fields.',
+      loginSuccess: false
+    })
+  }
+
+  // if email is in request
+  if (email && password) {
     User.findOne({email: email.toLowerCase()})
       .then(user => {
-        // If user is found
+        // If user is found in database
         if (user) {
-          // compare the password with bcrypt
+          
           bcrypt.compare(password, user.password, (err, result) => {
             // If passwords match
             if (result) {
@@ -108,50 +117,25 @@ exports.loginuserHandler = (req, res) => {
                   name: user.name,
                   role: user.role,
                   dateUserCreated: user.dateUserCreated,
-                }, process.env.TOKEN_SECRET,
+                }, 
+                process.env.TOKEN_SECRET,
                 {
                   expiresIn: "3d"
-                })
-                console.log('login success')
-              
-              // send back JWT
-              res.status(200).json({
-                // loginSuccess: true,
-                token: token
-                // userData: {
-                //   email: user.email,
-                //   userId: user._id,
-                //   name: user.name,
-                //   role: user.role,
-                //   dateUserCreated: user.dateUserCreated
-                // }
-              })
-
-            // If passwords do not match
-            } else {
-              res.status(401).json({
-                message: "Login Failed",
-                loginSuccess: false
-              })
-              console.log('WRONG PASSWORD')
+                }, 
+                
+                (err, token) => {
+                  if (err) {res.status(404).json({message: "There was an issue with your request. Please try again later"})}
+                  else if (token) { res.status(200).json({token: token}) } 
+                }
+              ) // End jwt sign
             }
-
-            // Error with the request
-            if (err) {
-              console.log('ERROR LOGGING IN ', err)
-            }
-          })
+            else if (!result) { res.status(401).json({message: 'Email or password do not match.'})}
+            else if (err) { res.status(401).json({message: 'There was an error with your request. Please try again later.'})}
+          })// End bcrypt compare block
+        }
+        if (!user) {
+          res.status(401).json({message: 'Email or password do not match'})
         }
       })
-      .catch(err => res.status(404))
-  } 
-
-  if (!email || !password) {
-    res.status(401).send({
-      message: 'Login Failed',
-      loginSuccess: false
-    })
   }
-
-
 }

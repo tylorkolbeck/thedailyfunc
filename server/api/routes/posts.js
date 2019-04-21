@@ -9,6 +9,4 @@ router.get("/", PostsController.getAllPosts);
 
 router.get("/:postId", PostsController.getPostById);
 
-
-
 module.exports = router;

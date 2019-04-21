@@ -6,6 +6,8 @@ const Post = require("../models/Post.js")
 
 
 exports.getAllPosts = (req, res) => {
+    console.log('GETTING ALL POSTS')
+
     Post.find({})
         .then((docs) =>  {
             if (docs) {
@@ -17,6 +19,7 @@ exports.getAllPosts = (req, res) => {
                 res.status(404).json({
                     message: "Post not found in all posts."
                 })
+                console.log('ERROR GETTING ALL POSTS')
             }
         })
         .catch((err)=> {
@@ -54,6 +57,7 @@ exports.getPostById = (req, res) => {
 }
 
 exports.getRecentPosts = (req, res) => {
+    console.log('GETTING RECENT POSTS')
     Post.find({})
         .limit(3)
         .then((docs) =>  {
@@ -66,11 +70,12 @@ exports.getRecentPosts = (req, res) => {
                 res.status(404).json({
                     message: "Post not found in recents."
                 })
+                console.log('ERROR GETTING RECENT POSTS')
             }
         })
         .catch((err)=> {
             res.status(500).json({
-                message: "Post not found in recents",
+                message: "Posts not found in recents",
                 error: err
             })
         })

@@ -7,7 +7,6 @@
 .hideForm {
   display: none !important;
   scale: 0;
-  background: red;
 }
 
 .UserManagement__container-login {
@@ -15,7 +14,6 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  /* border: 1px solid red; */
   padding-top: 100px;
 }
 
@@ -24,7 +22,6 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  /* border: 1px solid red; */
   padding-top: 100px;
 }
 
@@ -52,7 +49,7 @@
   height: 40px;
   padding: 0px 34px;
   border: 0px;
-  background: #0065ff;
+  background: #1f1f1f;
   color: #fff;
   border-radius: 20px;
   margin-top: 20px;
@@ -82,7 +79,7 @@
 }
 
 .UserManagement__register-button button:hover {
-  background: #0065ff;
+  background: #1d1d1d;
   color: #fff;
   cursor: pointer;  
   border: 0px;
@@ -115,7 +112,7 @@
 }
 
 .Register__container .Register-login-button:hover {
-  background: #0065ff;
+  background: #1d1d1d;
   color: #fff;
   cursor: pointer;  
   border: 0px;

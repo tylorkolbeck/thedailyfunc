@@ -9,4 +9,6 @@ router.get("/", PostsController.getAllPosts);
 
 router.get("/:postId", PostsController.getPostById);
 
+router.post("/togglePublic", PostsController.togglePublic)
+
 module.exports = router;

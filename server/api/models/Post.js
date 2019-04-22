@@ -9,7 +9,8 @@ const postSchema = mongoose.Schema({
     date: {type:Date, default: Date.now},
     mainCat: {type: String, required: true},
     postCardImg: {type: String, required: true},
-    body: {type: String, required: true}
+    body: {type: String, required: true},
+    public: {type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('Post', postSchema)

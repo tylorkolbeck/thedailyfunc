@@ -6,8 +6,6 @@ const Post = require("../models/Post.js")
 
 
 exports.getAllPosts = (req, res) => {
-    console.log('GETTING ALL POSTS')
-
     Post.find({})
         .then((docs) =>  {
             if (docs) {
@@ -79,4 +77,24 @@ exports.getRecentPosts = (req, res) => {
                 error: err
             })
         })
+}
+
+exports.togglePublic = (req, res) => {
+    let postId = req.body.data.postId
+    Post.findById(postId)
+        .exec()
+        .then(post => {
+            if (post) {
+                Post.updateOne({_id: postId}, {$set: {public: !post.public}})
+                    .then((post) => {
+                        res.sendStatus(200)
+                    })
+                    .catch(err => {
+                        console.log(err.name)
+                        res.sendStatus(404)
+                    })
+            } 
+            else console.log('post not found')
+        })
+        .catch(err => console.log(err))
 }

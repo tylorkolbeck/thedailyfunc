@@ -17,7 +17,7 @@ class NavBar extends Component {
     }
     
     componentDidUpdate() {
-        console.log('NAVMENU UPDATE', this.props.navLinks)
+        // console.log('NAVMENU UPDATE', this.props.navLinks)
     }
 
     componentDidMount() {

@@ -49,10 +49,13 @@ class AllPosts extends Component {
         let catData = []
         if (this.props.allPosts) {
             this.props.allPosts.forEach((post) => {
-                if (!mainArray.includes(post.mainCat)) {
-                    mainArray.push(post.mainCat)
-                    catData.push({[post.mainCat]: post.category})
+                if (post.public) {
+                    if (!mainArray.includes(post.mainCat)) {
+                        mainArray.push(post.mainCat)
+                        catData.push({[post.mainCat]: post.category})
+                    }
                 }
+                
             })
 
             catBubbles = catData.map(cat => {
@@ -73,9 +76,11 @@ class AllPosts extends Component {
         // If no filter show all posts
         if (this.props.allPosts && !this.state.filter)  {
             cards = this.props.allPosts.map((data) => {
-                return (
-                    <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
-                )
+                    if (data.public) {
+                        return (
+                            <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
+                        )
+                    }
             })
         } 
         

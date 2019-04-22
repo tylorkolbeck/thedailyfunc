@@ -1,4 +1,100 @@
-.DashBoard__container {
+.AdminPage__container {
   width: 100%;
   min-height: 100%;
+  background: #f9f9f9;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.Dashboard__posts-container {
+  /* border: 1px solid dodgerblue; */
+  padding: 0px;
+  margin: 0px;
+  margin: 50px 0px;
+}
+
+.DashBoard__container {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  background: #ededed;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+.DashBoard__container span {
+  display: inline;
+  font-size: 1.8rem;
+}
+
+.DashBoard__container ul .Dashboard__post-date {
+  font-size: 1.2rem;
+  margin: 10px 5px;
+}
+
+.Dashboard__posts-list li {
+  font-size: 1.6rem;
+  text-decoration-line: none;
+  list-style: none;
+}
+
+.Dashboard__posts-list {
+  padding: 0px;
+
+}
+
+.Dashboard__post-description {
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+}
+
+.DashBoard__post-author {
+  font-size: 1.3rem;
+  margin: 0px;
+  /* font-style: italic; */
+}
+
+.DashBoard__post {
+  background: #fff;
+  border: 1px solid rgb(218, 218, 218);
+  margin: 50px 0px;
+}
+
+.DashBoard__post hr {
+  border: 0px;
+  border-bottom: 1px solid #ededed;
+}
+
+.DashBoard__post-info {
+  padding: 20px 20px;
+}
+
+.DashBoard__post h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.DashBoard__post h3 > img {
+  height: 20px;
+  width: 20px;
+  padding-left: 5px;
+  vertical-align: middle;
+  transition: all ease 250ms;
+}
+
+.DashBoard__post h3 > img:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.Dashboard__post-date {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+}
+
+.Dashboard__post-date img {
+  height: 18px;
+  width: 18px;
+  margin-right: 5px;
 }

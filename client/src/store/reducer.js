@@ -99,6 +99,24 @@ const reducer = (state = initialState, action) => {
         navigationLinks: navigationLinks
       }
 
+    case actionTypes.TOGGLE_PUBLIC:
+      let allPosts = [...state.allPosts]
+      let filteredObjectIndex = 0
+      let postToUpdate = state.allPosts.filter((post, index) => {
+        if (post._id === action.data) {
+          filteredObjectIndex = index
+          return post
+        }
+      })
+
+      postToUpdate[0].public = !postToUpdate[0].public
+      allPosts[filteredObjectIndex] = postToUpdate[0]
+
+      return {
+        ...state,
+        allPosts: allPosts
+      }
+      
     default:
       return state
   }

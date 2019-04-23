@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const postSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: {type: mongoose.Schema.Types.ObjectId, required: true, auto: true},
     title: {type: String, required: true},
     author: {type: String, required: true},
     tags: {type: Array},
@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
     date: {type:Date, default: Date.now},
     mainCat: {type: String, required: true},
     postCardImg: {type: String, required: true},
+    imgThumb: {type: String, required: true},
     body: {type: String, required: true},
     public: {type: Boolean, default: false}
 })

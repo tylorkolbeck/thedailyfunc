@@ -1,7 +1,7 @@
 import React from 'react'
-import { dateConversion as dateConv } from '../../../../helpers/date_module'
+import { dateConversion as dateConv } from '../../../../../helpers/date_module'
 import PostControl from '../UI/Buttons/PostControl'
-import { axiosInstance as axios } from '../../../../axios-config' 
+import { axiosInstance as axios } from '../../../../../axios-config' 
 
 import calanderIcon from '../Assets/calandericon2.png'
 import privateIcon from '../Assets/private.png'
@@ -43,7 +43,7 @@ export const getAllPosts = (posts, togglePublic, token) => {
           </div>
          
           <div className="Dashboard__post-controls">
-            <PostControl text="Edit" to='/' icon={editIcon}/>
+            <PostControl text="Edit" to='/editPost' icon={editIcon} postId={post._id}/>
             <PostControl text="View" to={`post/${post._id}`} icon={viewIcon}/>
             <PostControl text="Stats" to="/" icon={statsIcon}/>
             <PostControl text="Delete" to="/" icon={trashIcon}/>

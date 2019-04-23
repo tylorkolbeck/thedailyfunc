@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './index.css'
-import * as actionTypes from '../../../store/actions/actions'
+import * as actionTypes from '../../../../store/actions/actions'
 import * as dash from './helpers/dashboardHelpers'
+import { Link } from 'react-router-dom'
 
 
 class index extends Component {
@@ -29,12 +30,14 @@ class index extends Component {
     if (userRole === 'admin') {
       dashboard = (
         <div className="DashBoard__container">
+          <Link to='/editpost'>New Post</Link>
           <h1>Admin Dashboard</h1>
           <h2>Posts</h2>
           <p>Number of posts:<span> {allPosts.length} </span></p>
 
           <div className="Dashboard__posts-container">
               <ul className="Dashboard__posts-list">
+                {/* USE HELPER FILE TO BUILD AND DISPLAY THE EDITPOST PAGE */}
                 {allPosts ? dash.getAllPosts(allPosts, this.togglePublicHandler.bind(this), this.state.token) : null}
               </ul>
           </div>

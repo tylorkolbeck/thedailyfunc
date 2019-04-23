@@ -12,4 +12,6 @@ router.get("/:postId", PostsController.getPostById);
 
 router.post("/togglePublic", checkAuth, PostsController.togglePublic)
 
+router.post("/newpost", checkAuth, PostsController.newPost)
+
 module.exports = router;

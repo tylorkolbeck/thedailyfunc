@@ -50,13 +50,20 @@ const User = (props) => (
 )
 
 const Dashboard = (props) => (
-    <DynamicImport load={(props) => import('./containers/User/DashBoard/index')}>
+    <DynamicImport load={(props) => import('./containers/User/Admin/DashBoard/index')}>
         {(Component) => Component === null
         ? <h1>loading...</h1> :
         <Component {...props} />}
     </DynamicImport>
 )
 
+const EditPost = (props) => (
+    <DynamicImport load={(props) => import('./containers/User/Admin/DashBoard/EditPost/EditPost')}>
+        {(Component) => Component === null
+        ? <h1>loading...</h1> :
+        <Component {...props} />}
+    </DynamicImport>
+)
 
 
 export const routes = [
@@ -88,6 +95,10 @@ export const routes = [
     {
         path: '/dashboard',
         component: Dashboard
+    },
+    {
+        path: '/editpost',
+        component: EditPost
     }
 
 ]

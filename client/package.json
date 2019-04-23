@@ -22,7 +22,8 @@
     "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "snarkdown": "^1.2.2"
+    "snarkdown": "^1.2.2",
+    "tui-editor": "^1.4.0"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",

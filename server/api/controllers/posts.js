@@ -16,7 +16,6 @@ exports.getAllPosts = (req, res) => {
                 res.status(404).json({
                     message: "Post not found in all posts."
                 })
-                console.log('ERROR GETTING ALL POSTS')
             }
         })
         .catch((err)=> {
@@ -29,7 +28,6 @@ exports.getAllPosts = (req, res) => {
 
 exports.getPostById = (req, res) => {
     const postId = req.params.postId
-    console.log('GETTING BY ID', req.params)
     Post.findById(postId)
         .select()
         .exec()
@@ -54,7 +52,6 @@ exports.getPostById = (req, res) => {
 }
 
 exports.getRecentPosts = (req, res) => {
-    console.log('GETTING RECENT POSTS')
     Post.find({})
         .limit(3)
         .then((docs) =>  {
@@ -67,7 +64,6 @@ exports.getRecentPosts = (req, res) => {
                 res.status(404).json({
                     message: "Post not found in recents."
                 })
-                console.log('ERROR GETTING RECENT POSTS')
             }
         })
         .catch((err)=> {
@@ -96,4 +92,46 @@ exports.togglePublic = (req, res) => {
             else console.log('post not found')
         })
         .catch(err => console.log(err))
+}
+
+exports.newPost = (req, res) => {
+    // If no _id then the post is a new post
+    if (!req.body.data._id) {
+        let postData = {...req.body.data}
+        postData._id = mongoose.Types.ObjectId()
+        req.body.data._id = mongoose.Types.ObjectId()
+        let newPost = new Post(postData)
+        try {
+            newPost.save((err, post) => {
+                if (err) {
+                    console.log(err)
+                    res.sendStatus(401)
+                }
+                else {
+                    res.sendStatus(200)
+                }
+            })
+        } 
+
+        catch(err) {
+            console.log(err)
+            res.sendStatus(401)
+        }
+    
+    // If there is an id then edit a post
+    } else if (req.body.data._id) {
+        let editPost = {...req.body.data}
+        Post.findOneAndUpdate({_id: editPost._id}, editPost, (err, Post) => {
+            if (err) {
+                res.sendStatus(500)
+                console.log(err)
+            } else {
+                res.sendStatus(200)
+            }
+        }) 
+    } else {
+        console.log('Some sort of error')
+        res.sendStatus(401)
+    }
+    
 }

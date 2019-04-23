@@ -11,12 +11,13 @@ import editIcon from '../Assets/edit.png'
 import statsIcon from '../Assets/stats.png'
 import trashIcon from '../Assets/trash.png'
 
-export const getAllPosts = (posts, togglePublic) => {
+export const getAllPosts = (posts, togglePublic, token) => {
 
   const togglePublicHandler = (postId) => {
     axios.post(`/posts/togglePublic/`, {
       data: {
-        postId: postId
+        postId: postId,
+        token: token
       }
     })
       .then(() => {

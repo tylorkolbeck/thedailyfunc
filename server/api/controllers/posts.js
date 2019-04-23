@@ -4,7 +4,6 @@ const mongoose = require("mongoose")
 // Schema
 const Post = require("../models/Post.js")
 
-
 exports.getAllPosts = (req, res) => {
     Post.find({})
         .then((docs) =>  {

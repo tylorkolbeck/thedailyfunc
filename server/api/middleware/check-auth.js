@@ -2,18 +2,25 @@ const jwt = require('jsonwebtoken')
 
 
 module.exports = (req, res, next) => {
+  console.log(req.body.data)
   try {
-    const token = req.headers.authorization.split(" ")[1]
-    console.log(req)
-    const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
-    req.decodedUserData = decoded
+    const token = req.body.data.token.split(" ")[1]
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+      // req.decodedUserData = decoded
+      if (err) {
+        // User is not authorized
+        console.log(err)
+      } else {
+        // User is authorized
+        next()
+      }
+    })
 
-    next()
-    } 
-    catch(error) {
-      return res.status(401).json({
-        message: 'Auth Failed',
-        error: error
-      })
-    }
+  } 
+  catch(error) {
+    return res.status(401).json({
+      message: 'Auth Failed',
+      error: error
+    })
+  }
 }

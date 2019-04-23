@@ -6,6 +6,9 @@ import * as dash from './helpers/dashboardHelpers'
 
 
 class index extends Component {
+  state = {
+    token: this.props.token
+  }
 
   componentDidMount() {
     if (!this.props.allPosts) {
@@ -32,7 +35,7 @@ class index extends Component {
 
           <div className="Dashboard__posts-container">
               <ul className="Dashboard__posts-list">
-                {allPosts ? dash.getAllPosts(allPosts, this.togglePublicHandler.bind(this)) : null}
+                {allPosts ? dash.getAllPosts(allPosts, this.togglePublicHandler.bind(this), this.state.token) : null}
               </ul>
           </div>
         </div>
@@ -56,7 +59,8 @@ class index extends Component {
 const mapStateToProps = state => {
   return {
     userRole: state.userManagement.role,
-    allPosts: state.allPosts
+    allPosts: state.allPosts,
+    token: state.userManagement.token
   }
 }
 

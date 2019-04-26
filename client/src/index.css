@@ -78,10 +78,10 @@ h3 {
 }
 
 .header-h3 {
-  background: #1d1d1d;
+  /* background: #414141; */
   padding: 10px;
   border-radius: 10px;
-  color: #fec303;
+  color: #fff;
   font-family: 'Fredoka One', Arial, Helvetica, sans-serif;  
   font-size: 2rem;
   font-weight: 100;

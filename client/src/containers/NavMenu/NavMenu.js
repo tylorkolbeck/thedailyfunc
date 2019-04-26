@@ -51,7 +51,12 @@ class NavBar extends Component {
                         <Link to='/'>
                             <Logo scale={this.state.theposition}/>
                         </Link>
-                
+                        
+                            {/* <div className="Logo__container">
+                                <Link to='/'>
+                                    TK
+                            </div> */}
+
 
                         <div className="NavMenu__search_hamburger_container" style={{marginLeft: 'auto'}}>
                             <SearchIcon style={{height: "20px", width: "20px", fill: "white"}} clicked={() => console.log('Click')}/>

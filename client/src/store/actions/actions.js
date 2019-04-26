@@ -15,7 +15,10 @@ export const saveRecentPosts = ( res ) => {
   }
 }
 
-// Fetch recent posts
+// Fetch recent posts side effect call
+/**
+ * @returns 3 recent posts
+ */
 export const fetchRecentPosts = () => {
   return dispatch => {
     axios.get('/posts/recent')
@@ -53,14 +56,46 @@ export const fetchAllPosts = () => {
   }
 }
 
+// Delete a post from the database
+export const DELETE_A_POST = 'DELETE_A_POST'
+export const deleteAPost = (postId, token) => {
+  return dispatch => {
+    axios.post('/posts/deletePost', {
+      data: {
+        postId: postId,
+        token: token
+      }
+    })
+      .then(() => {
+        // Once the post is deleted from the database then i want to dispatch to the reducer to update the state
+        dispatch({type: DELETE_A_POST, data: {postId: postId}})
+      })
+      .catch(err => console.log(err))
+  }
+}
 
 
+// FUTURE IMPLEMENTATIONS
 export const markPostAsRead = (postId) => {
   return {
     type: MARK_POST_AS_READ,
     postId
   }
 }
+
+
+  // const deletePostHandler = (postId) => {
+  //   axios.post('/posts/deletePost', {
+  //     data: {
+  //       postId: postId,
+  //       token: token
+  //     }
+  //   })
+  //     .then(() => {
+
+  //     })
+  //     .catch(err => console.log(err))
+  // }
 
 
 

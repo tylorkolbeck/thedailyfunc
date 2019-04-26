@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-
 }
 
 .Dashboard__post-controls img {
@@ -12,23 +11,32 @@
   margin-right: 10px;
 }
 
-.Dashboard__post-controls a {
+.Dashboard__post-controls a, button {
   text-decoration: none;
   border: 1px solid rgb(218, 218, 218);
   border-bottom: 0px;
-  border-left: 0px;
   flex: 1;
   text-align: center;
   padding: 10px;
   color: #414141;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem;
+  border-right: 0px;
 }
 
 .Dashboard__post-controls a:hover {
   background: rgb(218, 218, 218);
 }
 
+.Dashboard__post-controls button:hover {
+  background: rgb(218, 218, 218);
+  cursor: pointer;
+}
+
 .Dashboard__post-controls a:last-child {
   border-right: 0px;
+}
+
+.Dashboard__post-controls a:first-child {
+  border-left: 0px;
 }

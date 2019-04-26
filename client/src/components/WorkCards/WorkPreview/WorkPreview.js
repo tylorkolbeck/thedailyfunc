@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import './WorkPreview.css'
-// import ScrollAnimation from 'react-animate-on-scroll'
+import ScrollAnimation from 'react-animate-on-scroll'
 
 import { axiosInstance as axios } from '../../../axios-config'
 
 import WorkCard from '../WorkCard/WorkCard'
-import Button from '../../UI/Button/Button'
 
 import BackDrop from '../../BackDrop/BackDrop'
 import WorkModal from '../WorkModal/WorkModal'
-import HeaderTxtH2 from '../../UI/headers/HeaderH2/HeaderTxtH2';
 
 const WorkPreview = props => {
     const [workDocs, setDocs] = useState(false)
@@ -62,19 +60,14 @@ const WorkPreview = props => {
     }
 
     return (
-        <div style={{position: 'relative'}} >
-            {/* <ScrollAnimation animateIn="fadeIn"> */}
-                {workDocs ? <HeaderTxtH2 text={props.text} />: null}
-                <div className="WorkPreview__container">
-                    {docs}
-                </div>
+        <ScrollAnimation animateIn="slideInRight">
+            <div className="WorkCard__wrapper">
+                {docs}
+                {workModal}
+                <BackDrop backDropShown={backDrop} backdropToggleHandler={toggleBackDropHandler}/>
+            </div>
+        </ScrollAnimation>
 
-                {workDocs ? <Button route="/work" text="All Work" showButton={props.showButton}/> : null }
-
-            {/* </ScrollAnimation> */}
-                    {workModal}
-            <BackDrop backDropShown={backDrop} backdropToggleHandler={toggleBackDropHandler}/>
-        </div>
        
     )
 }

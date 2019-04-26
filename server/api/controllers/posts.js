@@ -4,8 +4,10 @@ const mongoose = require("mongoose")
 // Schema
 const Post = require("../models/Post.js")
 
+
+// Get all the posts and order by newest
 exports.getAllPosts = (req, res) => {
-    Post.find({})
+    Post.find({}).sort({date: -1})
         .then((docs) =>  {
             if (docs) {
                 res.status(200).json({
@@ -26,6 +28,7 @@ exports.getAllPosts = (req, res) => {
         })
 }
 
+// Get a post by id to show full post
 exports.getPostById = (req, res) => {
     const postId = req.params.postId
     Post.findById(postId)
@@ -51,8 +54,10 @@ exports.getPostById = (req, res) => {
         })
 }
 
+
+// Get recent posts and limit to last 3 posts
 exports.getRecentPosts = (req, res) => {
-    Post.find({})
+    Post.find({}).sort({ date: -1 })
         .limit(3)
         .then((docs) =>  {
             if (docs) {
@@ -133,5 +138,15 @@ exports.newPost = (req, res) => {
         console.log('Some sort of error')
         res.sendStatus(401)
     }
-    
+}
+
+// delete a post
+exports.deletePost = (req, res) => {
+    Post.deleteOne({_id: req.body.data.postId}, (err) => {
+        if (err) {
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(200)
+        }
+    })
 }

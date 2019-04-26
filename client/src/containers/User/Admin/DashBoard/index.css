@@ -1,24 +1,62 @@
 .AdminPage__container {
   width: 100%;
-  min-height: 100%;
-  background: #f9f9f9;
-  padding: 20px;
   box-sizing: border-box;
+  position: relative;
 }
 
-.Dashboard__posts-container {
-  /* border: 1px solid dodgerblue; */
+.scaleDown {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+.Dashboard__posts-container.scaleDown {
+  height: 0px;
+}
+
+.DashBoard__header-posts {
   padding: 0px;
-  margin: 0px;
-  margin: 50px 0px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid rgb(218, 218, 218); 
+  background: #fff;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DashBoard__header-posts a {
+  text-decoration: none;
+  color: #333;
+}
+
+.DashBoard__header-posts a:hover {
+  color: #fec303;
+}
+
+.DashBoard__header-posts:hover {
+  cursor: pointer;
+  background: rgb(218, 218, 218);
 }
 
 .DashBoard__container {
+  position: relative;
   display: block;
   width: 100%;
-  min-height: 100%;
-  background: #ededed;
   padding: 0px 20px;
+  box-sizing: border-box;
+  max-width: 800px;
+  margin: auto;
+}
+
+.Dashboard__posts-container {
+  margin: 0px auto;
+  max-width: 800px;
+  background: #ededed;
+  padding: 20px;
+  transform-origin: top;
+  transition: all ease 300ms;
   box-sizing: border-box;
 }
 
@@ -97,4 +135,10 @@
   height: 18px;
   width: 18px;
   margin-right: 5px;
+}
+
+.DeletePost {
+  transform: scale(0);
+  display: none;
+  transition: all ease 300ms;
 }

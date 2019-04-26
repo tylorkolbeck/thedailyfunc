@@ -8,6 +8,9 @@ import { Animated } from "react-animated-css"
 import ScrollAnimation from 'react-animate-on-scroll'
 import WorkPreview from '../../components/WorkCards/WorkPreview/WorkPreview'
 import ProfBars from '../../components/ProfBars/ProfBars'
+import HeaderTxtH2 from '../../components/UI/headers/HeaderH2/HeaderTxtH2'
+import Button from '../../components/UI/Button/Button'
+
 
 
 const Home = (props) => {
@@ -21,12 +24,14 @@ const Home = (props) => {
                 </div>
 
                 <HomeAbout />
+
                 <ProfBars />
 
                 <RecentPosts history={props.history}/>
-                <div>
-                    <WorkPreview number={2} text="Recent Work" showButton={true}/>
-                </div>
+                
+                <HeaderTxtH2 text="Recent Work" />
+                <WorkPreview number={2} text="Recent Work" showButton={true}/>
+                <Button route="/work" text="All Work" />
 
             </div>
         </ScrollAnimation>

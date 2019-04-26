@@ -23,7 +23,8 @@ class index extends Component {
       password: '',
       stayLoggedIn: true,
       error: false
-    }
+    },
+    loading: false
   }
   // TODO: ## SETUP FORM VALIDATION ##
   // two way bind registration form to state
@@ -70,6 +71,7 @@ class index extends Component {
 
   // Submit login form
   submitLoginFormHandler = (event, {email, password} = this.state.loginFormData) => {
+    this.setState({loading: true})
     event.preventDefault()
     axios.post('/user/login', {
       loginInfo: {
@@ -79,8 +81,11 @@ class index extends Component {
     })
       .then((res) => {
         this.props.setUserData(res.data.token, this.state.loginFormData.stayLoggedIn)
+        this.setState({loading: false})
+        this.props.history.goBack()
       })
       .catch((error) => {
+        this.setState({loading: false})        
         if (error.response) {
           let oldState = {...this.state}
           oldState.loginFormData.error = error.response.data.message
@@ -96,6 +101,8 @@ class index extends Component {
     let oldState = {...this.state}
     oldState.registrationFormData.errors = []
     oldState.loginFormData.error = false
+    this.state({...oldState})
+    this.props.history.goBack()
   }
 
   // Function to toggle showing the registration form
@@ -117,6 +124,7 @@ class index extends Component {
         formSubmit={this.submitLoginFormHandler}
         error={this.state.loginFormData.error}
         stayLoggedIn={this.state.loginFormData.stayLoggedIn}
+        loading={this.state.loading}
         />
     // Show the register button on the login screen if no user logged in
     let registerLink = this.props.user ? null : <div className="UserManagement__register-button"><p>Dont have an account?</p> <button href="/register" onClick={this.setShowRegistrationForm}>Create a new account</button></div>

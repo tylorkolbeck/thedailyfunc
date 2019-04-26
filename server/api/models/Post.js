@@ -6,6 +6,7 @@ const postSchema = mongoose.Schema({
     author: {type: String, required: true},
     tags: {type: Array},
     description: {type: String},
+    category: {type: String},
     date: {type:Date, default: Date.now},
     mainCat: {type: String, required: true},
     postCardImg: {type: String, required: true},

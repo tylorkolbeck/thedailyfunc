@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from './containers/Home/Home'
 import DynamicImport from './helpers/DynamicImport'
+import Spinner from './components/UI/Spinner/Spinner'
 
 // BACKUP IF DYNAMICIMPORT STARTS ACTING UP
 // import AllPosts from './containers/AllPosts/AllPosts'
@@ -12,7 +13,7 @@ import DynamicImport from './helpers/DynamicImport'
 const AllPosts = (props) => (
     <DynamicImport load={(props) => import('./containers/AllPosts/AllPosts')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )
@@ -20,7 +21,7 @@ const AllPosts = (props) => (
 const Work = (props) => (
     <DynamicImport load={(props) => import('./containers/Work/Work')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )
@@ -28,7 +29,7 @@ const Work = (props) => (
 const ContactForm = (props) => (
     <DynamicImport load={(props) => import('./containers/ContactForm/ContactForm')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )
@@ -36,7 +37,7 @@ const ContactForm = (props) => (
 const FullPost = (props) => (
     <DynamicImport load={(props) => import('./components/FullPost/FullPost')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )
@@ -44,7 +45,7 @@ const FullPost = (props) => (
 const User = (props) => (
     <DynamicImport load={(props) => import('./containers/User/index')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )
@@ -52,7 +53,7 @@ const User = (props) => (
 const Dashboard = (props) => (
     <DynamicImport load={(props) => import('./containers/User/Admin/DashBoard/index')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )
@@ -60,7 +61,7 @@ const Dashboard = (props) => (
 const EditPost = (props) => (
     <DynamicImport load={(props) => import('./containers/User/Admin/DashBoard/EditPost/EditPost')}>
         {(Component) => Component === null
-        ? <h1>loading...</h1> :
+        ? <Spinner /> :
         <Component {...props} />}
     </DynamicImport>
 )

@@ -1,7 +1,7 @@
 import React from 'react'
 import './ProfBars.css'
 import HeaderTxtH2 from '../UI/headers/HeaderH2/HeaderTxtH2';
-// import ScrollAnimation from 'react-animate-on-scroll'
+import ScrollAnimation from 'react-animate-on-scroll'
 
 
 export default function ProfBars() {
@@ -10,7 +10,7 @@ export default function ProfBars() {
         {
             abbr: 'N',
             name: 'Node',
-            prof: 60
+            prof: 70
         },
         {
             abbr: 'JS',
@@ -20,37 +20,50 @@ export default function ProfBars() {
         {
             abbr: 'R',
             name: 'React',
-            prof: 70
+            prof: 80
         },
         {
             abbr: 'E',
             name: 'Express',
-            prof: 60
+            prof: 70
         },
         {
             abbr: 'M',
             name: 'MongoDB',
+            prof: 60
+        },
+        {
+            abbr: 'AWS',
+            name: 'AWS',
             prof: 50
+        },
+        {
+            abbr: 'G',
+            name: 'Git',
+            prof: 60
+        },
+        {
+            abbr: 'CSS',
+            name: 'CSS',
+            prof: 80
         }
     ]
 
-    // let inc = 50
-
     let profTable = profData.map(cat => {
-        // inc += 50
         return (
-            // <ScrollAnimation animateIn="slideInLeft" delay={inc} animateOnce={true} key={cat.name}>
-            <div className="ProfBars-bar" style={{ width: `${cat.prof}%` }} key={cat.name}>
-                <p >{cat.name}</p>
+            <div className="ProfBars-bar" key={cat.name}>
+                <p style={{width: `${cat.prof}%`}}>{cat.name}</p>
             </div>
-            // </ScrollAnimation>
         )
     })
 
     return (
-        <div className="ProfBars__wrapper">
-            <HeaderTxtH2 text="Tech Specialty" />
-            {profTable}
-        </div>
+        <ScrollAnimation animateIn="slideInRight" animateOnce={true}>
+            
+                <div className="ProfBars__wrapper">
+                    <HeaderTxtH2 text="Tech Specialty" />
+                    {profTable}
+                </div>
+        </ScrollAnimation>
     )
 }

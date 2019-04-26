@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Login.css'
+import Spinner from '../../../components/UI/Spinner/Spinner'
 
-export default function Login({ inputHandler, loginFormData, userCreated, formSubmit, stayLoggedIn, error }) {
+export default function Login({ inputHandler, loginFormData, userCreated, formSubmit, stayLoggedIn, error, loading }) {
   const userCreatedMessage = userCreated ? <p>User has been created. Please login.</p> : null
   
   return (
@@ -31,7 +32,7 @@ export default function Login({ inputHandler, loginFormData, userCreated, formSu
            <input type="checkbox" checked={stayLoggedIn} onChange={(e) => inputHandler(e.target.value, 'stayLoggedIn')}></input><span>Uncheck if using a public device.</span>
           
          </div>
-          <button onClick={(e) => formSubmit(e)}>Login</button>
+          {loading ? <Spinner /> : <button onClick={(e) => formSubmit(e)}>Login</button>}
         </form>
     </div>
   )

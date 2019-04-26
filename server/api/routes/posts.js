@@ -14,4 +14,6 @@ router.post("/togglePublic", checkAuth, PostsController.togglePublic)
 
 router.post("/newpost", checkAuth, PostsController.newPost)
 
+router.post("/deletepost", checkAuth, PostsController.deletePost)
+
 module.exports = router;

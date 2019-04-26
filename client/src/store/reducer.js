@@ -77,7 +77,7 @@ const reducer = (state = initialState, action) => {
 
       
     
-    // Logthe user out by clearing the state and localstorage
+    // Log the user out by clearing the state and localstorage
     case actionTypes.LOG_USER_OUT:
       let oldUserState = {...state.userManagement}
 
@@ -115,6 +115,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allPosts: allPosts
+      }
+
+    case actionTypes.DELETE_A_POST:
+      let newState = {...state}
+      let newPostsArr = newState.allPosts.filter(post => post._id !== action.data.postId)
+      newState.allPosts = newPostsArr
+      
+      return {
+        ...newState
       }
       
     default:

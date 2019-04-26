@@ -1,9 +1,7 @@
 
 .Login__staySignedIn-container {
   /* background: green; */
-  position: relative;
-
-  
+  position: relative; 
 }
 
 .Login__staySignedIn-container input[type='checkbox'] {

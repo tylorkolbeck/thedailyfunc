@@ -10,24 +10,21 @@ require('tui-editor/dist/tui-editor-contents.css'); // editor content
 require('highlight.js/styles/github.css'); // code block highlight
 
 const Editor = require('tui-editor')
-
-
-
 class EditPost extends Component {
 
   state = {
     editor: false,
     inputs: {
       _id: false,
-      author: '',
-      title: '',
-      description: '',
-      category: '',
-      tags: '',
-      mainCat: '',
-      postCardImg: '',
-      imgThumb: '',
-      body: ''
+      author: ' ',
+      title: ' ',
+      description: ' ',
+      category: ' ',
+      tags: [],
+      mainCat: ' ',
+      postCardImg: ' ',
+      imgThumb: ' ',
+      body: ' '
     },
     loading: false,
     error: false,
@@ -35,20 +32,6 @@ class EditPost extends Component {
   }
 
   componentDidMount() {
-    // If there is a postId then this will be editing a post
-    if (this.props.location.state) {
-      let { postId } = this.props.location.state
-      if (postId) {
-        axios.get(`/posts/${postId}`)
-          .then((post) => {
-            this.setState({inputs: {...post.data.doc}})
-            this.state.editor.setValue(post.data.doc.body)
-          })
-          .catch(err => console.log(err))
-      }
-    }
-
-
     const editor = new Editor({
       el: document.querySelector('#editSection'),
       initialEditType: 'markdown',
@@ -56,20 +39,42 @@ class EditPost extends Component {
       height: '90vh',
       usageStatistics: false,
       events: {
-        change: this.onChange
+        change: this.onChange,
+        
       }
     })
 
-    this.setState({editor: editor}, () => {
-      this.state.editor.setValue('adsjfkljasdkfjasdlkj')
-    })
-    
+    this.setState({editor: editor})
+    // If there is a postId then this will be editing a post
+    if (this.props.location.state) {
+      let { postId } = this.props.location.state
+      let previousInputs = {}
+      if (postId) {
+        axios.get(`/posts/${postId}`)
+          .then((post) => {
+            for (let key in post.data.doc) {
+              if (key in this.state.inputs) {
+                previousInputs[key] = post.data.doc[key] ? post.data.doc[key] : false
+              }
+            }
+            this.setState({inputs: {...previousInputs}})
+            this.state.editor.setValue(post.data.doc.body)
+          })
+          .catch(err => console.log(err))
+      }
+    }
   }
 
   inputHandler(value, input) {
     let oldState = {...this.state}
+    if (input === 'tags') {
+      value = value.split(',')
+      console.log(value)
+    }
     oldState.inputs[input] = value
     this.setState({...oldState})
+    // console.log(this.state.inputs)
+    // for (let key in this.state.inputs) {}
   }
 
   onChange = (event) => {
@@ -103,7 +108,7 @@ class EditPost extends Component {
        <div className="Editor__form-container">
           <div className="">
         <h2>
-          New Post
+          {this.props.location.postId ? 'New Post' : 'Editing Post'}
         </h2>
         {this.state.error ? <p>There was an error with the request</p> : null}
         <form>
@@ -125,11 +130,16 @@ class EditPost extends Component {
           </div>
           <div>
             <p>Description</p>
-            <input
+            <textarea
+              value={this.state.inputs.description}
+              onChange={(e) => this.inputHandler(e.target.value, 'description')}>
+
+            </textarea>
+            {/* <input
               type="text"
               value={this.state.inputs.description}
               onChange={(e) => this.inputHandler(e.target.value, 'description')}
-            />
+            /> */}
           </div>
           <div>
             <p>Header Image</p>
@@ -173,15 +183,19 @@ class EditPost extends Component {
             />
           </div>
 
-          {this.state.loading ? 'Loading...' : <button onClick={(e) => this.submitPostHandler(e)}>Submit</button>}
         </form>
           </div>
         </div>
 
+
+        <p>Body </p>
         {/* THE EDITOR */}
         <div id="editSection">
          
-      </div>
+        </div>
+
+        {this.state.loading ? 'Loading...' : <button className="EditPost__button-submit"onClick={(e) => this.submitPostHandler(e)}>Submit</button>}
+
     </div>
     )
     )

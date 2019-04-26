@@ -1,8 +1,24 @@
+.WorkCard__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0xp;
+}
 .WorkCard__container {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 10px;
+}
+
+.WorkCard-img {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    margin: 20px;
+    margin: 20px 0px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -14,43 +30,52 @@
     align-items: center;
 }
 
+.WorkCard-img::before {
+    content: '';
+    position: absolute;
+    height: 90%;
+    width: 90%;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    transition: all ease 300ms;
+}
+
 .WorkCard__container:hover {
     cursor: pointer;
 }
 
-.WorkCard__container span::before {
-    content: '';
-    position: absolute;
-    background: #e5bb30;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0; 
-    z-index: 1;
-    transform: translate3d(0px, 0px, 0px);
-    opacity: .6;
-    transition: all .5s ease;
-    border-radius: 50%;
-
-}
-
-.WorkCard__container:hover span::before {
-    opacity: .3;
-    left: 0;
-    top: 0;
-    transform: translate3d(0px, 0px, 0px);
-    border-radius: 50%;
-}
-
-
 .WorkCard__info-wrapper {
     display: block;
     text-align: center;
-    z-index: 2;
+    z-index: -2;
 }
 
-.WorkCard__info-wrapper h1 {
-    color: white;
+.WorkCard__container:hover::before {
+    opacity: .5;
+}
+
+.WorkCard__wrapper h2 {
+    margin-top: auto;
+    padding-top: 25px;
+    color: #333;
+    height: 50px;
+    text-align: center;
+}
+
+.WorkCard__wrapper p {
+    text-align: center;
+}
+
+.WorkCard__info-more {
+    z-index: -900;
+}
+
+.WorkCard__info-more p {
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #fec303;
+    font-weight: bold;
 }
 
 

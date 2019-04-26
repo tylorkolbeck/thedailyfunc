@@ -47,7 +47,7 @@ class RecentPosts extends Component {
         return (
             <div>
                 <div className="RecentPosts__container">
-                    <ScrollAnimation animateIn="fadeIn" animateOnce={true}>
+                    <ScrollAnimation animateIn="slideInLeft" animateOnce={true}>
                         <HeaderTxtH2 text="Recent Posts" />
 
                         <div className="RecentPosts__wrapper">

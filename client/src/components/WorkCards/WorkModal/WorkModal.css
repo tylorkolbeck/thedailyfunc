@@ -12,10 +12,11 @@
     transition: all ease-in 1s;
     overflow: scroll;
     text-align: left;
+    margin-top: 50px;
 }
 
 .WorkModal__header-img {
-    height: 30vh;
+    height: 40vh;
 }
 
 .WorkModal__container p {
@@ -55,7 +56,7 @@
 
 .WorkModal-close {
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
     padding: 20px;
 }

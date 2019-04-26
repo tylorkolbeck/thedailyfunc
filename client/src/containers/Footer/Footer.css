@@ -6,6 +6,7 @@
     clear: both;
     margin-top: 100px;
     padding: 20px;
+    z-index: -2;
 }
 
 .Footer__links_list {

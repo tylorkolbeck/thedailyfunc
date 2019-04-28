@@ -50,7 +50,6 @@ app.use('/api/contact', messageRoutes)
 app.use('/api/work', workRoutes)
 app.use('/api/user', userRoutes)
 
-
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`) // Allow cross server requests
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization', 'poo')
@@ -68,7 +67,7 @@ app.use((req, res, next) => {
 })
 
 app.use((req, res, next) => {
-    const error = new Error('Not Found')
+    const error = new Error('Not Found -')
     error.status = 404
     next(error)
 })

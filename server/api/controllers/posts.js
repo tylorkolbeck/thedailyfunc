@@ -42,13 +42,13 @@ exports.getPostById = (req, res) => {
                 })
             } else {
                 res.status(404).json({
-                    message: "Post not found. Try Again"
+                    message: "Post not found. Try Again -"
                 })
             }
         })
         .catch((err)=> {
             res.status(500).json({
-                message: "Post not found. Try Again.",
+                message: "Post not found. Try Again. -",
                 error: err
             })
         })
@@ -100,6 +100,7 @@ exports.togglePublic = (req, res) => {
 }
 
 exports.newPost = (req, res) => {
+    console.log('new post')
     // If no _id then the post is a new post
     if (!req.body.data._id) {
         let postData = {...req.body.data}

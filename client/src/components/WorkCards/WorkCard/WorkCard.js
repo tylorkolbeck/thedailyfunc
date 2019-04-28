@@ -1,6 +1,5 @@
 import React from 'react'
 import './WorkCard.css'
-import { Link } from 'react-router-dom'
 
 export default function WorkCard(props) {
   return (

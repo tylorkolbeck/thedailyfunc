@@ -1,8 +1,6 @@
 import React from 'react'
 import './ProfBars.css'
 import HeaderTxtH2 from '../UI/headers/HeaderH2/HeaderTxtH2';
-import ScrollAnimation from 'react-animate-on-scroll'
-
 
 export default function ProfBars() {
 
@@ -57,13 +55,10 @@ export default function ProfBars() {
         )
     })
 
-    return (
-        <ScrollAnimation animateIn="slideInRight" animateOnce={true}>
-            
-                <div className="ProfBars__wrapper">
-                    <HeaderTxtH2 text="Tech Specialty" />
-                    {profTable}
-                </div>
-        </ScrollAnimation>
+    return ( 
+        <div className="ProfBars__wrapper">
+            <HeaderTxtH2 text="Tech Specialty" />
+            {profTable}
+        </div>
     )
 }

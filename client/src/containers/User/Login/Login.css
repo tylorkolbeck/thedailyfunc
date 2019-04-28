@@ -4,12 +4,14 @@
   position: relative; 
 }
 
-.Login__staySignedIn-container input[type='checkbox'] {
+/* .Login__staySignedIn-container input[type='checkbox'] {
   width: 15px;
   height: 15px;
   box-shadow: none;
-  /* margin: 0; */
-}
+  border-radius: 1px;
+  -webkit-appearance: none;
+  /* margin: 0; 
+} */
 
 
 .Login__staySignedIn-container span {

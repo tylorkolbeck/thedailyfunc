@@ -80,6 +80,8 @@ class AllPosts extends Component {
                         return (
                             <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
                         )
+                    } else {
+                        return false
                     }
             })
         } 

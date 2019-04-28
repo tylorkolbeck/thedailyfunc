@@ -12,7 +12,6 @@
     -o-transition: 300ms ease-in-out;
     transition: 300ms ease-in-out;
     box-sizing: border-box;
-    /* box-shadow: 5px -5px 10px rgba(1,1,1, .6); */
     box-shadow: -2px 0px 20px rgba(1,1,1, 0.5);
 }
 
@@ -26,34 +25,41 @@
 
 .SideBar ul {
     list-style: none;
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    margin: 50px 0px;
+    /* background: red; */
+    height: 100%;
+    /* margin-top: 100px; */
 }
 
 
 .SideBar li {
     font-family: 'Fredoka One', Arial, Helvetica, sans-serif;
     font-size: 28px;
-    line-height: 3em;
+    /* line-height: 3em; */
     text-decoration: none;
     color: #fec303;
+    padding: 20px 0px;
 }
 
 .SideBar a {
     text-decoration: none;
 }
 
-.SideBar li:hover {
+/* .SideBar li:hover {
     color: white;
     -webkit-transition: 300ms ease-in-out;
     -moz-transition: 300ms ease-in-out;
     -o-transition: 300ms ease-in-out;
     transition: .300ms ease-in-out;
-}
+} */
 
-.SideBar li:hover::before {
+/* .SideBar li:hover::before {
     content: "--";
     color: #1d1d1d;
-}
+} */
 
 
 

@@ -60,7 +60,7 @@ const WorkPreview = props => {
     }
 
     return (
-        <ScrollAnimation animateIn="slideInRight">
+        <ScrollAnimation animateIn="fadeIn" animateOnce={true}>
             <div className="WorkCard__wrapper">
                 {docs}
                 {workModal}

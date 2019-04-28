@@ -52,33 +52,6 @@
     background: #272822;
     font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
 }
-/* 
-.FullPost__container *::before {
-    background:#fec303;
-    position: absolute;
-    border-radius: 50%;
-    padding: 5px;
-    height: 15px;
-    width: 15px;
-    padding: 8px;
-    top: 0px;
-    color: #1d1d1d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0px;
-    left: 0px;
-    overflow:visible;
-} */
-
-
-/* .FullPost__container .js::before {
-    content: "JS";
-}
-
-.FullPost__container .cli::before {
-    content: "CLI";
-} */
 
 .FullPost_header_container {
     position: relative;
@@ -95,8 +68,6 @@
     display: block;
     z-index: 10;
     background: none;
-    /* background: rgb(29,29,29, .4); */
-    /* background: rgba(254, 195, 3, .2); */
     background-image: linear-gradient(315deg, rgba(51, 51, 51, .5), rgba(254, 195, 3, .5));
     height: 100%;
     width: 100%;
@@ -117,13 +88,12 @@
 
 
 .FullPost__back_button {
-    background: none;
-    border: none;
     outline: none;
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
     display: block;
     padding-left: 0px;
+    border: 0px;
 }
 
 .FullPost__back_button:last-child {
@@ -147,11 +117,6 @@
         margin-right: 20px;
         margin-top: 0px;
     }
-
-    /* .FullPost_header_inner_container h1 {
-        margin: 20px;
-        font-size: 48px;
-    } */
 
     .FullPost__top_back_button_tags_container {
         margin-top: 20px;

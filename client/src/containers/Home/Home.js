@@ -15,26 +15,33 @@ import Button from '../../components/UI/Button/Button'
 
 const Home = (props) => {
     return (
-        <ScrollAnimation animateIn="fadeIn"> 
             <div>
                 <div>
-                    <Animated animationIn="slideInDown" animationOut="slideOutRight" isVisible={true}>
+                    <Animated animationIn="fadeIn" isVisible={true}>
                         <HomeTopBox />
                     </Animated>
                 </div>
 
-                <HomeAbout />
+                <ScrollAnimation animateIn="fadeIn"> 
+                    <HomeAbout />
+                </ScrollAnimation>                
 
-                <ProfBars />
+                <ScrollAnimation animateIn="fadeIn"> 
+                    <ProfBars />
+                </ScrollAnimation>
 
-                <RecentPosts history={props.history}/>
+
+                <ScrollAnimation animateIn="fadeIn"> 
+                    <RecentPosts history={props.history}/>
+                </ScrollAnimation>
                 
-                <HeaderTxtH2 text="Recent Work" />
-                <WorkPreview number={2} text="Recent Work" showButton={true}/>
-                <Button route="/work" text="All Work" />
-
+                <ScrollAnimation animateIn="fadeIn"> 
+                    <HeaderTxtH2 text="Recent Work" />
+                    <WorkPreview number={2} text="Recent Work" showButton={true}/>
+                    <Button route="/work" text="All Work" />
+                </ScrollAnimation>
+                
             </div>
-        </ScrollAnimation>
     )
 }
 

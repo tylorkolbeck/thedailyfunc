@@ -1,0 +1,32 @@
+.CheckBox__container {
+  /* display: inline-block; */
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  border: 1px solid grey;
+}
+
+.CheckBox__container:hover {
+  cursor: pointer;
+}
+
+.CheckBox-notice {
+  padding-left: 5px;
+}
+
+.CheckBox__container span {
+  position: absolute;
+  display: block;
+  background: #333;
+  border-radius: 2px;
+  height:10px;
+  width: 14px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+.CheckBox__container span:hover {
+  cursor: pointer;
+}

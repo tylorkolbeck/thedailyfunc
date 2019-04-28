@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './RecentPosts.css'
 import PostCard from '../PostCard/PostCard'
-import ScrollAnimation from 'react-animate-on-scroll'
 import Spinner from '../UI/Spinner/Spinner'
 import Button from '../UI/Button/Button'
 import * as actionCreators from '../../store/actions/actions'
@@ -47,7 +46,7 @@ class RecentPosts extends Component {
         return (
             <div>
                 <div className="RecentPosts__container">
-                    <ScrollAnimation animateIn="slideInLeft" animateOnce={true}>
+                    <div>
                         <HeaderTxtH2 text="Recent Posts" />
 
                         <div className="RecentPosts__wrapper">
@@ -55,7 +54,7 @@ class RecentPosts extends Component {
                         </div>
                         
                         <Button route="/posts" text="All Posts" style={{marginTop: '50px'}}/>
-                    </ScrollAnimation>
+                    </div>
                 </div>
             </div>
         )

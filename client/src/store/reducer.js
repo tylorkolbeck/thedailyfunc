@@ -102,11 +102,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.TOGGLE_PUBLIC:
       let allPosts = [...state.allPosts]
       let filteredObjectIndex = 0
+      // let postToUpdate = state.allPosts.filter((post, index) => post._id === action.data)
+
       let postToUpdate = state.allPosts.filter((post, index) => {
         if (post._id === action.data) {
           filteredObjectIndex = index
           return post
-        }
+        } else {return false}
       })
 
       postToUpdate[0].public = !postToUpdate[0].public

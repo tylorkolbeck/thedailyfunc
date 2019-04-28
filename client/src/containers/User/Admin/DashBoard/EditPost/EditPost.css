@@ -21,6 +21,10 @@
   box-sizing: border-box;
   max-width: 600px;
   color: #414141;
+  border-radius: 1px;
+  -webkit-appearance: none;
+
+  
 }
 
 .Editor__container textarea {

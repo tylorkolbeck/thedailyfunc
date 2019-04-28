@@ -34,6 +34,13 @@ class index extends Component {
     this.setState({registrationFormData: regFormData})
   }
 
+  // Toggle the stayLoggedIn handler
+  toggleStayLoggedInHandler = () => {
+    let newState = {...this.state}
+    newState.loginFormData.stayLoggedIn = !this.state.loginFormData.stayLoggedIn
+    this.setState({...newState})
+  }
+
   // Submit registration form handler
   submitRegFormHandler = (event) => {
     event.preventDefault()
@@ -101,7 +108,7 @@ class index extends Component {
     let oldState = {...this.state}
     oldState.registrationFormData.errors = []
     oldState.loginFormData.error = false
-    this.state({...oldState})
+    this.setState({...oldState})
     this.props.history.goBack()
   }
 
@@ -124,6 +131,7 @@ class index extends Component {
         formSubmit={this.submitLoginFormHandler}
         error={this.state.loginFormData.error}
         stayLoggedIn={this.state.loginFormData.stayLoggedIn}
+        toggleStayLoggedIn={this.toggleStayLoggedInHandler.bind(this)}
         loading={this.state.loading}
         />
     // Show the register button on the login screen if no user logged in

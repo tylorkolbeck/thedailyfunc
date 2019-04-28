@@ -12,6 +12,9 @@ const initialState = {
     dateUserCreated: false,
     token: false,
   },
+  admin: {
+    userData: false
+  },
   recentPosts: false,
   allPosts: false,
   loadingRecentPosts: false,
@@ -126,6 +129,18 @@ const reducer = (state = initialState, action) => {
       
       return {
         ...newState
+      }
+
+    case actionTypes.GET_ALL_USER_DATA:
+      // console.log('Getting user data', action.data)
+      // let newState = {...state}
+      // newState.admin.userData = action.data
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          userData: action.data
+        }
       }
       
     default:

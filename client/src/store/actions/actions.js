@@ -74,6 +74,21 @@ export const deleteAPost = (postId, token) => {
   }
 }
 
+// GET USER DATA FOR ADMIN DASHBOARD
+export const GET_ALL_USER_DATA = 'GET_ALL_USER_DATA'
+export const getUserData = (token) => {
+  return dispatch => {
+    axios.post('/admin/userdata', {
+      data: {
+        token: token
+      }
+    })
+      .then((data) => {
+        dispatch({type: GET_ALL_USER_DATA, data: data.data.users})
+      })
+  }
+}
+
 
 // FUTURE IMPLEMENTATIONS
 export const markPostAsRead = (postId) => {
@@ -82,20 +97,6 @@ export const markPostAsRead = (postId) => {
     postId
   }
 }
-
-
-  // const deletePostHandler = (postId) => {
-  //   axios.post('/posts/deletePost', {
-  //     data: {
-  //       postId: postId,
-  //       token: token
-  //     }
-  //   })
-  //     .then(() => {
-
-  //     })
-  //     .catch(err => console.log(err))
-  // }
 
 
 

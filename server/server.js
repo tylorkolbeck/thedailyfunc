@@ -23,6 +23,7 @@ const postRoutes = require('./api/routes/posts.js')
 const messageRoutes = require('./api/routes/messages.js')
 const workRoutes = require('./api/routes/work.js')
 const userRoutes = require('./api/routes/user.js')
+const adminRoutes = require('./api/routes/admin.js')
 
 const app = express()
 
@@ -49,6 +50,7 @@ app.use('/api/posts', postRoutes)
 app.use('/api/contact', messageRoutes)
 app.use('/api/work', workRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/admin', adminRoutes)
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', `${CORS_ALLOW}`) // Allow cross server requests

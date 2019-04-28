@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import './index.css'
 import * as actionTypes from '../../../../store/actions/actions'
 import ShowDashboardPosts from './helpers/ShowDashboardPosts'
+import ShowUsers from './helpers/ShowUsers'
 import { Link } from 'react-router-dom'
 import Confirmation from '../../../../components/UI/Confirmation/Confirmation'
 
@@ -23,6 +24,14 @@ class index extends Component {
     showStatisticsBoard: false
   }
 
+  componentDidMount() {
+    if (!this.props.allPosts) {
+      // get all the posts
+      this.props.getAllposts() 
+    } 
+    this.props.getUserData(this.state.token)
+  }
+
   closeConfirmationModal = () => {
     this.setState({confirmationModal: false})
   }
@@ -30,13 +39,6 @@ class index extends Component {
   confirmationRequest = (postId) => {
     let confirmationModal = <Confirmation postId={postId} deletePostHandler={() => this.deletePostHandler(postId)} closeConfirmationModal={this.closeConfirmationModal}/>
     this.setState({confirmationModal})
-  }
-
-  componentDidMount() {
-    if (!this.props.allPosts) {
-      // get all the posts
-      this.props.getAllposts() 
-    }
   }
 
   togglePublicHandler(postId) {
@@ -73,35 +75,23 @@ class index extends Component {
                     {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null}
                   </ul>
               </div>
-              
             </div>
+
 
             {/* USER DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
-              <span><h3>Users</h3></span>
-              {/* <span><h3><Link to='/editpost'></Link></h3></span> */}
+              <span><h3>Users - {this.props.users.length}</h3></span>
             </div>
             <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
-              <p>Number of users:<span> {allPosts.length} </span></p>
                 <ul className="Dashboard__posts-list">
                   {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
-                  {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null}
+                  {this.props.users ? <ShowUsers users={this.props.users} /> : null }
                 </ul>
             </div>
 
 
             {/* Statistics DASHBOARD */}
-            <div className="DashBoard__header-posts" onClick={() => this.setState({showStatisticsBoard: !this.state.showStatisticsBoard})}>
-              <span><h3>Site Statistics</h3></span>
-              {/* <span><h3><Link to='/editpost'></Link></h3></span> */}
-            </div>
-            <div className={`Dashboard__posts-container ${this.state.showStatisticsBoard ? '' : 'scaleDown'}`}>
-              <p>Number of users:<span> {allPosts.length} </span></p>
-                <ul className="Dashboard__posts-list">
-                  {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
-                  {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null}
-                </ul>
-            </div>
+         
 
           </div>
 
@@ -128,7 +118,8 @@ const mapStateToProps = state => {
   return {
     userRole: state.userManagement.role,
     allPosts: state.allPosts,
-    token: state.userManagement.token
+    token: state.userManagement.token,
+    users: state.admin.userData
   }
 }
 
@@ -136,7 +127,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllposts: () => dispatch(actionTypes.fetchAllPosts()),
     togglePublic: (postId) => dispatch({type: actionTypes.TOGGLE_PUBLIC, data: postId}),
-    deleteAPost: (postId, token) => dispatch(actionTypes.deleteAPost(postId, token))
+    deleteAPost: (postId, token) => dispatch(actionTypes.deleteAPost(postId, token)),
+    getUserData: (token) => dispatch(actionTypes.getUserData(token))
   }
 }
 

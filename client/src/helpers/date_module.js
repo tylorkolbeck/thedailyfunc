@@ -2,6 +2,7 @@ export function dateConversion(ISODate, format) {
     const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
     const dateArray = []
     const date = new Date(ISODate);
+    // console.log(Date.parse(ISODate))
     
     let dateObj = {
       y:  date.getFullYear().toString().slice(-2),

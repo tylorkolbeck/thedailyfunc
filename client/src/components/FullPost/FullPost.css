@@ -13,9 +13,10 @@
 }
 
 .FullPost__container img {
-    height: 500px;
-    margin: 50px auto;
+    margin: 20px auto;
+    max-width: 80%;
     display: flex;
+
 }
 
 .FullPost__container br {

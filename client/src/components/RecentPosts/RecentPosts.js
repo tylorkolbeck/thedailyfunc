@@ -37,9 +37,13 @@ class RecentPosts extends Component {
 
         if (recents && recents.length > 0) {
             recentPosts = recents.map((data) => {
-                return (
-                    <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
-                )
+                if (data.public) {
+                    return (
+                        <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
+                    )
+                } else {
+                    return false
+                }
             })
         } 
 

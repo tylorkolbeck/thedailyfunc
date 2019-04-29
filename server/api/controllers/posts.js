@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 
 // Schema
 const Post = require("../models/Post.js")
-
+const User = require("../models/User.js")
 
 // Get all the posts and order by newest
 exports.getAllPosts = (req, res) => {
@@ -100,7 +100,9 @@ exports.togglePublic = (req, res) => {
 }
 
 exports.newPost = (req, res) => {
-    console.log('new post')
+    console.log(res.locals.userId)
+    // The user who wrote the posts userId
+    let userId = res.locals.userId
     // If no _id then the post is a new post
     if (!req.body.data._id) {
         let postData = {...req.body.data}
@@ -114,6 +116,11 @@ exports.newPost = (req, res) => {
                     res.sendStatus(401)
                 }
                 else {
+                    console.log("Post Id: ", post._id) 
+                    User.findOneAndUpdate({"_id": userId}, {$push: {"posts": post._id }})
+                        .then((user) => {
+                            console.log('User Updated', post._id, 'USER', user)
+                        })
                     res.sendStatus(200)
                 }
             })

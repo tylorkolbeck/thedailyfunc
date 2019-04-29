@@ -12,6 +12,9 @@ module.exports = (req, res, next) => {
         console.log(err)
       } else {
         // User is authorized
+        // req.locals.userId = decoded.userId
+        console.log('DECODED', decoded.userId)
+        res.locals.userId = decoded.userId
         next()
       }
     })

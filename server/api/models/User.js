@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema({
     dateUserCreated: {
         type: Date,
         default: Date.now()
+    },
+    posts: {
+        type: Array
     }
 })
 

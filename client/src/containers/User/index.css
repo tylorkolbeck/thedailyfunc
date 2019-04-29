@@ -47,6 +47,8 @@
 
 
 .UserManagment__container button {
+  font-family: 'Open Sans', sans-serif;
+
   width: 308px;
   height: 40px;
   padding: 0px 34px;

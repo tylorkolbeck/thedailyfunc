@@ -9,6 +9,13 @@
     line-height: 2.8rem;
     font-size: 1.6rem;
     padding: 0px 20px;
+    position: relative;
+}
+
+.FullPost__container img {
+    height: 500px;
+    margin: 50px auto;
+    display: flex;
 }
 
 .FullPost__container br {

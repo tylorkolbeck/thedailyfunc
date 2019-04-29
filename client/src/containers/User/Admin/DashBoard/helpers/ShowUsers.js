@@ -8,10 +8,8 @@ import { dateConversion } from '../../../../../helpers/date_module'
 
 export default function ShowUsersDashboard({users}) {
   let userComponent
- console.log(users)
   if (users) {
     userComponent = users.map(user => {
-      console.log(user)
       return (
         <div className="ShowUsers__container" key={user._id}>
 

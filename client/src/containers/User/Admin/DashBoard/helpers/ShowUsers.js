@@ -11,6 +11,7 @@ export default function ShowUsersDashboard({users}) {
  console.log(users)
   if (users) {
     userComponent = users.map(user => {
+      console.log(user)
       return (
         <div className="ShowUsers__container" key={user._id}>
 
@@ -23,15 +24,14 @@ export default function ShowUsersDashboard({users}) {
 
           </div>
 
-
-
-
          
           <div className="ShowUsers__profile-info">
             {/* <p>{user.name}</p> */}
             <h3>User Info</h3>
-              <p>Email: {user.email}</p>
-              <p>Member Since: { dateConversion(user.date) }</p>
+              <p><span>Email: </span>{user.email}</p>
+              <p><span>Member Since:</span> { dateConversion(user.dateUserCreated, 'd,m,y') }</p>
+              <p><span>Last Login:</span> { user.lastLogin ? dateConversion(user.lastLogin, 'd,m,y') : 'N/A' }</p>
+
           </div> 
           <hr></hr>
 

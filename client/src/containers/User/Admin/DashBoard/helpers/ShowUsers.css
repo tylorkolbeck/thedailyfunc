@@ -27,6 +27,11 @@
   padding-top: 10px;
 }
 
+.ShowUsers__profile-info span {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
 
 .ShowUsers__info-role-icon {
   width: 20px;

@@ -109,6 +109,11 @@ exports.loginuserHandler = (req, res) => {
           bcrypt.compare(password, user.password, (err, result) => {
             // If passwords match
             if (result) {
+
+              // Set last login date
+              User.findOneAndUpdate({_id: user._id}, {$set: {lastLogin: Date.now()}}, {upsert: true})
+                .then((user)=> console.log('Logged in last update', user))
+
               // generate JWT
               const token = jwt.sign(
                 {
@@ -116,6 +121,7 @@ exports.loginuserHandler = (req, res) => {
                   userId: user._id,
                   name: user.name,
                   role: user.role,
+                  lastLogin: user.lastLogin,
                   dateUserCreated: user.dateUserCreated,
                 }, 
                 process.env.TOKEN_SECRET,

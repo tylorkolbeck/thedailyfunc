@@ -5,16 +5,17 @@ module.exports = (req, res, next) => {
   // console.log('Checking auth', req.body.data.token)
   try {
     const token = req.body.data.token.split(" ")[1]
+
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
-      // req.decodedUserData = decoded
+      res.locals.userId = decoded.userId
+
       if (err) {
         // User is not authorized
         console.log(err)
-      } else {
+      } else if (decoded) {
         // User is authorized
         // req.locals.userId = decoded.userId
-        console.log('DECODED', decoded.userId)
-        res.locals.userId = decoded.userId
+        // console.log('DECODED', decoded.userId)
         next()
       }
     })

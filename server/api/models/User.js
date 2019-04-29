@@ -23,10 +23,13 @@ const userSchema = new mongoose.Schema({
     },
     dateUserCreated: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
     posts: {
         type: Array
+    },
+    lastLogin: {
+        type: Date
     }
 })
 

@@ -62,6 +62,8 @@ class index extends Component {
           <div className="DashBoard__container">
             <h1>Admin Dashboard</h1>
 
+            <div className="DashBoard__controlPanel">
+
             {/* POSTS DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showPostsBoard: !this.state.showPostsBoard})}>
               <span><h3>Posts - {allPosts.length}</h3></span>
@@ -89,10 +91,19 @@ class index extends Component {
                 </ul>
             </div>
 
+            <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
+              <span><h3>Messages - {this.props.users.length}</h3></span>
+            </div>
+            <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
+                <ul className="Dashboard__posts-list">
+                  {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
+                  {this.props.users ? <ShowUsers users={this.props.users} /> : null }
+                </ul>
+            </div>
 
             {/* Statistics DASHBOARD */}
          
-
+            </div>
           </div>
 
         )

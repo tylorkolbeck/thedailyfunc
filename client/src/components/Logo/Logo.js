@@ -4,11 +4,12 @@ import './Logo.css'
 
 const Logo = (props) => {
     let scaleStyle = props.onScroll > 20 ? 'scaleLogo' : ''
+    console.log(props.onScroll)
 
     return (
         // <div style={{...props.style}}>
         <div className={`Logo_container ${scaleStyle}`}>
-        {/* // <div className={`Logo_container`}> */}
+        {/* <div className={`Logo_container`}> */}
             <svg 
                 version="1.1" 
                 id="Layer_1" 
@@ -16,8 +17,8 @@ const Logo = (props) => {
                 xmlnsXlink="http://www.w3.org/1999/xlink" 
                 viewBox="0 0 64 64" 
                 xmlSpace="preserve"
-                // className={`Logo__svg ${scaleStyle}`}
-                className="Logo__svg"
+                className={`Logo__svg ${scaleStyle}`}
+                // className="Logo__svg"
                 height={props.height}
                 width={props.width}
                 >

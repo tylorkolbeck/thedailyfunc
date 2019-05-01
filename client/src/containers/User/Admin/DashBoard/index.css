@@ -7,6 +7,15 @@
 .scaleDown {
   transform: scaleY(0);
   opacity: 0;
+  display: none;
+}
+
+.DashBoard__container {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .Dashboard__posts-container.scaleDown {
@@ -15,7 +24,6 @@
 
 .DashBoard__header-posts {
   padding: 0px;
-  width: 100%;
   max-width: 800px;
   border: 1px solid rgb(218, 218, 218); 
   background: #fff;
@@ -24,6 +32,11 @@
   margin: auto;
   display: flex;
   justify-content: space-between;
+  border-bottom: 0px;
+}
+
+.DashBoard__header-posts:nth-last-of-type(2) {
+  border-bottom: 1px solid rgb(218, 218, 218); 
 }
 
 .DashBoard__header-posts a {
@@ -40,15 +53,7 @@
   background: rgb(218, 218, 218);
 }
 
-.DashBoard__container {
-  position: relative;
-  display: block;
-  width: 100%;
-  padding: 0px 20px;
-  box-sizing: border-box;
-  max-width: 800px;
-  margin: auto;
-}
+
 
 .Dashboard__posts-container {
   margin: 0px auto;

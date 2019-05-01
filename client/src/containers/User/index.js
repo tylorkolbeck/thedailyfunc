@@ -104,12 +104,11 @@ class index extends Component {
   // Log user out handler
   logUserOutHandler = () => {
     this.props.logUserOut()
-    // reset old errors from prior to logging in
     let oldState = {...this.state}
     oldState.registrationFormData.errors = []
     oldState.loginFormData.error = false
     this.setState({...oldState})
-    this.props.history.goBack()
+    this.props.history.push('/user')
   }
 
   // Function to toggle showing the registration form
@@ -118,7 +117,6 @@ class index extends Component {
   }
 
   render() {
-
     // If user is logged in show the logout button else show a login form
     // State of the login fomr is handled in this index class
     // Form submit handling is handled in this index class

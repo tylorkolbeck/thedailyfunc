@@ -32,6 +32,7 @@ class EditPost extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.location)
     const editor = new Editor({
       el: document.querySelector('#editSection'),
       initialEditType: 'markdown',
@@ -69,12 +70,9 @@ class EditPost extends Component {
     let oldState = {...this.state}
     if (input === 'tags') {
       value = value.split(',')
-      console.log(value)
     }
     oldState.inputs[input] = value
     this.setState({...oldState})
-    // console.log(this.state.inputs)
-    // for (let key in this.state.inputs) {}
   }
 
   onChange = (event) => {
@@ -94,11 +92,11 @@ class EditPost extends Component {
     })
       .then(() => {
         this.setState({loading: false, success: true})
+        this.props.history.push('/dashboard')
       })
       .catch(err => {
         this.setState({error: err, loading: false})
       })
-
   }
 
   render() {

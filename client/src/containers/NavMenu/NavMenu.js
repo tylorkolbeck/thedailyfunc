@@ -21,21 +21,21 @@ class NavBar extends Component {
     }
 
     componentDidMount() {
-        // window.addEventListener('scroll', this.listenToScroll)
+        window.addEventListener('scroll', this.listenToScroll)
     }
 
     componentWillUnmount() {
-        // window.removeEventListener('scroll', this.listenToScroll)
+        window.removeEventListener('scroll', this.listenToScroll)
     }
 
     listenToScroll = () => {
-        // const winScroll =
-        //   document.body.scrollTop || document.documentElement.scrollTop
-        // const scrolled = winScroll
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop
+        const scrolled = winScroll
       
-        // this.setState({
-        //   theposition: scrolled,
-        // })
+        this.setState({
+          theposition: scrolled,
+        })
       }
 
     render() {
@@ -49,7 +49,7 @@ class NavBar extends Component {
 
                         <SideBar navigationLinks={this.props.navLinks} backDropShown={this.props.backDropShown} backdropToggleHandler={this.props.backdropToggleHandler}/>
                         <Link to='/'>
-                            <Logo scale={this.state.theposition}/>
+                            <Logo scale={this.state.theposition} onScroll={this.state.theposition}/>
                         </Link>
                         
                             {/* <div className="Logo__container">

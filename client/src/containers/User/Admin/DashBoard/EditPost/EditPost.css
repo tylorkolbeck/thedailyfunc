@@ -6,6 +6,8 @@
   min-height: 100%;
   /* background: red; */
   box-sizing: border-box;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .Editor__container input, textarea {

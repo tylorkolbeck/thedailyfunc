@@ -66,6 +66,14 @@ const EditPost = (props) => (
     </DynamicImport>
 )
 
+const Profile = (props) => (
+    <DynamicImport load={(props) => import('./containers/User/Profile/Profile')}>
+        {(Component) => Component === null
+        ? <Spinner /> :
+        <Component {...props} />}
+    </DynamicImport>
+)
+
 
 export const routes = [
     {
@@ -100,6 +108,10 @@ export const routes = [
     {
         path: '/editpost',
         component: EditPost
+    },
+    {
+        path: '/profile',
+        component: Profile
     }
 
 ]

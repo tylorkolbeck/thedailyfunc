@@ -11,6 +11,8 @@ const initialState = {
     role: false,
     dateUserCreated: false,
     token: false,
+    usersPosts: false,
+    usersPostData: false
   },
   admin: {
     userData: false
@@ -69,7 +71,8 @@ const reducer = (state = initialState, action) => {
             email: userSettings[1].email,
             role: userSettings[1].role,
             dateUserCreated: userSettings[1].dateUserCreated,
-            token: token
+            token: token,
+            usersPosts: userSettings[1].posts
           },
           navigationLinks: userSettings[0]
         }
@@ -141,6 +144,16 @@ const reducer = (state = initialState, action) => {
           ...state.admin,
           userData: action.data
         }
+      }
+    case actionTypes.GET_USERS_POSTS:
+      console.log(action.posts)
+      return {
+        ...state,
+        userManagement: {
+          ...state.userManagement,
+          usersPostData: action.posts
+        }
+        
       }
       
     default:

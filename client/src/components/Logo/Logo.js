@@ -4,7 +4,6 @@ import './Logo.css'
 
 const Logo = (props) => {
     let scaleStyle = props.onScroll > 20 ? 'scaleLogo' : ''
-    console.log(props.onScroll)
 
     return (
         // <div style={{...props.style}}>

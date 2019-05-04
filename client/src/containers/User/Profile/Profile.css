@@ -1,7 +1,110 @@
 .Profile__wrapper {
-  min-height: 100%;
   max-width: 1200px;
-  padding: 20px;
-  box-sizing: border-box;
   margin: auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding: 0px 20px;
+}
+
+.Profile__info-card {
+  display: block;
+  border: 1px solid rgb(218, 218, 218);
+  margin-top: 75px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.Profile__info-img {
+  height: 150px;
+  width: 150px;
+  margin: 0px auto;
+  margin-bottom: 50px;
+  background-color: #FEC304;
+  background-image: url('../../../assets/images/icons/profile2.png');
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.Profile__info {
+  width: 100%;
+  text-align: center;
+}
+
+.Profile__info p {
+  color: #333;
+}
+
+.Profile__info span {
+  font-weight: bold;
+}
+
+.Profile__contact {
+  width: 100%;
+  text-align: left;
+}
+
+.Profile__contact p {
+  white-space: nowrap;
+}
+
+.Profile__contact button {
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+}
+
+.Profile__user-posts {
+  background: #fff;
+  box-sizing: border-box;
+  margin-left: 50px;
+  margin-top: 67px;
+}
+
+.Profile__info-card .Profile__logout-btn {
+  color: #FEC304;
+  font-weight: bold;
+  background: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+@media(max-width: 800px) {
+  .Profile__wrapper {
+    display: block;
+    padding: 0px;
+  }
+
+  .Profile__user-posts {
+    padding: 10px;
+    margin-left: 0px;
+  }
+
+  .Profile__info-card {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 50px 20px 0px 20px;
+    border: 0px;
+    border-radius: 0;
+  }
+
+  .Profile__info {
+    width: 50%;
+  }
+
+  .Profile__info-img {
+    display: block;
+    width: 150px;
+    height: 150px;
+
+  }
 }

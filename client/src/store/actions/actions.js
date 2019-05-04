@@ -74,7 +74,7 @@ export const deleteAPost = (postId, token) => {
   }
 }
 
-// GET USER DATA FOR ADMIN DASHBOARD
+// GET ALL OF THE USERS DATA FOR ADMIN DASHBOARD
 export const GET_ALL_USER_DATA = 'GET_ALL_USER_DATA'
 export const getUserData = (token) => {
   return dispatch => {
@@ -86,6 +86,22 @@ export const getUserData = (token) => {
       .then((data) => {
         dispatch({type: GET_ALL_USER_DATA, data: data.data.users})
       })
+  }
+}
+
+// Fetch the posts that the logged in user has created and store in redux state
+export const GET_USERS_POSTS = 'GET_USERS_POSTS'
+export const getUsersPosts = (token) => {
+  console.log('asd')
+  return dispatch => {
+    axios.post('/user/usersPosts', {
+      data: {
+        token: token
+      }
+    })
+    .then(data => {
+      dispatch({type: GET_USERS_POSTS, posts: data.data.posts})
+    })
   }
 }
 

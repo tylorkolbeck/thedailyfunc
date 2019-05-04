@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 
 module.exports = (req, res, next) => {
-  // console.log('Checking auth', req.body.data.token)
+  console.log('Checking auth', req.body.data.token)
   try {
     const token = req.body.data.token.split(" ")[1]
 

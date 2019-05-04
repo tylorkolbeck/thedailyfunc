@@ -9,7 +9,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './index.css'
 import * as actionTypes from '../../../../store/actions/actions'
-import ShowDashboardPosts from './helpers/ShowDashboardPosts'
+import UsersPosts from '../../../../components/UsersPosts/UsersPosts'
+
 import ShowUsers from './helpers/ShowUsers'
 import { Link } from 'react-router-dom'
 import Confirmation from '../../../../components/UI/Confirmation/Confirmation'
@@ -74,7 +75,8 @@ class index extends Component {
               <div>
                   <ul className="Dashboard__posts-list">
                     {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
-                    {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null}
+                    {/* {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null} */}
+                    {allPosts ? <UsersPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null}
                   </ul>
               </div>
             </div>

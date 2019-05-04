@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 // Schema
 const User = require("../models/User")
+const Post = require("../models/Post")
 
 // Register user handler
 exports.registerUserHandler = (req, res) => {
@@ -114,6 +115,10 @@ exports.loginuserHandler = (req, res) => {
               User.findOneAndUpdate({_id: user._id}, {$set: {lastLogin: Date.now()}}, {upsert: true})
                 .then((user)=> console.log('Logged in last update', user))
 
+              // Find this users posts
+              Post.find({userId: user._id.toString()})
+                .then(posts => console.log('POSTS', posts.length))
+
               // generate JWT
               const token = jwt.sign(
                 {
@@ -123,6 +128,7 @@ exports.loginuserHandler = (req, res) => {
                   role: user.role,
                   lastLogin: user.lastLogin,
                   dateUserCreated: user.dateUserCreated,
+                  posts: user.posts
                 }, 
                 process.env.TOKEN_SECRET,
                 {
@@ -145,3 +151,25 @@ exports.loginuserHandler = (req, res) => {
       })
   }
 }
+
+exports.getUsersPosts = (req, res) => {
+  let userId = res.locals.userId
+  Post.find({userId: userId.toString()})
+  .then(posts => {
+    if (posts) {
+      res.status(200).json({
+        posts
+      })
+    } else {
+      res.status(200).json(
+        {
+          posts: []
+        }
+      )
+    }
+    console.log('POSTS ON PROFILE PAGE', posts.length)
+  })
+
+
+}
+

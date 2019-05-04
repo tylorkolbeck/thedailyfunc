@@ -13,7 +13,7 @@ import trashIcon from '../Assets/trash.png'
 
 const ShowDashBoardPosts = ({posts, togglePublic, token, deletePost}) => {
 
-  // Move this to the parent component
+  // Move this to the parent component. Dont have a child component making ajax requests
   const togglePublicHandler = (postId) => {
     axios.post(`/posts/togglePublic/`, {
       data: {

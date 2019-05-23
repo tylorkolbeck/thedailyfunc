@@ -153,6 +153,8 @@ exports.loginuserHandler = (req, res) => {
 }
 
 exports.getUsersPosts = (req, res) => {
+  console.log('--------', res.locals.userId)
+
   let userId = res.locals.userId
   Post.find({userId: userId.toString()})
   .then(posts => {

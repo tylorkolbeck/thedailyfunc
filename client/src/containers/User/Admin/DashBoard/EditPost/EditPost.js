@@ -24,7 +24,8 @@ class EditPost extends Component {
       mainCat: ' ',
       postCardImg: ' ',
       imgThumb: ' ',
-      body: ' '
+      body: ' ',
+      public: false
     },
     loading: false,
     error: false,
@@ -32,7 +33,6 @@ class EditPost extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.location)
     const editor = new Editor({
       el: document.querySelector('#editSection'),
       initialEditType: 'markdown',
@@ -92,7 +92,7 @@ class EditPost extends Component {
     })
       .then(() => {
         this.setState({loading: false, success: true})
-        this.props.history.push('/dashboard')
+        this.props.history.push('/profile')
       })
       .catch(err => {
         this.setState({error: err, loading: false})

@@ -10,10 +10,12 @@ import { connect } from 'react-redux'
 import './index.css'
 import * as actionTypes from '../../../../store/actions/actions'
 import UsersPosts from '../../../../components/UsersPosts/UsersPosts'
+import { axiosInstance as axios } from '../../../../axios-config'
 
 import ShowUsers from './helpers/ShowUsers'
 import { Link } from 'react-router-dom'
 import Confirmation from '../../../../components/UI/Confirmation/Confirmation'
+import * as UserFunctions from '../../UserFunctions/UserFunctions'
 
 
 class index extends Component {
@@ -30,7 +32,7 @@ class index extends Component {
       // get all the posts
       this.props.getAllposts() 
     } 
-    this.props.getUserData(this.state.token)
+    this.props.getUserData(this.props.token)
   }
 
   closeConfirmationModal = () => {
@@ -42,19 +44,25 @@ class index extends Component {
     this.setState({confirmationModal})
   }
 
-  togglePublicHandler(postId) {
-    // Calls action creator to toggle a post as public
-    this.props.togglePublic(postId)
-  }
-
   deletePostHandler = (postId)  => {
     this.setState({confirmationModal: false})
-    this.props.deleteAPost(postId, this.state.token)
+    // this.props.deleteAPost(postId, this.props.token)
   }
 
   render() {
     // Destructure component props
     const { allPosts, userRole } = this.props
+    let posts
+
+    if (allPosts) {
+      posts = 
+        allPosts.map(post => {
+          return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
+        })
+    }
+
+
+    console.log('INDEX', allPosts)
 
     let dashboard = null
 
@@ -76,7 +84,8 @@ class index extends Component {
                   <ul className="Dashboard__posts-list">
                     {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
                     {/* {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null} */}
-                    {allPosts ? <UsersPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null}
+                    {/* {allPosts ? <UsersPosts post={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null} */}
+                    {posts}
                   </ul>
               </div>
             </div>
@@ -84,7 +93,7 @@ class index extends Component {
 
             {/* USER DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
-              <span><h3>Users - {this.props.users.length}</h3></span>
+              {/* <span><h3>Users - {this.props.users.length}</h3></span> */}
             </div>
             <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
                 <ul className="Dashboard__posts-list">
@@ -94,7 +103,7 @@ class index extends Component {
             </div>
 
             <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
-              <span><h3>Messages - {this.props.users.length}</h3></span>
+              {/* <span><h3>Messages - {this.props.users.length}</h3></span> */}
             </div>
             <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
                 <ul className="Dashboard__posts-list">

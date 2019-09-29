@@ -11,6 +11,7 @@ import './index.css'
 import * as actionTypes from '../../../../store/actions/actions'
 import UsersPosts from '../../../../components/UsersPosts/UsersPosts'
 import { axiosInstance as axios } from '../../../../axios-config'
+import Spinner from '../../../../components/UI/Spinner/Spinner'
 
 import ShowUsers from './helpers/ShowUsers'
 import { Link } from 'react-router-dom'
@@ -24,7 +25,8 @@ class index extends Component {
     confirmationModal: false,
     showPostsBoard: false,
     showUsersBoard: false,
-    showStatisticsBoard: false
+    showStatisticsBoard: false,
+    userData: false
   }
 
   componentDidMount() {
@@ -32,7 +34,19 @@ class index extends Component {
       // get all the posts
       this.props.getAllposts() 
     } 
-    this.props.getUserData(this.props.token)
+    // this.props.getUserData(this.props.token)
+    this.getUserData(this.props.token)
+  }
+
+  getUserData = (token) => {
+      axios.post('/admin/userdata', {
+        data: {
+          token: token
+        }
+      })
+        .then((data) => {
+          this.setState({userData: data.data.users}, () => console.log(this.state.userData))
+        })
   }
 
   closeConfirmationModal = () => {
@@ -61,14 +75,10 @@ class index extends Component {
         })
     }
 
-
-    console.log('INDEX', allPosts)
-
     let dashboard = null
-
       if (userRole === 'admin') {
         dashboard = (
-          <div className="DashBoard__container">
+          <div className="DashBoard__container" >
             <h1>Admin Dashboard</h1>
 
             <div className="DashBoard__controlPanel">
@@ -81,10 +91,7 @@ class index extends Component {
             
             <div className={`Dashboard__posts-container ${this.state.showPostsBoard ? '' : 'scaleDown'}`}>
               <div>
-                  <ul className="Dashboard__posts-list">
-                    {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
-                    {/* {allPosts ? <ShowDashboardPosts posts={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null} */}
-                    {/* {allPosts ? <UsersPosts post={allPosts} deletePost={(postId) => this.confirmationRequest(postId)} togglePublic={this.togglePublicHandler.bind(this)} token={this.state.token}/> : null} */}
+                  <ul className="Dashboard__posts-list">                  
                     {posts}
                   </ul>
               </div>
@@ -93,30 +100,18 @@ class index extends Component {
 
             {/* USER DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
-              {/* <span><h3>Users - {this.props.users.length}</h3></span> */}
+              <span><h3>Users - {this.state.userData.length}</h3></span>
             </div>
             <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
                 <ul className="Dashboard__posts-list">
-                  {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
-                  {this.props.users ? <ShowUsers users={this.props.users} /> : null }
+                  {this.state.userData ? <ShowUsers users={this.state.userData} /> : null }
                 </ul>
             </div>
-
-            <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
-              {/* <span><h3>Messages - {this.props.users.length}</h3></span> */}
-            </div>
-            <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
-                <ul className="Dashboard__posts-list">
-                  {/* Build the posts portion of the dashboard with this component if user role === 'admin' */}
-                  {this.props.users ? <ShowUsers users={this.props.users} /> : null }
-                </ul>
-            </div>
-
+      
             {/* Statistics DASHBOARD */}
          
             </div>
           </div>
-
         )
       } else {
         dashboard = (
@@ -127,10 +122,9 @@ class index extends Component {
       }
 
       return (
-        <div className="AdminPage__container">
+        <div className="AdminPage__container" style={{minHeight: '100%'}}>
           {dashboard}
           {this.state.confirmationModal ? this.state.confirmationModal : null}
-
         </div>
         )
   }

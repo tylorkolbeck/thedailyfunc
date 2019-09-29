@@ -12,17 +12,15 @@ export default function ShowUsersDashboard({users}) {
     userComponent = users.map(user => {
       return (
         <div className="ShowUsers__container" key={user._id}>
-
           <div className="ShowUsers__profile-header">
-            {user.role === 'admin' ? <img src={adminIcon} alt="Profile" className="ShowUsers__info-role-icon"></img> : null}
-            {user.role === 'user' ? <img src={verifiedIcon} alt="Profile" className="ShowUsers__info-role-icon"></img> : null}
+            {user.role === 'admin' ? 
+                <img src={adminIcon} alt="Profile" className="ShowUsers__info-role-icon"></img> : 
+                <img src={verifiedIcon} alt="Profile" className="ShowUsers__info-role-icon"></img>}
 
             <p>{user.name}</p>
             <img src={profileImg} alt="Profile" className="ShowUsers__profile-img"></img>
 
           </div>
-
-         
           <div className="ShowUsers__profile-info">
             {/* <p>{user.name}</p> */}
             <h3>User Info</h3>
@@ -32,7 +30,6 @@ export default function ShowUsersDashboard({users}) {
 
           </div> 
           <hr></hr>
-
         </div>
       )
     })

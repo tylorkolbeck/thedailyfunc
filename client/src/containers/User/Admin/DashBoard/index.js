@@ -23,7 +23,7 @@ class index extends Component {
   state = {
     token: this.props.token, // stored here for any 'admin' role requests
     confirmationModal: false,
-    showPostsBoard: false,
+    showPostsBoard: true,
     showUsersBoard: false,
     showStatisticsBoard: false,
     userData: false
@@ -135,7 +135,6 @@ const mapStateToProps = state => {
     userRole: state.userManagement.role,
     allPosts: state.allPosts,
     token: state.userManagement.token,
-    users: state.admin.userData
   }
 }
 

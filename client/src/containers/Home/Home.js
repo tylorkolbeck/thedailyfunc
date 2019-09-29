@@ -35,11 +35,11 @@ const Home = (props) => {
                     <RecentPosts history={props.history}/>
                 </ScrollAnimation>
                 
-                <ScrollAnimation animateIn="fadeIn"> 
+                {/* <ScrollAnimation animateIn="fadeIn"> 
                     <HeaderTxtH2 text="Recent Work" />
                     <WorkPreview number={2} text="Recent Work" showButton={true}/>
                     <Button route="/work" text="All Work" />
-                </ScrollAnimation>
+                </ScrollAnimation> */}
                 
             </div>
     )

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 // const dotenv = require('dotenv')
 
+
 if (process.env.NODE_ENV !== 'production') {
     const dotenv = require('dotenv')
     dotenv.config()
@@ -69,7 +70,7 @@ app.use((req, res, next) => {
 })
 
 app.use((req, res, next) => {
-    const error = new Error('Not Found -')
+    const error = new Error('Not Found. Updated')
     error.status = 404
     next(error)
 })

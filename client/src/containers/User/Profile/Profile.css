@@ -60,7 +60,7 @@
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .Profile__user-posts {
@@ -71,11 +71,25 @@
 }
 
 .Profile__info-card .Profile__logout-btn {
+  display: block;
   color: #FEC304;
   font-weight: bold;
   background: #333;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+.Profile__newPost-btn {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background: #333;
+  color: #FEC304;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
 }
 
 @media(max-width: 800px) {

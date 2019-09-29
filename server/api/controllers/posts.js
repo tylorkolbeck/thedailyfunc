@@ -7,6 +7,7 @@ const User = require("../models/User.js")
 
 // Get all the posts and order by newest
 exports.getAllPosts = (req, res) => {
+    console.log("getting all posts")
     Post.find({}).sort({date: -1})
         .then((docs) =>  {
             if (docs) {

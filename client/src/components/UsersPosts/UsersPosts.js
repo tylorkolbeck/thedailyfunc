@@ -6,8 +6,8 @@ import PostControl from '../../containers/User/Admin/DashBoard/UI/Buttons/PostCo
 import * as UserFunctions from '../../containers/User/UserFunctions/UserFunctions'
 
 import calanderIcon from './Assets/calandericon2.png'
-import privateIcon from './Assets/private.png'
-import publicIcon from './Assets/public.png'
+import privateIcon from './Assets/private2.png'
+import publicIcon from './Assets/public2.png'
 import viewIcon from './Assets/view.png'
 import editIcon from './Assets/edit.png'
 import statsIcon from './Assets/stats.png'

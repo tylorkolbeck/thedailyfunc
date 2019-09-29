@@ -84,6 +84,7 @@ class EditPost extends Component {
   submitPostHandler(e) {
     this.setState({loading: true})
     e.preventDefault()
+    console.log(this.props.token)
     axios.post('/posts/newpost', {
       data: {
         ...this.state.inputs,

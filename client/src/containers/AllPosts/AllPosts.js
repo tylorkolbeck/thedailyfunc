@@ -1,20 +1,24 @@
+// This is the all posts page.  When page loads it fetches all posts
+// from the database and create a post card for each post.  
+// Posts can also be filtered based on the main topic by clicking
+// on post bubbles.
+
+// TODO: Add pagnation in the future when there starts to become a lot of posts. 
+
 import React, { Component }from 'react'
 import './AllPosts.css'
 import PostCard from '../../components/PostCard/PostCard'
 import CatBubble from '../../components/CatBubble/CatBubble'
-import { withRouter } from 'react-router-dom'
 import { Animated } from "react-animated-css";
 import BackArrow from '../../components/BackArrow/BackArrow'
-import { connect } from 'react-redux'
-import * as actionCreators from '../../store/actions/actions'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import {axiosInstance as axios} from '../../axios-config'
 
 
 
 class AllPosts extends Component {
     state = {
-        // mainCat: ['JS', 'XS', 'PP'],
-        // posts: false,
+        posts: false,
         filter: false,
         changeVis: true,
         visible: {
@@ -26,9 +30,25 @@ class AllPosts extends Component {
     }
 
     componentDidMount() { 
-        if (!this.props.allPosts) {
-            this.props.fetchAllPosts()
-        }
+        // removed from redux store. Data now stored in component state
+        // if (!this.props.allPosts) {
+        //     this.props.fetchAllPosts()
+        // }
+
+        this.fetchAllPosts()
+    }
+
+    // Fetch all posts
+    fetchAllPosts = () => {    
+        axios.get('/posts')
+            .then((response) => {
+                this.setState({posts: response.data.docs, error: false}, () => console.log(this.state))
+            })
+            .catch(err => {  
+                this.setState({error: err})
+                // console.log('[fetchAllPosts]', err)
+            })
+        
     }
 
     postSelectedHandler(id) {
@@ -47,15 +67,12 @@ class AllPosts extends Component {
         let catBubbles = null
         let mainArray = []
         let catData = []
-        if (this.props.allPosts) {
-            this.props.allPosts.forEach((post) => {
-                if (post.public) {
-                    if (!mainArray.includes(post.mainCat)) {
+        if (this.state.posts) {
+            this.state.posts.forEach((post) => {
+                    if (!mainArray.includes(post.mainCat) && post.public) {
                         mainArray.push(post.mainCat)
                         catData.push({[post.mainCat]: post.category})
                     }
-                }
-                
             })
 
             catBubbles = catData.map(cat => {
@@ -69,46 +86,40 @@ class AllPosts extends Component {
         return catBubbles
     }
 
+    // Maps all the posts into a postCard
     makePostCards = () => {
-        let cards = this.props.allPosts ? null : <Spinner />
-        let postsToShow = null
+        let postCards = <Spinner />
+        let filteredPosts = false
 
-        // If no filter show all posts
-        if (this.props.allPosts && !this.state.filter)  {
-            cards = this.props.allPosts.map((data) => {
-                    if (data.public) {
-                        return (
-                            <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
-                        )
-                    } else {
-                        return false
-                    }
+        // If no filter show every post that is public
+        if (this.state.posts && !this.state.filter)  {
+            postCards = this.state.posts.map((data) => {
+                    return data.public ? <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/> : false
             })
         } 
         
-        
-        if (this.props.allPosts && this.state.filter) {
-            postsToShow = this.props.allPosts.filter(post => post.mainCat === this.state.filter)
+        // If a filter is selected then filter the posts to show for that filter
+        else if (this.state.posts && this.state.filter) {
+            // filter out unwanted posts from filter
+            filteredPosts = this.state.posts.filter(post => post.mainCat === this.state.filter)
 
-            cards = postsToShow.map((data) => {
-                return (
-                    <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
-                )
+            postCards = filteredPosts.map((data) => {
+                return <PostCard key={data._id} data={data} clicked={()=> this.postSelectedHandler(data._id)}/>
             })
         }
+
+        else if (this.state.error !== false) {
+            postCards = null
+        }
         
-        postsToShow = (
-                 <div className="AllPosts__container">
-                    {cards}
-                </div>
-        )
-        
-        return postsToShow
+        return postCards
     }
 
 
     // Sets a delay before running a state change handler to allow css transition to finish. 
     // make sure the delay matches the css transition time.
+    // This is a delay for when the user selects a filter and the posts are transitioning on 
+    // the screen for the selected filter
     cssTransitionDelay(changeState, element) {
         // @param function - changeState to perform after the delay
         // @param string - what element to show and hide
@@ -144,8 +155,6 @@ class AllPosts extends Component {
         return (
 
             <div style={{minHeight: '100%'}}>
-
-                
                 <button onClick={this.props.history.goBack} className="FullPost__back_button" style={{marginTop: '20px'}}> 
                     <BackArrow className="desktop" style={{marginLeft: '18px'}}/>
                 </button>
@@ -154,7 +163,6 @@ class AllPosts extends Component {
                     <div style={{maxWidth: '1200px', margin: 'auto', width: '100%'}}>
 
                         <div className="AllPosts__cat_bubble_container">
-
                             {!this.state.loading ? 
                                 <h2 className={`CatBubble ${hideOnError} AllPosts__CatBubble-all`}
                                 data-tooltip="All"
@@ -166,10 +174,12 @@ class AllPosts extends Component {
                                 </span></h2> : null}
                             {this.createCategoryBubbles()}
                             {this.state.error ? <div><h1>There was an error fetching the posts.</h1></div> : null}
-
                         </div>
 
-                        {this.makePostCards()}
+                        <div className="AllPosts__container">
+                            {/* Create and display the posts from the post data */}
+                            {this.makePostCards()} 
+                        </div>
                         
                     </div>
 
@@ -180,18 +190,19 @@ class AllPosts extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        allPosts: state.allPosts
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         allPosts: state.allPosts
+//     }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchAllPosts: () => dispatch(actionCreators.fetchAllPosts()), // when called execute the action creator function
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         fetchAllPosts: () => dispatch(actionCreators.fetchAllPosts()), // when called execute the action creator function
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AllPosts))
+export default AllPosts
+// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AllPosts))
 
 

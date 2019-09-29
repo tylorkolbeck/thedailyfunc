@@ -31,7 +31,7 @@ class PostCard extends Component {
             () => {
                 this.setState({
                     mouseInContainer: true
-                }, () => console.log('MOUSE IN CONTAINER'))
+                })
             }, 2
         )
     }
@@ -41,31 +41,6 @@ class PostCard extends Component {
             mouseInContainer: false
         })
     }
-
-
-    renderTags() {
-        try {
-            this.props.data.tags.map((tag) => {
-                return (
-                    <span className="PostCard__tag" key={tag}>{tag}</span>
-                )
-            })
-        } catch(e) {
-            console.log(e)
-        }
-    }
-
-    categoryTags() {
-        if (Array.isArray(this.props.data.tags)) {
-            let tags = this.props.data.tags.map((tag) => {
-                return <span className="PostCard__tag" key={tag}>{tag}</span>
-            })
-
-            return tags
-        }
-    } 
-   
-    
 
     render() {
         // this.state.isMobile ? console.log('Is Mobile') : console.log('Not Mobile')
@@ -92,17 +67,7 @@ class PostCard extends Component {
                 <p className="PostCard__description">{this.props.data.description ? this.props.data.description.slice(0, this.state.mouseInContainer ? 300 : 150) : null}</p>
             </div>
 
-            <div className="PostCard__footer">
-                
-                    {/* {this.categoryTags()} */}
-                
-                {/* {this.props.data.tags.map((tag) => {
-                    return (
-                        <span className="PostCard__tag" key={tag}>{tag}</span>
-                    )
-                    })
-                } */}
-            </div>
+            <div className="PostCard__footer"></div>
         </div>
 
 

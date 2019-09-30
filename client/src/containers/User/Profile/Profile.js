@@ -53,13 +53,14 @@ const Profile = ({ token, logUserOut, history }) => {
         setLoading(false)
 
       } catch(error) {
-        if (returnedData.data.message === 'Token Expired') {
-          setIsError(false)
-          setLoading(false)
-        } else {
-          setIsError(true)
-          setLoading(false)
-        }
+        console.log("ERRROR", error)
+        // if (returnedData.data.message === 'Token Expired') {
+        //   setIsError(false)
+        //   setLoading(false)
+        // } else {
+        //   setIsError(true)
+        //   setLoading(false)
+        // }
       }
     }
 

@@ -1,32 +1,28 @@
 import React, {useEffect, useState} from 'react'
 import './WorkPreview.css'
 import ScrollAnimation from 'react-animate-on-scroll'
-
 import { axiosInstance as axios } from '../../../axios-config'
-
 import WorkCard from '../WorkCard/WorkCard'
-
 import BackDrop from '../../BackDrop/BackDrop'
 import WorkModal from '../WorkModal/WorkModal'
 
 const WorkPreview = props => {
-    const [workDocs, setDocs] = useState(false)
+    const [workDocs, setDocs] = useState([])
     const [backDrop, setBackDrop] = useState(false)
     const [modalData, setModalData] = useState(false)
 
     
-
+    // Run an asynchrounos call to back end to get data
     useEffect(() => {
         axios.get('/work')
             .then((docs) => {
-                if (!workDocs && workDocs !== docs.data.docs) {
+                if (workDocs.length === 0 && workDocs.length !== docs.data.docs) {
                     setDocs(docs.data.docs)
                 }
             })
             
             .catch(err => console.log(err))
     })
-
 
     let toggleBackDropHandler = (data) => {
         setModalData(false)
@@ -67,8 +63,6 @@ const WorkPreview = props => {
                 <BackDrop backDropShown={backDrop} backdropToggleHandler={toggleBackDropHandler}/>
             </div>
         </ScrollAnimation>
-
-       
     )
 }
 

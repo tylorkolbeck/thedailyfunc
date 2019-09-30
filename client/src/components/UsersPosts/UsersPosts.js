@@ -43,8 +43,11 @@ const ShowDashBoardPosts = ({ post, deletePost, token, history}) => {
             </div>
           
             <div className="Dashboard__post-controls">
+              {/* EDIT POST */}
               <PostControl text="Edit" to='/editPost' icon={editIcon} postId={post._id}/>
+              {/* VIEW POST */}
               <PostControl text="View" to={`post/${post._id}`} icon={viewIcon}/>
+              {/* VIEW POST STATS */}
               <PostControl text="Stats" to="/" icon={statsIcon}/>
               <button onClick={() => deletePost(post._id)}><img src={trashIcon} alt="Delete"></img>Delete</button>
             </div>

@@ -26,16 +26,35 @@ class index extends Component {
     showPostsBoard: true,
     showUsersBoard: false,
     showStatisticsBoard: false,
-    userData: false
+    userData: false,
+    numberOfPublicPosts: 0,
+    numberOfPrivatePosts: 0,
+    postsLoaded: false,
+    allPosts: []
   }
 
   componentDidMount() {
-    if (!this.props.allPosts) {
-      // get all the posts
-      this.props.getAllposts() 
-    } 
+    // if (!this.props.allPosts) {
+    //   // get all the posts
+    //   // this.props.getAllposts(() => this.setState({postLoaded: true}))
+    //   this.props.getAllposts()
+    // } 
+    if (this.state.postsLoaded === false) {
+      this.getAllPosts()
+    }
+
     // this.props.getUserData(this.props.token)
     this.getUserData(this.props.token)
+  }
+
+  getAllPosts = () => {
+    axios.get('/posts')
+      .then((allPosts) => {
+        console.log(allPosts.data.docs)
+        this.setState({allPosts: allPosts.data.docs, postsLoaded: true}, () => this.generatePosts())
+        
+      })
+      .catch((err) => console.log(err))
   }
 
   getUserData = (token) => {
@@ -45,7 +64,7 @@ class index extends Component {
         }
       })
         .then((data) => {
-          this.setState({userData: data.data.users}, () => console.log(this.state.userData))
+          this.setState({userData: data.data.users})
         })
   }
 
@@ -63,17 +82,39 @@ class index extends Component {
     // this.props.deleteAPost(postId, this.props.token)
   }
 
+  generatePosts = () => {
+    let posts = 
+    this.state.allPosts.map(post => {
+      return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
+    })
+
+    return posts
+  }
+
   render() {
     // Destructure component props
     const { allPosts, userRole } = this.props
     let posts
 
-    if (allPosts) {
-      posts = 
-        allPosts.map(post => {
-          return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
-        })
-    }
+    // if (this.state.postsLoaded && this.state.allPosts.length > 0) {
+    //   let privateCount = 0
+    //   let publicCount = 0
+
+    //   this.state.allPosts.forEach((post) => {
+    //     if (post.public === true) {
+    //       publicCount += 1
+    //     } else {
+    //       privateCount += 1
+    //     }
+
+    //     this.setState({privateCount: privateCount, publicCount: publicCount})
+    //   })
+
+    //   // let posts = 
+    //   //   this.state.allPosts.map(post => {
+    //   //     return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
+    //   //   })
+    // }
 
     let dashboard = null
       if (userRole === 'admin') {
@@ -85,7 +126,7 @@ class index extends Component {
 
             {/* POSTS DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showPostsBoard: !this.state.showPostsBoard})}>
-              <span><h3>Posts - {allPosts.length}</h3></span>
+              <span><h3>Posts - {allPosts.length} </h3></span>
               <span><h3><Link to='/editpost'>New Post</Link></h3></span>
             </div>
             

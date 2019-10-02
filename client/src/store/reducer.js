@@ -153,7 +153,6 @@ const reducer = (state = initialState, action) => {
           ...state.userManagement,
           usersPostData: action.posts
         }
-        
       }
       
     default:

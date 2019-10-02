@@ -12,6 +12,10 @@
     position: relative;
 }
 
+.FullPost__container h1 {
+    text-align: left;
+}
+
 .FullPost__container img {
     margin: 20px auto;
     max-width: 80%;

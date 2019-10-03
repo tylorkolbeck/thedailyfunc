@@ -12,7 +12,7 @@ const HomeAbout = props => {
                 <HeaderTxtH2 text="About"/>
 
                 <ImageContainer />
-                <p>I am a Front-End Web Developer and educator working in San Digeo, California. I do contract work specializing in Node, Javascript, React and Express</p>
+                <p>I am a Full Stack Web Developer and educator working in San Digeo, California. I do contract work specializing in Node, Javascript, React and Express</p>
                 <Button text="Contact" route="/hire"/>
         </div>
     )

@@ -12,7 +12,7 @@
     position: relative;
 }
 
-.FullPost__container h1 {
+.FullPost__container h1, h2 {
     text-align: left;
 }
 
@@ -148,6 +148,14 @@
 
 .code.css::after {
     content: 'css';
+}
+
+.code.shell::after {
+    content: 'cli'
+}
+
+.code.cli::after {
+    content: 'cli'
 }
 
 @media(max-width: 750px) {

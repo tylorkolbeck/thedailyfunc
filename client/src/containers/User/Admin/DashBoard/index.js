@@ -30,37 +30,33 @@ class index extends Component {
     numberOfPublicPosts: 0,
     numberOfPrivatePosts: 0,
     postsLoaded: false,
-    allPosts: []
+    allPosts: [],
+    error: false
   }
 
   componentDidMount() {
-    // if (!this.props.allPosts) {
-    //   // get all the posts
-    //   // this.props.getAllposts(() => this.setState({postLoaded: true}))
-    //   this.props.getAllposts()
-    // } 
     if (this.state.postsLoaded === false) {
       this.getAllPosts()
     }
 
-    // this.props.getUserData(this.props.token)
     this.getUserData(this.props.token)
   }
 
   getAllPosts = () => {
     axios.get('/posts')
       .then((allPosts) => {
-        console.log(allPosts.data.docs)
-        this.setState({allPosts: allPosts.data.docs, postsLoaded: true}, () => this.generatePosts())
+        this.setState({allPosts: allPosts.data.docs, postsLoaded: true})
         
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        this.setState({postsLoaded: true, error: true})
+      })
   }
 
   getUserData = (token) => {
       axios.post('/admin/userdata', {
         data: {
-          token: token
+          token: token.split(" ")[1]
         }
       })
         .then((data) => {
@@ -83,38 +79,24 @@ class index extends Component {
   }
 
   generatePosts = () => {
-    let posts = 
-    this.state.allPosts.map(post => {
-      return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
-    })
-
+    let posts
+    if (this.state.allPosts.length > 0) {
+      posts = this.state.allPosts.map(post => {
+        return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
+      })
+      
+    } else {
+      posts = <h1>There was an error fetching the posts.</h1>
+    }
+   
     return posts
+    
   }
 
   render() {
     // Destructure component props
-    const { allPosts, userRole } = this.props
-    let posts
-
-    // if (this.state.postsLoaded && this.state.allPosts.length > 0) {
-    //   let privateCount = 0
-    //   let publicCount = 0
-
-    //   this.state.allPosts.forEach((post) => {
-    //     if (post.public === true) {
-    //       publicCount += 1
-    //     } else {
-    //       privateCount += 1
-    //     }
-
-    //     this.setState({privateCount: privateCount, publicCount: publicCount})
-    //   })
-
-    //   // let posts = 
-    //   //   this.state.allPosts.map(post => {
-    //   //     return <UsersPosts history={this.props.history}post={post} key={post._id} deletePost={(postId) => this.confirmationRequest(postId)} token={this.props.token}/>
-    //   //   })
-    // }
+    const { userRole } = this.props
+    // let posts
 
     let dashboard = null
       if (userRole === 'admin') {
@@ -126,14 +108,15 @@ class index extends Component {
 
             {/* POSTS DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showPostsBoard: !this.state.showPostsBoard})}>
-              <span><h3>Posts - {allPosts.length} </h3></span>
+              <span><h3>Posts - {this.state.allPosts.length} </h3></span>
               <span><h3><Link to='/editpost'>New Post</Link></h3></span>
             </div>
             
             <div className={`Dashboard__posts-container ${this.state.showPostsBoard ? '' : 'scaleDown'}`}>
               <div>
                   <ul className="Dashboard__posts-list">                  
-                    {posts}
+                    {this.state.allPosts ? this.generatePosts() : null}
+
                   </ul>
               </div>
             </div>

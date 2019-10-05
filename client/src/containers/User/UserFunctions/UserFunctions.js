@@ -15,12 +15,12 @@ import { axiosInstance as axios } from '../../../axios-config'
 // The function to toggle a function public (implement a confirmation modal in the future)
 // make public pr private function
 
-export const fetchTogglePublic = (postId, token) => {  
+export const fetchTogglePublic = (postId, token, userId) => {  
   // Return a promise to the calling function
   return axios.post(`/posts/togglePublic/`, {
     data: {
       postId: postId,
-      token: token
+      token: token.split(" ")[1]
     }
   })
 }

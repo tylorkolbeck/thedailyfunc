@@ -11,12 +11,12 @@ import './index.css'
 import * as actionTypes from '../../../../store/actions/actions'
 import UsersPosts from '../../../../components/UsersPosts/UsersPosts'
 import { axiosInstance as axios } from '../../../../axios-config'
-import Spinner from '../../../../components/UI/Spinner/Spinner'
+// import Spinner from '../../../../components/UI/Spinner/Spinner'
 
 import ShowUsers from './helpers/ShowUsers'
 import { Link } from 'react-router-dom'
 import Confirmation from '../../../../components/UI/Confirmation/Confirmation'
-import * as UserFunctions from '../../UserFunctions/UserFunctions'
+// import * as UserFunctions from '../../UserFunctions/UserFunctions'
 
 
 class index extends Component {
@@ -124,7 +124,7 @@ class index extends Component {
 
             {/* USER DASHBOARD */}
             <div className="DashBoard__header-posts" onClick={() => this.setState({showUsersBoard: !this.state.showUsersBoard})}>
-              <span><h3>Users - {this.state.userData.length}</h3></span>
+              <span><h3>Users - </h3></span>
             </div>
             <div className={`Dashboard__posts-container ${this.state.showUsersBoard ? '' : 'scaleDown'}`}>
                 <ul className="Dashboard__posts-list">

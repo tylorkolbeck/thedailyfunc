@@ -15,17 +15,18 @@ import trashIcon from './Assets/trash.png'
 
 const ShowDashBoardPosts = ({ post, deletePost, token, history}) => {
   const [publicPost, setPublicPost] = useState(post.public)
-  const [message, setMessage] = useState(false)
+  // const [message, setMessage] = useState(false)
   
   const togglePublicPost = (postId, token) => {
     UserFunctions.fetchTogglePublic(postId, token)
       .then((result)=> {
+        setPublicPost(!publicPost)
         if (result.data.message === 'Token Expired') {
           UserFunctions.sendToLoginPage(history)
         }
       })
       .catch(err => console.log('ERROR', err))
-    setPublicPost(!publicPost)
+    
   }
   
   return (

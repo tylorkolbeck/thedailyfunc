@@ -28,7 +28,7 @@ const Profile = ({ token, logUserOut, history }) => {
 
   // After component mounts fetch the users posts
   useEffect(() => {
-    let returnedData = null
+    // let returnedData = null
     const fetchData = async () => {
       try {
         const results = await axios.post('/user/usersPosts', {
@@ -36,7 +36,7 @@ const Profile = ({ token, logUserOut, history }) => {
             token: token
           }
         })
-        returnedData = results
+        // returnedData = results
         if (results.data.message === 'Token Expired') {
           setTokenExpired(true)
           setIsError(false)

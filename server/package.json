@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "API_PORT=8000 NODE_ENV=development CORS_ALLOW=* nodemon server.js",
     "dev": "nodemon server.js",
-    "deploy": "scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/server.js dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/api dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/package.json dev@157.230.138.238:/home/dev/api.thedailyfunc.com"
+    "deploy": "scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/server.js dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/api dev@157.230.138.238:/home/dev/api.thedailyfunc.com && scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/package.json dev@157.230.138.238:/home/dev/api.thedailyfunc.com",
+    "deploy_api" : "scp -r /Users/tylor/desktop/development/projects/thedailyfunc/server/api dev@157.230.138.238:/home/dev/api.thedailyfunc.com/"
   },
   "keywords": [],
   "author": "",

@@ -7,7 +7,7 @@ const User = require("../models/User.js")
 
 // Get all the posts and order by newest
 exports.getAllPosts = (req, res) => {
-    console.log("getting all posts")
+    console.log("GETTING ALL POSTS")
     Post.find({}).sort({date: -1})
         .then((docs) =>  {
             if (docs) {
@@ -80,8 +80,16 @@ exports.getRecentPosts = (req, res) => {
         })
 }
 
+/**
+ * Toggles a post between public and private.
+ * @param {string} req.body.data.postId The post id for the post being toggled.
+ * @return {int} 404 if the post was not found. 200 if toggle is successful.
+ * 503 if there was an error toggling the post
+ * Updated: 5OCT19 - Tylor Kolbeck
+ */
 exports.togglePublic = (req, res) => {
     let postId = req.body.data.postId
+
     Post.findById(postId)
         .exec()
         .then(post => {
@@ -91,14 +99,20 @@ exports.togglePublic = (req, res) => {
                         res.sendStatus(200)
                     })
                     .catch(err => {
-                        console.log(err.name)
-                        res.sendStatus(404)
+                        res.sendStatus(503)
                     })
             } 
-            else console.log('post not found')
+            else {
+                res.sendStatus(503)
+            }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            res.sendStatus(404)
+        })
 }
+
+
+
 
 exports.newPost = (req, res) => {
     console.log(res.locals.userId)

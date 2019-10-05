@@ -1,30 +1,33 @@
 const jwt = require('jsonwebtoken')
 
-
 module.exports = (req, res, next) => {
   // console.log('Checking auth', req.body.data.token)
   try {
-    const token = req.body.data.token.split(" ").length > 1 ? req.body.data.token.split(" ")[1] : req.body.data.token
-    // console.log(req.body.data.token.split(" "))
-    // const token = req.body.data.token.split(" ")[1]
+    // TODO: FIGURE OUT HOW TO SPLIT THE TOKEN HERE 
+     // RIGHT NOT NEW POST SEND JUST THE TOKEN BUT EDIT POST SENDS THE TOKEN WITH BEARER IN FRONT OF IT
+    const token = req.body.data.token
 
-    // console.log('THE REQ DATA', req.body.data.token.split(" "))
-    // console.log('THE REQ DATA', token)
+
+    // TESTING CONSOLE LOGS
+    // console.log("[REQUEST PATH] - ", req.path)
+    // console.log("[REQUEST DATA] - ", req.body.data)
 
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
-      // console.log('111 -------', decoded)
-      try {
-        if (decoded.userId) {
-          res.locals.userId = decoded.userId
-        }
-      }
+    // console.log("USER ID - " + decoded.userId)
+      
+      // try {
+      //   if (decoded.userId) {
+      //     res.locals.userId = decoded.userId
+      //   }
+      // }
 
-      catch {
-        console.log('No USER ID DEFINED')
-      }
+      // catch(error) {
+      //   console.log(error)
+      // }
       
       if (err) {
+        console.log("[TOKEN VERIFY CATCH] - " + err)
         // User is not authorized
         if (err.message === 'jwt expired') {
           res.json({
@@ -36,6 +39,7 @@ module.exports = (req, res, next) => {
         // User is authorized
         // req.locals.userId = decoded.userId
         // console.log('DECODED', decoded.userId)
+        console.log("User Authorized")
         next()
       }
     })

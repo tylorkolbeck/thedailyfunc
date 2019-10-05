@@ -42,11 +42,6 @@ class FullPost extends Component {
 
 
     render() {
-
-        if (this.state.post) {
-            console.log('[<>]',this.state.post.tags)
-        }
-
         return (
             <Animated animationIn="slideInLeft" isVisible={true}>
                 <div className="FullPost_header_container" style={{backgroundImage: `url(${this.state.post.postCardImg})`}}>

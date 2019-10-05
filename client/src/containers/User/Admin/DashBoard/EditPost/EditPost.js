@@ -192,7 +192,8 @@ class EditPost extends Component {
          
         </div>
 
-        {this.state.loading ? 'Loading...' : <button className="EditPost__button-submit"onClick={(e) => this.submitPostHandler(e)}>Submit</button>}
+        {this.state.loading ? 'Loading...' : <button className="EditPost__button-submit" onClick={(e) => this.submitPostHandler(e)}>Submit</button>}
+        <button className="EditPost__button-submit" onClick={this.props.history.goBack}>Cancel</button>
 
     </div>
     )

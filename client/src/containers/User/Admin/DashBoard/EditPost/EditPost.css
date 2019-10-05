@@ -4,7 +4,6 @@
   width: 100%;
   padding: 20px;
   min-height: 100%;
-  /* background: red; */
   box-sizing: border-box;
   max-width: 1200px;
   margin: auto;
@@ -35,10 +34,10 @@
 }
 
 .EditPost__button-submit {
-  width: 308px;
+  width: 100px;
   height: 40px;
-  padding: 0px 34px;
   border: 0px;
+  margin: 20px;
   background: #1f1f1f;
   color: #fff;
   border-radius: 20px;
@@ -47,4 +46,12 @@
   font-size: 1.4rem;
   letter-spacing: normal;
   outline: none;
+}
+
+.EditPost__button-submit:hover {
+  background: #fec303;
+}
+
+.EditPost__button-submit:first-of-type {
+  margin-left: 0px;
 }

@@ -5,7 +5,6 @@ import './BackArrow.css'
 let styling = {
     width: '25px',
     height: '25px',
-    // border: '2px solid #1d1d1d', 
     borderRadius: '50%', 
     background: '#1d1d1d', 
     fill: '#fec303',

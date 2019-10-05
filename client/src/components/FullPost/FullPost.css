@@ -132,7 +132,8 @@
     border-top: 4px solid rgba(254, 195, 3, 1)
 }
 
-.code::after {
+/* **** REMOVED UNTIL PATCHED 5OCT19 **** */
+/* .code::after {
     content: '';
     position: absolute;
     top: 0;
@@ -140,7 +141,7 @@
     background: rgba(254, 195, 3, 1);
     padding: 5px 10px;
     border-radius: 0px 0px 5px 5px;
-}
+} */
 
 .code.html::after {
     content: 'html';

@@ -64,14 +64,15 @@ class FullPost extends Component {
                 <div className="FullPost__top_back_button_tags_container" >
                     <button onClick={this.props.history.goBack} className="FullPost__back_button"> <BackArrow /></button>
 
+                    {/* SHOWS THE CATEGORIES OF THE POST */}
                     <div style={{marginLeft: 'auto'}}>
                         {this.state.post.tags ? this.state.post.tags.map((tag) => <CategoryTag tagName={tag} key={tag}/>) : null}    
                     </div>
 
                 </div>
 
-                    
-                    {this.state.parsedBody ? ReactHtmlParser(this.state.parsedBody) : ''}
+                    {/* THE BODY OF THE POST AFTER THE MARKDOWN IS PARSED BY THE REACT HTML PARSER */}
+                    {this.state.parsedBody ? ReactHtmlParser(this.state.parsedBody) : 'Error Loading the post...'}
                     <button onClick={this.props.history.goBack} className="FullPost__back_button"> <BackArrow /></button>
 
                 </div>
